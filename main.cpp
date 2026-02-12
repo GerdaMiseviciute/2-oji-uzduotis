@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 struct Studentas
@@ -10,6 +11,7 @@ struct Studentas
     vector<int> pazymiai;
     int egzaminas;
     double galutinis;
+    double galutinis_mediana;
 };
 void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
 {
@@ -50,18 +52,28 @@ void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
             cin.clear();
             cin.ignore(1000, '\n');
         }
+        sort(A.pazymiai.begin(), A.pazymiai.end());
         if(n=0)
+        {
             A.galutinis=A.egzaminas*0.6;
-        else A.galutinis=sum*1.0/(A.pazymiai.size()*1.0)*0.4+A.egzaminas*0.6;
+            A.galutinis_mediana=A.egzaminas*0.6;
+        }   
+        else 
+        {
+            A.galutinis=sum*1.0/(A.pazymiai.size()*1.0)*0.4+A.egzaminas*0.6;
+            if(A.pazymiai.size()%2==1)
+                A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
+            else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
+        }
         studentai.push_back(A);
     }
 }
 void spausdinimas(const vector<Studentas>&studentai)
 {
-    cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(10)<<"Galutinis (Vid.)"<<endl;
+    cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
     for(int i=0; i<studentai.size(); i++)
     {
-        cout<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(10)<<fixed<< setprecision(2)<<studentai[i].galutinis<<endl;
+        cout<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;
     }
 }
 int main()
