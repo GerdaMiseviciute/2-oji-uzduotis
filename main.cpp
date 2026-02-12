@@ -9,7 +9,7 @@ struct Studentas
     string vardas, pavarde;
     vector<int> pazymiai;
     int egzaminas;
-    int galutinis;
+    double galutinis;
 };
 void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
 {
@@ -56,12 +56,21 @@ void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
         studentai.push_back(A);
     }
 }
+void spausdinimas(const vector<Studentas>&studentai)
+{
+    cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(10)<<"Galutinis (Vid.)"<<endl;
+    for(int i=0; i<studentai.size(); i++)
+    {
+        cout<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(10)<<fixed<< setprecision(2)<<studentai[i].galutinis<<endl;
+    }
+}
 int main()
 {
     vector<Studentas> studentai;
 
     int studentu_skaicius=3;
     skaitymas(studentai, studentu_skaicius);
+    spausdinimas(studentai);
 
     return 0;
 }
