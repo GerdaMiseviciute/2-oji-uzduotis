@@ -21,6 +21,22 @@ struct Studentas
     double galutinis;
     double galutinis_mediana;
 };
+void skaiciavimai(int sum, Studentas& A, int n)
+{
+    sort(A.pazymiai.begin(), A.pazymiai.end());
+    if(n=0)
+    {
+        A.galutinis=A.egzaminas*0.6;
+        A.galutinis_mediana=A.egzaminas*0.6;
+    }   
+    else 
+    {
+        A.galutinis=sum*1.0/(A.pazymiai.size()*1.0)*0.4+A.egzaminas*0.6;
+        if(A.pazymiai.size()%2==1)
+            A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
+        else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
+    }
+}
 void skaitymas(vector<Studentas>&studentai, int& m)
 {
     cout<<"Įveskite studentų skaičių: "<<endl;
@@ -67,19 +83,7 @@ void skaitymas(vector<Studentas>&studentai, int& m)
             cin.clear();
             cin.ignore(1000, '\n');
         }
-        sort(A.pazymiai.begin(), A.pazymiai.end());
-        if(n=0)
-        {
-            A.galutinis=A.egzaminas*0.6;
-            A.galutinis_mediana=A.egzaminas*0.6;
-        }   
-        else 
-        {
-            A.galutinis=sum*1.0/(A.pazymiai.size()*1.0)*0.4+A.egzaminas*0.6;
-            if(A.pazymiai.size()%2==1)
-                A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
-            else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
-        }
+        skaiciavimai(sum, A, n);
         studentai.push_back(A);
     }
 }
@@ -97,6 +101,5 @@ int main()
     int m;
     skaitymas(studentai, m);
     spausdinimas(studentai);
-
     return 0;
 }
