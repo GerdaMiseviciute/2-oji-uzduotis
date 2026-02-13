@@ -3,7 +3,15 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
-using namespace std;
+using std::cin;
+using std::cout;
+using std::vector;
+using std::left;
+using std::setw;
+using std::string;
+using std::endl;
+using std::fixed;
+using std::setprecision;
 
 struct Studentas
 {
@@ -13,9 +21,16 @@ struct Studentas
     double galutinis;
     double galutinis_mediana;
 };
-void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
+void skaitymas(vector<Studentas>&studentai, int& m)
 {
-    for (int i=0; i<studentu_skaicius; i++)
+    cout<<"Įveskite studentų skaičių: "<<endl;
+    while(!(cin>>m) || m<1)
+    {
+        cout<<"Įveskite teigiamą skaičių: "<<endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+    for (int i=0; i<m; i++)
     {
         Studentas A;
         cout<<i+1<<" studentas:"<<endl;
@@ -28,7 +43,7 @@ void skaitymas(vector<Studentas>&studentai, int studentu_skaicius)
         cout<<"Kiek namų darbų įvertinimų turi studentas?"<<endl;
         while(!(cin>>n) || n<0)
         {
-            cout<<"Įveskite teigiamą skaičių: "<<endl;
+            cout<<"Įveskite ne neigiamą skaičių: "<<endl;
             cin.clear();
             cin.ignore(1000, '\n');
         }
@@ -79,9 +94,8 @@ void spausdinimas(const vector<Studentas>&studentai)
 int main()
 {
     vector<Studentas> studentai;
-
-    int studentu_skaicius=3;
-    skaitymas(studentai, studentu_skaicius);
+    int m;
+    skaitymas(studentai, m);
     spausdinimas(studentai);
 
     return 0;
