@@ -3,6 +3,8 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <stdlib.h>
+#include <numeric>
 using std::cin;
 using std::cout;
 using std::vector;
@@ -21,71 +23,136 @@ struct Studentas
     double galutinis;
     double galutinis_mediana;
 };
-void skaiciavimai(int sum, Studentas& A, int n)
+void skaiciavimai(Studentas& A)
 {
     sort(A.pazymiai.begin(), A.pazymiai.end());
-    if(n=0)
+    if(A.pazymiai.size()==0)
     {
         A.galutinis=A.egzaminas*0.6;
         A.galutinis_mediana=A.egzaminas*0.6;
     }   
     else 
     {
-        A.galutinis=sum*1.0/(A.pazymiai.size()*1.0)*0.4+A.egzaminas*0.6;
+        double vid=accumulate(A.pazymiai.begin(), A.pazymiai.end(), 0.0)/A.pazymiai.size();
+        A.galutinis=vid*0.4+A.egzaminas*0.6;
         if(A.pazymiai.size()%2==1)
             A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
         else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
     }
 }
-void skaitymas(vector<Studentas>&studentai, int& m)
+void skaitymas(vector<Studentas>&studentai)
 {
-    cout<<"Įveskite studentų skaičių: "<<endl;
-    while(!(cin>>m) || m<1)
-    {
-        cout<<"Įveskite teigiamą skaičių: "<<endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
-    }
-    for (int i=0; i<m; i++)
+    for (int i=0; ; i++)
     {
         Studentas A;
-        cout<<i+1<<" studentas:"<<endl;
-        cout<<"Įvesk studento vardą: ";
-        cin>>A.vardas;
-        cout<<endl<<"Įvesk studento pavardę: ";
-        cin>>A.pavarde;
-        cout<<endl;
-        int n, pazymys, sum=0;
-        cout<<"Kiek namų darbų įvertinimų turi studentas?"<<endl;
-        while(!(cin>>n) || n<0)
+        int a;
+        cout<<"Jei norite įvesti naujo studento duomenis, spauskite 1, jei baigėte žmonių įvedimą, spauskite 0: ";
+        while(!(cin>>a) || (a!=0 && a!=1))
         {
-            cout<<"Įveskite ne neigiamą skaičių: "<<endl;
+            cout<<"Įveskite 1 arba 0: "<<endl;
             cin.clear();
             cin.ignore(1000, '\n');
         }
-        
-        for(int j=0; j<n; j++)
+        if(a==1)
         {
-            cout<<"Įveskite "<<j+1<<"-ąjį pažymį iš "<<n<<": ";
-            while(!(cin>>pazymys) || pazymys<1 || pazymys>10)
+            cout<<i+1<<" studentas:"<<endl;
+            cout<<"Įvesk studento vardą: ";
+            cin>>A.vardas;
+            cout<<endl<<"Įvesk studento pavardę: ";
+            cin>>A.pavarde;
+            cout<<endl;
+            int pazymys;
+            for(int j=0; ;j++)
+            {
+                cout<<"Įveskite "<<j+1<<"-ąjį pažymį (jei įvedėte visus pažymius, spauskite 0): ";
+                while(!(cin>>pazymys) || pazymys<0 || pazymys>10)
+                {
+                    cout<<"Įveskite skaičių 1-10: "<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                }
+                if(pazymys==0)
+                    break;
+                else A.pazymiai.push_back(pazymys);
+            }
+            cout<<"Įveskite egzamino rezultatą: ";
+            while(!(cin>>A.egzaminas) || A.egzaminas<1 || A.egzaminas>10)
             {
                 cout<<"Įveskite skaičių 1-10: "<<endl;
                 cin.clear();
                 cin.ignore(1000, '\n');
             }
-            A.pazymiai.push_back(pazymys);
-            sum+=pazymys;
+            skaiciavimai(A);
+            studentai.push_back(A);
         }
-        cout<<"Įveskite egzamino rezultatą: ";
-        while(!(cin>>A.egzaminas) || A.egzaminas<1 || A.egzaminas>10)
-        {
-            cout<<"Įveskite skaičių 1-10: "<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
-        }
-        skaiciavimai(sum, A, n);
-        studentai.push_back(A);
+        else break;
     }
+}
+Studentas pazymiu_generavimas(int i)
+{
+    Studentas a;
+    cout<<i+1<<" studentas:"<<endl;
+    cout<<"Įvesk studento vardą: ";
+    cin>>a.vardas;
+    cout<<endl<<"Įvesk studento pavardę: ";
+    cin>>a.pavarde;
+    cout<<endl;
+    int n=rand()%20+1;
+    for(int i=0; i<n; i++)
+    {
+        a.pazymiai.push_back(rand()%10+1);
+    }
+    a.egzaminas=rand()%10+1;
+    skaiciavimai(a);
+    return a;
+}
+Studentas generuoti_viska()
+{
+    Studentas a;
+    switch(rand()%10)
+    {
+        case 0: a.vardas="Renata"; break;
+        case 1: a.vardas="Jolanta"; break;
+        case 2: a.vardas="Lina"; break;
+        case 3: a.vardas="Amelija"; break;
+        case 4: a.vardas="Sofija"; break;
+        case 5: a.vardas="Mantas"; break;
+        case 6: a.vardas="Antanas"; break;
+        case 7: a.vardas="Rokas"; break;
+        case 8: a.vardas="Žygimantas"; break;
+        case 9: a.vardas="Andrius"; break;
+    }
+    switch(*a.vardas.rbegin())
+    {
+        case 's':
+            switch(rand()%5)
+            {
+                case 0: a.pavarde="Pavardenis1"; break;
+                case 1: a.pavarde="Pavardenis2"; break;
+                case 2: a.pavarde="Pavardenis3"; break;
+                case 3: a.pavarde="Pavardenis4"; break;
+                case 4: a.pavarde="Pavardenis5"; break;
+            }
+            break;
+        default:
+            switch(rand()%5)
+            {
+                case 0: a.pavarde="Pavardaite1"; break;
+                case 1: a.pavarde="Pavardiene1"; break;
+                case 2: a.pavarde="Pavardyte"; break;
+                case 3: a.pavarde="Pavardaite2"; break;
+                case 4: a.pavarde="Pavardiene2"; break;
+            }
+            break;
+    };
+    int n=rand()%20+1;
+    for(int i=0; i<n; i++)
+    {
+        a.pazymiai.push_back(rand()%10+1);
+    }
+    a.egzaminas=rand()%10+1;
+    skaiciavimai(a);
+    return a;
 }
 void spausdinimas(const vector<Studentas>&studentai)
 {
@@ -97,9 +164,55 @@ void spausdinimas(const vector<Studentas>&studentai)
 }
 int main()
 {
+    srand(time(NULL));
     vector<Studentas> studentai;
-    int m;
-    skaitymas(studentai, m);
-    spausdinimas(studentai);
+    int choice;
+    cout<<"===Meniu==="<<endl;
+    cout<<"1. Ranka"<<endl;
+    cout<<"2. Generuoti pažymius"<<endl;
+    cout<<"3. Generuoti studentų vardus, pavardes ir pažymius"<<endl;
+    cout<<"4. Baigti darbą"<<endl;
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+            skaitymas(studentai);
+            spausdinimas(studentai);
+            break;
+        case 2:
+            for(int i=0; ; i++)
+            {
+                int a;
+                cout<<"Jei norite įvesti naujo studento duomenis, spauskite 1, jei baigėte žmonių įvedimą, spauskite 0: ";
+                while(!(cin>>a) || (a!=0 && a!=1))
+                {
+                    cout<<"Įveskite 1 arba 0: "<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                }
+                if(a==1)
+                    studentai.push_back(pazymiu_generavimas(i));
+                else break;
+            }
+            spausdinimas(studentai);
+            break;
+        case 3:
+            for(int i=0; ; i++)
+            {
+                int a;
+                cout<<"Jei norite įvesti naujo studento duomenis, spauskite 1, jei baigėte žmonių įvedimą, spauskite 0: ";
+                while(!(cin>>a) || (a!=0 && a!=1))
+                {
+                    cout<<"Įveskite 1 arba 0: "<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                }
+                if(a==1)
+                    studentai.push_back(generuoti_viska());
+                else break;
+            }
+            spausdinimas(studentai);
+            break;
+    }
     return 0;
 }
