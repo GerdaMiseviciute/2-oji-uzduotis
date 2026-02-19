@@ -20,29 +20,30 @@ using std::accumulate;
 struct Studentas
 {
     string vardas, pavarde;
-    vector<int> pazymiai;
+    int masyvo_dydis=10;
+    int* pazymiai = new int[masyvo_dydis];
     int egzaminas;
     double galutinis;
     double galutinis_mediana;
 };
-void skaiciavimai(Studentas& A)
+void skaiciavimai(Studentas& A, int pazymiu_masyvo_dydis)
 {
-    sort(A.pazymiai.begin(), A.pazymiai.end());
-    if(A.pazymiai.size()==0)
+    sort(A.pazymiai, A.pazymiai+pazymiu_masyvo_dydis);
+    if(pazymiu_masyvo_dydis==0)
     {
         A.galutinis=A.egzaminas*0.6;
         A.galutinis_mediana=A.egzaminas*0.6;
-    }   
+    }
     else 
     {
-        double vid=accumulate(A.pazymiai.begin(), A.pazymiai.end(), 0.0)/A.pazymiai.size();
+        double vid=accumulate(A.pazymiai, A.pazymiai+pazymiu_masyvo_dydis, 0.0)/pazymiu_masyvo_dydis;
         A.galutinis=vid*0.4+A.egzaminas*0.6;
-        if(A.pazymiai.size()%2==1)
-            A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
-        else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
+        if(pazymiu_masyvo_dydis%2==1)
+            A.galutinis_mediana=A.pazymiai[pazymiu_masyvo_dydis/2]*0.4+A.egzaminas*0.6;
+        else A.galutinis_mediana=(A.pazymiai[pazymiu_masyvo_dydis/2]+A.pazymiai[pazymiu_masyvo_dydis/2-1])/2.0*0.4+A.egzaminas*0.6;
     }
 }
-void skaitymas(vector<Studentas>&studentai)
+void skaitymas(Studentas*& studentai, int& m, int& size)
 {
     for (int i=0; ; i++)
     {
@@ -63,7 +64,7 @@ void skaitymas(vector<Studentas>&studentai)
             cout<<endl<<"Įvesk studento pavardę: ";
             cin>>A.pavarde;
             cout<<endl;
-            int pazymys;
+            int pazymys, pazymiu_masyvo_dydis=0;
             for(int j=0; ;j++)
             {
                 cout<<"Įveskite "<<j+1<<"-ąjį pažymį (jei įvedėte visus pažymius, spauskite 0): ";
@@ -75,7 +76,23 @@ void skaitymas(vector<Studentas>&studentai)
                 }
                 if(pazymys==0)
                     break;
-                else A.pazymiai.push_back(pazymys);
+                else 
+                {
+                    cout<<pazymys<<endl;
+                    if(pazymiu_masyvo_dydis==A.masyvo_dydis)
+                    {
+                        A.masyvo_dydis*=2;
+                        int* naujas_masyvas=new int[A.masyvo_dydis];
+                        for(int z=0; z<pazymiu_masyvo_dydis; z++)
+                        {
+                            naujas_masyvas[z]=A.pazymiai[z];
+                        }
+                        delete [] A.pazymiai;
+                        A.pazymiai=naujas_masyvas;
+                    }
+                    A.pazymiai[pazymiu_masyvo_dydis]=pazymys;
+                    pazymiu_masyvo_dydis++;
+                }
             }
             cout<<"Įveskite egzamino rezultatą: ";
             while(!(cin>>A.egzaminas) || A.egzaminas<1 || A.egzaminas>10)
@@ -84,13 +101,25 @@ void skaitymas(vector<Studentas>&studentai)
                 cin.clear();
                 cin.ignore(1000, '\n');
             }
-            skaiciavimai(A);
-            studentai.push_back(A);
+            skaiciavimai(A, pazymiu_masyvo_dydis);
+            if(size==m)
+            {
+                m*=2;
+                Studentas* naujas_masyvas=new Studentas[m];
+                for(int z=0; z<size; z++)
+                {
+                    naujas_masyvas[z]=studentai[z];
+                }
+                delete [] studentai;
+                studentai=naujas_masyvas;
+            }
+            studentai[size]=A;
+            size++;
         }
         else break;
     }
 }
-void pazymiu_generavimas(vector<Studentas>&studentai)
+void pazymiu_generavimas(Studentas*&studentai, int& m, int& size)
 {
     for(int i=0; ; i++)
     {
@@ -114,19 +143,43 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
             int n=rand()%20+1;
             for(int i=0; i<n; i++)
             {
-                A.pazymiai.push_back(rand()%10+1);
+                if(i==A.masyvo_dydis)
+                {
+                    A.masyvo_dydis*=2;
+                    int* naujas_masyvas=new int[A.masyvo_dydis];
+                    for(int z=0; z<i; z++)
+                    {
+                        naujas_masyvas[z]=A.pazymiai[z];
+                    }
+                    delete [] A.pazymiai;
+                    A.pazymiai=naujas_masyvas;
+                }
+                A.pazymiai[i]=rand()%10+1;
             }
             A.egzaminas=rand()%10+1;
-            skaiciavimai(A);
-            studentai.push_back(A);
+            skaiciavimai(A, n);
+            if(size==m)
+            {
+                m*=2;
+                Studentas* naujas_masyvas=new Studentas[m];
+                for(int z=0; z<size; z++)
+                {
+                    naujas_masyvas[z]=studentai[z];
+                }
+                delete [] studentai;
+                studentai=naujas_masyvas;
+            }
+            studentai[size]=A;
+            size++;
         }
         else break;
     }
 }
-void generuoti_viska(vector<Studentas>&studentai)
+void generuoti_viska(Studentas*&studentai, int& m, int& size)
 {
-    int m=rand()%20+1;
-    for(int i=0; i<m; i++)
+    size=rand()%20+1;
+    cout<<size<<endl;
+    for(int i=0; i<size; i++)
     {
         Studentas a;
         switch(rand()%10)
@@ -166,19 +219,41 @@ void generuoti_viska(vector<Studentas>&studentai)
                 break;
         };
         int n=rand()%20+1;
-        for(int i=0; i<n; i++)
+        for(int j=0; j<n; j++)
         {
-            a.pazymiai.push_back(rand()%10+1);
+            if(j==a.masyvo_dydis)
+            {
+                a.masyvo_dydis*=2;
+                int* naujas_masyvas=new int[a.masyvo_dydis];
+                for(int z=0; z<j; z++)
+                {
+                    naujas_masyvas[z]=a.pazymiai[z];
+                }
+                delete [] a.pazymiai;
+                a.pazymiai=naujas_masyvas;
+        }
+        a.pazymiai[j]=rand()%10+1;
         }
         a.egzaminas=rand()%10+1;
-        skaiciavimai(a);
-        studentai.push_back(a);
+        skaiciavimai(a, n);
+        if(i==m)
+        {
+            m*=2;
+            Studentas* naujas_masyvas=new Studentas[m];
+            for(int z=0; z<i; z++)
+            {
+                naujas_masyvas[z]=studentai[z];
+            }
+            delete [] studentai;
+            studentai=naujas_masyvas;
+        }
+        studentai[i]=a;
     }
 }
-void spausdinimas(const vector<Studentas>&studentai)
+void spausdinimas(Studentas*&studentai, int size)
 {
     cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
-    for(int i=0; i<studentai.size(); i++)
+    for(int i=0; i<size; i++)
     {
         cout<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;
     }
@@ -186,7 +261,8 @@ void spausdinimas(const vector<Studentas>&studentai)
 int main()
 {
     srand(time(NULL));
-    vector<Studentas> studentai;
+    int m=10, size=0;
+    Studentas* studentai= new Studentas[m];
     int choice;
     cout<<"===Meniu==="<<endl;
     cout<<"1. Ranka"<<endl;
@@ -202,17 +278,18 @@ int main()
     switch(choice)
     {
         case 1:
-            skaitymas(studentai);
-            spausdinimas(studentai);
+            skaitymas(studentai, m, size);
+            spausdinimas(studentai, size);
             break;
         case 2:
-            pazymiu_generavimas(studentai);
-            spausdinimas(studentai);
+            pazymiu_generavimas(studentai, m, size);
+            spausdinimas(studentai, size);
             break;
         case 3:
-            generuoti_viska(studentai);
-            spausdinimas(studentai);
+            generuoti_viska(studentai, m, size);
+            spausdinimas(studentai, size);
             break;
     }
+    delete [] studentai;
     return 0;
 }
