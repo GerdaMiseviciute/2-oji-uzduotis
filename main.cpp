@@ -59,9 +59,10 @@ void skaitymas(vector<Studentas>&studentai)
         {
             cout<<i+1<<" studentas:"<<endl;
             cout<<"Įvesk studento vardą: ";
-            cin>>A.vardas;
+            cin.ignore();
+            getline(cin, A.vardas);
             cout<<endl<<"Įvesk studento pavardę: ";
-            cin>>A.pavarde;
+            getline(cin, A.pavarde);
             cout<<endl;
             int pazymys;
             for(int j=0; ;j++)
@@ -107,9 +108,10 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
             Studentas A;
             cout<<i+1<<" studentas:"<<endl;
             cout<<"Įvesk studento vardą: ";
-            cin>>A.vardas;
+            cin.ignore();
+            getline(cin, A.vardas);
             cout<<endl<<"Įvesk studento pavardę: ";
-            cin>>A.pavarde;
+            getline(cin, A.pavarde);
             cout<<endl;
             int n=rand()%20+1;
             for(int i=0; i<n; i++)

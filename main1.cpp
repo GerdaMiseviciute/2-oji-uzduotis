@@ -60,9 +60,10 @@ void skaitymas(Studentas*& studentai, int& m, int& size)
         {
             cout<<i+1<<" studentas:"<<endl;
             cout<<"Įvesk studento vardą: ";
-            cin>>A.vardas;
+            cin.ignore();
+            getline(cin, A.vardas);
             cout<<endl<<"Įvesk studento pavardę: ";
-            cin>>A.pavarde;
+            getline(cin, A.pavarde);
             cout<<endl;
             int pazymys, pazymiu_masyvo_dydis=0;
             for(int j=0; ;j++)
@@ -78,7 +79,6 @@ void skaitymas(Studentas*& studentai, int& m, int& size)
                     break;
                 else 
                 {
-                    cout<<pazymys<<endl;
                     if(pazymiu_masyvo_dydis==A.masyvo_dydis)
                     {
                         A.masyvo_dydis*=2;
@@ -136,9 +136,10 @@ void pazymiu_generavimas(Studentas*&studentai, int& m, int& size)
             Studentas A;
             cout<<i+1<<" studentas:"<<endl;
             cout<<"Įvesk studento vardą: ";
-            cin>>A.vardas;
+            cin.ignore();
+            getline(cin, A.vardas);
             cout<<endl<<"Įvesk studento pavardę: ";
-            cin>>A.pavarde;
+            getline(cin, A.pavarde);
             cout<<endl;
             int n=rand()%20+1;
             for(int i=0; i<n; i++)
@@ -178,7 +179,6 @@ void pazymiu_generavimas(Studentas*&studentai, int& m, int& size)
 void generuoti_viska(Studentas*&studentai, int& m, int& size)
 {
     size=rand()%20+1;
-    cout<<size<<endl;
     for(int i=0; i<size; i++)
     {
         Studentas a;
