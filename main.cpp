@@ -215,6 +215,8 @@ int main()
             generuoti_viska(studentai);
             spausdinimas(studentai);
             break;
+        case 4:
+            break; 
     }
     return 0;
 }

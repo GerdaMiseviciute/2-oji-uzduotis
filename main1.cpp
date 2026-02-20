@@ -176,7 +176,7 @@ void pazymiu_generavimas(Studentas*&studentai, int& m, int& size)
         else break;
     }
 }
-void generuoti_viska(Studentas*&studentai, int& m, int& size)
+void generuoti_viska(Studentas*& studentai, int& m, int& size)
 {
     size=rand()%20+1;
     for(int i=0; i<size; i++)
@@ -288,6 +288,8 @@ int main()
         case 3:
             generuoti_viska(studentai, m, size);
             spausdinimas(studentai, size);
+            break;
+        case 4:
             break;
     }
     delete [] studentai;
