@@ -142,20 +142,20 @@ void pazymiu_generavimas(Studentas*&studentai, int& m, int& size)
             getline(cin, A.pavarde);
             cout<<endl;
             int n=rand()%20+1;
-            for(int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
             {
-                if(i==A.masyvo_dydis)
+                if(j==A.masyvo_dydis)
                 {
                     A.masyvo_dydis*=2;
                     int* naujas_masyvas=new int[A.masyvo_dydis];
-                    for(int z=0; z<i; z++)
+                    for(int z=0; z<j; z++)
                     {
                         naujas_masyvas[z]=A.pazymiai[z];
                     }
                     delete [] A.pazymiai;
                     A.pazymiai=naujas_masyvas;
                 }
-                A.pazymiai[i]=rand()%10+1;
+                A.pazymiai[j]=rand()%10+1;
             }
             A.egzaminas=rand()%10+1;
             skaiciavimai(A, n);
@@ -231,8 +231,8 @@ void generuoti_viska(Studentas*&studentai, int& m, int& size)
                 }
                 delete [] a.pazymiai;
                 a.pazymiai=naujas_masyvas;
-        }
-        a.pazymiai[j]=rand()%10+1;
+            }
+            a.pazymiai[j]=rand()%10+1;
         }
         a.egzaminas=rand()%10+1;
         skaiciavimai(a, n);

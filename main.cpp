@@ -114,7 +114,7 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
             getline(cin, A.pavarde);
             cout<<endl;
             int n=rand()%20+1;
-            for(int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
             {
                 A.pazymiai.push_back(rand()%10+1);
             }
@@ -168,7 +168,7 @@ void generuoti_viska(vector<Studentas>&studentai)
                 break;
         };
         int n=rand()%20+1;
-        for(int i=0; i<n; i++)
+        for(int j=0; j<n; j++)
         {
             a.pazymiai.push_back(rand()%10+1);
         }
