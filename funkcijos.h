@@ -1,0 +1,19 @@
+#include "mylib.h"
+void skaiciavimai(Studentas& A);
+void skaitymas_is_failo(vector<Studentas>&studentai);
+void skaitymas(vector<Studentas>&studentai);
+void pazymiu_generavimas(vector<Studentas>&studentai);
+void generuoti_viska(vector<Studentas>&studentai);
+void spausdinimas_i_ekrana(const vector<Studentas>&studentai);
+void spausdinimas_i_faila(const vector<Studentas>&studentai);
+void ivedimas(vector<Studentas>&studentai);
+bool did_var(Studentas& A, Studentas& B);
+bool maz_var(Studentas& A, Studentas& B);
+bool did_pav(Studentas& A, Studentas& B);
+bool maz_pav(Studentas& A, Studentas& B);
+bool did_gal_med(Studentas& A, Studentas& B);
+bool maz_gal_med(Studentas& A, Studentas& B);
+bool did_gal_vid(Studentas& A, Studentas& B);
+bool maz_gal_vid(Studentas& A, Studentas& B);
+void rikiavimas(vector<Studentas>&studentai);
+void spausdinimas(const vector<Studentas>&studentai);
