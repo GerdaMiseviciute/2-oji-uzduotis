@@ -63,6 +63,7 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         {
             throw std::runtime_error("Nepavyko atidaryti failo.");
         }
+        getline(fd, eil);
         while(getline(fd, eil))
         {
             if (eil.empty()) continue;
@@ -228,7 +229,7 @@ void generuoti_viska(vector<Studentas>&studentai)
         studentai.push_back(a);
     }
 }
-void spausdinimas(const vector<Studentas>&studentai)
+void spausdinimas_i_ekrana(const vector<Studentas>&studentai)
 {
     cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
     for(int i=0; i<studentai.size(); i++)
@@ -263,20 +264,90 @@ void ivedimas(vector<Studentas>&studentai)
     {
         case 1:
             skaitymas(studentai);
-            spausdinimas(studentai);
             break;
         case 2:
             pazymiu_generavimas(studentai);
-            spausdinimas(studentai);
             break;
         case 3:
             generuoti_viska(studentai);
-            spausdinimas(studentai);
             break;
         case 4:
             break; 
     }
 }
+bool did_var(Studentas& A, Studentas& B)
+{
+    return A.vardas<B.vardas;
+}
+bool maz_var(Studentas& A, Studentas& B)
+{
+    return A.vardas>B.vardas;
+}
+bool did_pav(Studentas& A, Studentas& B)
+{
+    return A.pavarde<B.pavarde;
+}
+bool maz_pav(Studentas& A, Studentas& B)
+{
+    return A.pavarde>B.pavarde;
+}
+bool did_gal_med(Studentas& A, Studentas& B)
+{
+    return A.galutinis_mediana<B.galutinis_mediana;
+}
+bool maz_gal_med(Studentas& A, Studentas& B)
+{
+    return A.galutinis_mediana>B.galutinis_mediana;
+}
+bool did_gal_vid(Studentas& A, Studentas& B)
+{
+    return A.galutinis<B.galutinis;
+}
+bool maz_gal_vid(Studentas& A, Studentas& B)
+{
+    return A.galutinis>B.galutinis;
+}
+void rikiavimas(vector<Studentas>&studentai)
+{
+    string b;
+    cout<<"Pasirinkite rūšiavimo kriterijų - vardą, pavardę, galutinį rezultatą pagal medianą arba galutinį rezultatą pagal vidurkį (vardas / pavarde / gal_med / gal_vid): "<<endl;
+    while(true)
+    {
+        cin>>b;
+        if(b=="vardas" || b=="pavarde" || b=="gal_med" || b=="gal_vid")
+            break;
+        cout<<"Neteisingas kriterijus! Įrašykite iš naujo: "<<endl;
+    }
+    char tvarka;
+    cout<<"Spauskite 'd', jei norite, kad duomenys būtų spausdinami didėjimo tvarka, arba 'm', kad duomenys būtų spausdinami mažėjimo tvarka: "<<endl;
+    while(!(cin>>tvarka) || (tvarka!='d' && tvarka!='m'))
+    {
+        cout<<"Įveskite 'f' arba 'i': "<<endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+    if(tvarka=='d')
+    {
+        if(b=="vardas")
+            sort(studentai.begin(), studentai.end(), did_var);
+        else if(b=="pavarde")
+            sort(studentai.begin(), studentai.end(), did_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), did_gal_med);
+        else sort(studentai.begin(), studentai.end(), did_gal_vid);
+    }
+    else
+    {
+        if(b=="vardas")
+            sort(studentai.begin(), studentai.end(), maz_var);
+        else if(b=="pavarde")
+            sort(studentai.begin(), studentai.end(), maz_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), maz_gal_med);
+        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
+    }
+}
+
 int main()
 {
     srand(time(NULL));
@@ -294,6 +365,8 @@ int main()
         skaitymas_is_failo(studentai);  
     else ivedimas(studentai);
 
+    rikiavimas(studentai);
+    
     spausdinimas_i_faila(studentai);
 
     return 0;
