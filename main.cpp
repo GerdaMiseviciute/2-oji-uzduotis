@@ -53,43 +53,45 @@ void skaiciavimai(Studentas& A)
 }
 void skaitymas_is_failo(vector<Studentas>&studentai)
 {
-    vector<string>eilutes;
-    string eil;
+    try
+    {
+        string eil;
 
-    auto start = high_resolution_clock::now();
-    ifstream fd("kursiokai.txt");
-    if(!fd)
-    {
-        cerr<<"Negali atidaryti įvesties failo"<<endl;
-        return;
-    }
-    while(getline(fd, eil))
-    {
-        eilutes.push_back(eil);
-    }
-    fd.close();
-    studentai.reserve(eilutes.size() - 1);
-    for(int i=1; i<eilutes.size(); i++)
-    {
-        stringstream ss(eilutes[i]);
-        Studentas A;
-        ss>>A.vardas>>A.pavarde;
-        int x;
-        while(ss>>x)
+        auto start = high_resolution_clock::now();
+        ifstream fd("kursiokai.txt");
+        if(!fd)
         {
-            A.pazymiai.push_back(x);
+            throw std::runtime_error("Nepavyko atidaryti failo.");
         }
-        if(!A.pazymiai.empty())
+        while(getline(fd, eil))
         {
-            A.egzaminas=A.pazymiai.back();
-            A.pazymiai.pop_back();
+            if (eil.empty()) continue;
+            stringstream ss(eil);
+            Studentas A;
+            ss>>A.vardas>>A.pavarde;
+            int x;
+            while(ss>>x)
+            {
+                A.pazymiai.push_back(x);
+            }
+            if(!A.pazymiai.empty())
+            {
+                A.egzaminas=A.pazymiai.back();
+                A.pazymiai.pop_back();
+            }
+            skaiciavimai(A);
+            studentai.push_back(A);
         }
-        skaiciavimai(A);
-        studentai.push_back(A);
+        fd.close();
+        auto end = high_resolution_clock::now();
+        duration<double> laikas=end-start;
+        cout<<laikas.count()<<endl;
     }
-    auto end = high_resolution_clock::now();
-    duration<double> laikas=end-start;
-    cout<<laikas.count()<<endl;
+    catch(const std::exception& e)
+    {
+        cerr<<"Klaida: "<<e.what()<<endl;
+    }
+    
 }
 void skaitymas(vector<Studentas>&studentai)
 {
@@ -234,39 +236,65 @@ void spausdinimas(const vector<Studentas>&studentai)
         cout<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;
     }
 }
+void spausdinimas_i_faila(const vector<Studentas>&studentai)
+{
+    ofstream fr("rezultatai.txt");
+    fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
+    for(int i=0; i<studentai.size(); i++)
+    {
+        fr<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;
+    }
+}
+void ivedimas(vector<Studentas>&studentai)
+{
+    int choice;
+    cout<<"===Meniu==="<<endl;
+    cout<<"1. Ranka"<<endl;
+    cout<<"2. Generuoti pažymius"<<endl;
+    cout<<"3. Generuoti studentų vardus, pavardes ir pažymius"<<endl;
+    cout<<"4. Baigti darbą"<<endl;
+    while(!(cin>>choice) || choice<1 || choice>4)
+    {
+        cout<<"Įveskite skaičių 1-4: "<<endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+    switch(choice)
+    {
+        case 1:
+            skaitymas(studentai);
+            spausdinimas(studentai);
+            break;
+        case 2:
+            pazymiu_generavimas(studentai);
+            spausdinimas(studentai);
+            break;
+        case 3:
+            generuoti_viska(studentai);
+            spausdinimas(studentai);
+            break;
+        case 4:
+            break; 
+    }
+}
 int main()
 {
-    //srand(time(NULL));
+    srand(time(NULL));
     vector<Studentas> studentai;
-    skaitymas_is_failo(studentai);
-    // int choice;
-    // cout<<"===Meniu==="<<endl;
-    // cout<<"1. Ranka"<<endl;
-    // cout<<"2. Generuoti pažymius"<<endl;
-    // cout<<"3. Generuoti studentų vardus, pavardes ir pažymius"<<endl;
-    // cout<<"4. Baigti darbą"<<endl;
-    // while(!(cin>>choice) || choice<1 || choice>4)
-    // {
-    //     cout<<"Įveskite skaičių 1-4: "<<endl;
-    //     cin.clear();
-    //     cin.ignore(1000, '\n');
-    // }
-    // switch(choice)
-    // {
-    //     case 1:
-    //         skaitymas(studentai);
-    //         spausdinimas(studentai);
-    //         break;
-    //     case 2:
-    //         pazymiu_generavimas(studentai);
-    //         spausdinimas(studentai);
-    //         break;
-    //     case 3:
-    //         generuoti_viska(studentai);
-    //         spausdinimas(studentai);
-    //         break;
-    //     case 4:
-    //         break; 
-    // }
+    
+    cout<<"Spauskite 'f', jei norite, kad duomenys būtų nuskaitomi iš failo arba 'i', kad juos įvestumėte patys"<<endl;
+    char a;
+    while(!(cin>>a) || (a!='f' && a!='i'))
+    {
+        cout<<"Įveskite 'f' arba 'i': "<<endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+    if(a=='f')
+        skaitymas_is_failo(studentai);  
+    else ivedimas(studentai);
+
+    spausdinimas_i_faila(studentai);
+
     return 0;
 }
