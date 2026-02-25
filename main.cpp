@@ -347,7 +347,20 @@ void rikiavimas(vector<Studentas>&studentai)
         else sort(studentai.begin(), studentai.end(), maz_gal_vid);
     }
 }
-
+void spausdinimas(const vector<Studentas>&studentai)
+{
+    char s;
+    cout<<"Spauskite 'f', jei norite, kad duomenys būtų spausdinami į failą, arba 'e', kad duomenys būtų spausdinami į ekraną: "<<endl;
+    while(!(cin>>s) || (s!='e' && s!='f'))
+    {
+        cout<<"Įveskite 'f' arba 'i': "<<endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+    if(s=='f')
+        spausdinimas_i_faila(studentai);
+    else spausdinimas_i_ekrana(studentai);
+}
 int main()
 {
     srand(time(NULL));
@@ -367,7 +380,7 @@ int main()
 
     rikiavimas(studentai);
     
-    spausdinimas_i_faila(studentai);
+    spausdinimas(studentai);
 
     return 0;
 }
