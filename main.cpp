@@ -4,7 +4,7 @@ int main()
     srand(time(NULL));
     vector<Studentas> studentai;
     
-    cout<<"Spauskite 'f', jei norite, kad duomenys būtų nuskaitomi iš failo arba 'i', kad juos įvestumėte patys"<<endl;
+    cout<<"Spauskite 'f', jei norite, kad duomenys butu nuskaitomi is failo arba 'i', kad juos ivestumete patys"<<endl;
     char a;
     while(!(cin>>a) || (a!='f' && a!='i'))
     {

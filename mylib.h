@@ -1,4 +1,5 @@
 #include <iostream>
+#include <new>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -24,7 +25,9 @@ using std::ifstream;
 using std::cerr;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
-using std::stringstream;
+using std::istringstream;
+using std::ostringstream;
+using std::terminate;
 
 struct Studentas
 {
