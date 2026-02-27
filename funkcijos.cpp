@@ -19,12 +19,15 @@ void skaiciavimai(Studentas& A)
 }
 void skaitymas_is_failo(vector<Studentas>&studentai)
 {
+    string filename;
+    system("dir *.txt");
+    cout<<"Ivesk failo pavadinima: ";
+    cin>>filename;
     try
     {
         string eil;
-
         auto start = high_resolution_clock::now();
-        ifstream fd("kursiokai.txt");
+        ifstream fd(filename);
         if(!fd)
         {
             throw std::runtime_error("Nepavyko atidaryti failo.");
@@ -32,7 +35,7 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         getline(fd, eil);
         while(getline(fd, eil))
         {
-            if (eil.empty()) continue;
+            //if (eil.empty()) continue;
             istringstream ss(eil);
             Studentas A;
             ss>>A.vardas>>A.pavarde;
@@ -48,6 +51,7 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
             }
             skaiciavimai(A);
             studentai.push_back(A);
+            A.pazymiai.clear();
         }
         fd.close();
         auto end = high_resolution_clock::now();
@@ -106,6 +110,7 @@ void skaitymas(vector<Studentas>&studentai)
             }
             skaiciavimai(A);
             studentai.push_back(A);
+            A.pazymiai.clear();
         }
         else break;
     }
@@ -140,6 +145,7 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
             A.egzaminas=rand()%10+1;
             skaiciavimai(A);
             studentai.push_back(A);
+            A.pazymiai.clear();
         }
         else break;
     }
@@ -194,6 +200,7 @@ void generuoti_viska(vector<Studentas>&studentai)
         a.egzaminas=rand()%10+1;
         skaiciavimai(a);
         studentai.push_back(a);
+        a.pazymiai.clear();
     }
 }
 void spausdinimas_i_ekrana(const vector<Studentas>&studentai)
