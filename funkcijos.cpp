@@ -35,7 +35,8 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         getline(fd, eil);
         while(getline(fd, eil))
         {
-            //if (eil.empty()) continue;
+            if (eil.empty()) 
+                continue;
             istringstream ss(eil);
             Studentas A;
             ss>>A.vardas>>A.pavarde;
@@ -63,7 +64,6 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         cerr<<"Klaida: "<<e.what()<<endl;
         terminate();
     }
-    
 }
 void skaitymas(vector<Studentas>&studentai)
 {
