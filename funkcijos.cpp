@@ -74,9 +74,16 @@ void skaitymas(vector<Studentas>&studentai)
         cout<<"Jei norite ivesti naujo studento duomenis, spauskite 1, jei baigete zmoniu ivedima, spauskite 0: ";
         while(!(cin>>a) || (a!=0 && a!=1))
         {
-            cerr<<"Iveskite 1 arba 0: "<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
+            try
+            {
+                throw std::runtime_error("Įveskite 1 arba 0: ");
+            }
+            catch(const std::exception& e)
+            {
+                cerr<<"Klaida: "<<e.what()<<endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
         }
         if(a==1)
         {
@@ -287,7 +294,9 @@ bool maz_gal_vid(Studentas& A, Studentas& B)
 }
 void rikiavimas(vector<Studentas>&studentai)
 {
-    string b;
+    if(!studentai.empty() && studentai.size()>1)
+    {
+        string b;
     cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (vardas / pavarde / gal_med / gal_vid): "<<endl;
     while(true)
     {
@@ -324,6 +333,8 @@ void rikiavimas(vector<Studentas>&studentai)
             sort(studentai.begin(), studentai.end(), maz_gal_med);
         else sort(studentai.begin(), studentai.end(), maz_gal_vid);
     }
+    }
+    
 }
 void spausdinimas(const vector<Studentas>&studentai)
 {
