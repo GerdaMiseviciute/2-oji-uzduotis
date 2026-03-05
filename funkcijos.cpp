@@ -353,10 +353,20 @@ void rikiavimas(vector<Studentas>&studentai)
         cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): "<<endl;
         while(true)
         {
-            cin>>b;
-            if(b=="var" || b=="pav" || b=="gal_med" || b=="gal_vid")
+            try
+            {
+                cin>>b;
+                if(cin.fail() || (b!="var" && b!="pav" && b!="gal_med" && b!="gal_vid"))
+                    throw std::runtime_error("Irasykite is naujo: ");
+
                 break;
-            cerr<<"Neteisingas kriterijus! Irasykite is naujo: "<<endl;
+            }
+            catch(const std::runtime_error& e)
+            {
+                cerr<<"Neteisingas kriterijus! "<<e.what()<<endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
         }
         char tvarka;
         cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
@@ -406,6 +416,7 @@ void spausdinimas(const vector<Studentas>&studentai)
     cout<<"Spauskite 'f', jei norite, kad duomenys butu spausdinami i faila, arba 'e', kad duomenys butu spausdinami i ekrana: "<<endl;
     while(!(cin>>s) || (s!='e' && s!='f'))
     {
+        
         cerr<<"Iveskite 'f' arba 'e': "<<endl;
         cin.clear();
         cin.ignore(1000, '\n');
