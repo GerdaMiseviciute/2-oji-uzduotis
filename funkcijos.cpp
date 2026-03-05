@@ -360,11 +360,23 @@ void rikiavimas(vector<Studentas>&studentai)
     }
     char tvarka;
     cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
-    while(!(cin>>tvarka) || (tvarka!='d' && tvarka!='m'))
+    while(true)
     {
-        cerr<<"Iveskite 'd' arba 'm': "<<endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
+        try
+        {
+            cin>>tvarka;
+            if(cin.fail() || (tvarka!='d' && tvarka!='m'))
+                throw std::runtime_error("Iveskite 'd' arba 'm': ");
+
+            cin.ignore(1000, '\n');
+            break;
+        }
+        catch(const std::runtime_error& e)
+        {
+            cerr<<"Klaida! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
     }
     if(tvarka=='d')
     {
