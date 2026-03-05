@@ -157,11 +157,23 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
     {
         int a;
         cout<<"Jei norite ivesti naujo studento duomenis, spauskite 1, jei baigete zmoniu ivedima, spauskite 0: ";
-        while(!(cin>>a) || (a!=0 && a!=1))
+        while(true)
         {
-            cerr<<"Iveskite 1 arba 0: "<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
+            try
+            {
+                cin>>a;
+                if(cin.fail() || (a!=0 && a!=1))
+                    throw std::runtime_error("Iveskite 1 arba 0: ");
+
+                cin.ignore(1000, '\n');
+                break;
+                }
+                catch(const std::runtime_error& e)
+                {
+                    cerr<<"Klaida! "<<e.what()<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+            }
         }
         if(a==1)
         {
