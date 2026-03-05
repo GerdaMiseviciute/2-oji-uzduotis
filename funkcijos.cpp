@@ -1,5 +1,4 @@
 #include "funkcijos.h"
-// #include "mylib.h"
 void skaiciavimai(Studentas& A)
 {
     sort(A.pazymiai.begin(), A.pazymiai.end());
@@ -59,7 +58,7 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         duration<double> laikas=end-start;
         //cout<<laikas.count()<<endl;
     }
-    catch(const std::exception& e)
+    catch(const std::runtime_error& e)
     {
         cerr<<"Klaida: "<<e.what()<<endl;
         terminate();
