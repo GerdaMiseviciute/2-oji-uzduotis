@@ -78,14 +78,14 @@ void skaitymas(vector<Studentas>&studentai)
             {
                 cin>>a;
                 if(cin.fail() || (a!=0 && a!=1))
-                    throw std::runtime_error("iveskite 1 arba 0: ");
+                    throw std::runtime_error("Iveskite 1 arba 0: ");
 
                 cin.ignore(1000, '\n');
                 break;
                 }
                 catch(const std::runtime_error& e)
                 {
-                    cerr<<"Klaida- "<<e.what()<<endl;
+                    cerr<<"Klaida! "<<e.what()<<endl;
                     cin.clear();
                     cin.ignore(1000, '\n');
             }
@@ -103,11 +103,23 @@ void skaitymas(vector<Studentas>&studentai)
             for(int j=0; ;j++)
             {
                 cout<<"Iveskite "<<j+1<<"-aji pazymi (jei ivedete visus pazymius, spauskite 0): ";
-                while(!(cin>>pazymys) || pazymys<0 || pazymys>10)
+                while(true)
                 {
-                    cerr<<"Iveskite skaiciu 1-10: "<<endl;
-                    cin.clear();
-                    cin.ignore(1000, '\n');
+                    try
+                    {
+                        cin>>pazymys;
+                        if(cin.fail() || pazymys<0 || pazymys>10)
+                            throw std::runtime_error("Iveskite skaiciu 1-10: ");
+
+                        cin.ignore(1000, '\n');
+                        break;
+                    }
+                    catch(const std::runtime_error& e)
+                    {
+                        cerr<<"Klaida! "<<e.what()<<endl;
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                    }
                 }
                 if(pazymys==0)
                     break;
