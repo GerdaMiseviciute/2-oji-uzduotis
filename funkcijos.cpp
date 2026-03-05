@@ -290,12 +290,12 @@ void ivedimas(vector<Studentas>&studentai)
 
             cin.ignore(1000, '\n');
             break;
-            }
-            catch(const std::runtime_error& e)
-            {
-                cerr<<"Klaida! "<<e.what()<<endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
+        }
+        catch(const std::runtime_error& e)
+        {
+            cerr<<"Klaida! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
         }
     }
     switch(choice)
