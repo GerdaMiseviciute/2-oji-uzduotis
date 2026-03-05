@@ -126,11 +126,23 @@ void skaitymas(vector<Studentas>&studentai)
                 else A.pazymiai.push_back(pazymys);
             }
             cout<<"Iveskite egzamino rezultata: ";
-            while(!(cin>>A.egzaminas) || A.egzaminas<1 || A.egzaminas>10)
+            while(true)
             {
-                cerr<<"Iveskite skaiciu 1-10: "<<endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
+                try
+                {
+                    cin>>A.egzaminas;
+                    if(cin.fail() || A.egzaminas<0 || A.egzaminas>10)
+                        throw std::runtime_error("Iveskite skaiciu 1-10: ");
+
+                    cin.ignore(1000, '\n');
+                    break;
+                }
+                catch(const std::runtime_error& e)
+                {
+                    cerr<<"Klaida! "<<e.what()<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                }
             }
             skaiciavimai(A);
             studentai.push_back(A);
