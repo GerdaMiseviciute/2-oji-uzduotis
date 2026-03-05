@@ -17,7 +17,7 @@ int main()
             cin.ignore(1000, '\n');
             break;
         }
-        catch(const std::runtime_error& e)
+        catch(const std::exception& e)
         {
             cerr<<"Klaida! "<<e.what()<<endl;
             cin.clear();

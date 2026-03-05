@@ -58,7 +58,7 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
         duration<double> laikas=end-start;
         //cout<<laikas.count()<<endl;
     }
-    catch(const std::runtime_error& e)
+    catch(const std::exception& e)
     {
         cerr<<"Klaida: "<<e.what()<<endl;
         terminate();
@@ -82,7 +82,7 @@ void skaitymas(vector<Studentas>&studentai)
                 cin.ignore(1000, '\n');
                 break;
                 }
-                catch(const std::runtime_error& e)
+                catch(const std::exception& e)
                 {
                     cerr<<"Klaida! "<<e.what()<<endl;
                     cin.clear();
@@ -113,7 +113,7 @@ void skaitymas(vector<Studentas>&studentai)
                         cin.ignore(1000, '\n');
                         break;
                     }
-                    catch(const std::runtime_error& e)
+                    catch(const std::exception& e)
                     {
                         cerr<<"Klaida! "<<e.what()<<endl;
                         cin.clear();
@@ -136,7 +136,7 @@ void skaitymas(vector<Studentas>&studentai)
                     cin.ignore(1000, '\n');
                     break;
                 }
-                catch(const std::runtime_error& e)
+                catch(const std::exception& e)
                 {
                     cerr<<"Klaida! "<<e.what()<<endl;
                     cin.clear();
@@ -167,7 +167,7 @@ void pazymiu_generavimas(vector<Studentas>&studentai)
                 cin.ignore(1000, '\n');
                 break;
                 }
-                catch(const std::runtime_error& e)
+                catch(const std::exception& e)
                 {
                     cerr<<"Klaida! "<<e.what()<<endl;
                     cin.clear();
@@ -290,7 +290,7 @@ void ivedimas(vector<Studentas>&studentai)
             cin.ignore(1000, '\n');
             break;
         }
-        catch(const std::runtime_error& e)
+        catch(const std::exception& e)
         {
             cerr<<"Klaida! "<<e.what()<<endl;
             cin.clear();
@@ -360,7 +360,7 @@ void rikiavimas(vector<Studentas>&studentai)
 
                 break;
             }
-            catch(const std::runtime_error& e)
+            catch(const std::exception& e)
             {
                 cerr<<"Neteisingas kriterijus! "<<e.what()<<endl;
                 cin.clear();
@@ -380,7 +380,7 @@ void rikiavimas(vector<Studentas>&studentai)
                 cin.ignore(1000, '\n');
                 break;
             }
-            catch(const std::runtime_error& e)
+            catch(const std::exception& e)
             {
                 cerr<<"Klaida! "<<e.what()<<endl;
                 cin.clear();
@@ -424,7 +424,7 @@ void spausdinimas(const vector<Studentas>&studentai)
             cin.ignore(1000, '\n');
             break;
         }
-        catch(const std::runtime_error& e)
+        catch(const std::exception& e)
         {
             cerr<<"Klaida! "<<e.what()<<endl;
             cin.clear();
