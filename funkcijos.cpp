@@ -280,11 +280,23 @@ void ivedimas(vector<Studentas>&studentai)
     cout<<"2. Generuoti pazymius"<<endl;
     cout<<"3. Generuoti studentu vardus, pavardes ir pazymius"<<endl;
     cout<<"4. Baigti darba"<<endl;
-    while(!(cin>>choice) || choice<1 || choice>4)
+    while(true)
     {
-        cerr<<"Iveskite skaiciu 1-4: "<<endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
+        try
+        {
+            cin>>choice;
+            if(cin.fail() || choice<1 || choice>4)
+                throw std::runtime_error("Iveskite skaiciu 1-4: ");
+
+            cin.ignore(1000, '\n');
+            break;
+            }
+            catch(const std::runtime_error& e)
+            {
+                cerr<<"Klaida! "<<e.what()<<endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+        }
     }
     switch(choice)
     {
