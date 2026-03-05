@@ -350,7 +350,7 @@ void rikiavimas(vector<Studentas>&studentai)
     if(studentai.size()>1)
     {
         string b;
-        cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): "<<endl;
+        cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): ";
         while(true)
         {
             try
@@ -414,12 +414,23 @@ void spausdinimas(const vector<Studentas>&studentai)
 {
     char s;
     cout<<"Spauskite 'f', jei norite, kad duomenys butu spausdinami i faila, arba 'e', kad duomenys butu spausdinami i ekrana: "<<endl;
-    while(!(cin>>s) || (s!='e' && s!='f'))
+    while(true)
     {
-        
-        cerr<<"Iveskite 'f' arba 'e': "<<endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
+        try
+        {
+            cin>>s;
+            if(cin.fail() || (s!='f' && s!='e'))
+                throw std::runtime_error("Iveskite 'f' arba 'e': ");
+
+            cin.ignore(1000, '\n');
+            break;
+        }
+        catch(const std::runtime_error& e)
+        {
+            cerr<<"Klaida! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
     }
     if(s=='f')
         spausdinimas_i_faila(studentai);
