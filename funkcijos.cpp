@@ -347,59 +347,58 @@ bool maz_gal_vid(Studentas& A, Studentas& B)
 }
 void rikiavimas(vector<Studentas>&studentai)
 {
-    if(!studentai.empty() && studentai.size()>1)
+    if(studentai.size()>1)
     {
         string b;
-    cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (vardas / pavarde / gal_med / gal_vid): "<<endl;
-    while(true)
-    {
-        cin>>b;
-        if(b=="vardas" || b=="pavarde" || b=="gal_med" || b=="gal_vid")
-            break;
-        cerr<<"Neteisingas kriterijus! Irasykite is naujo: "<<endl;
-    }
-    char tvarka;
-    cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
-    while(true)
-    {
-        try
+        cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): "<<endl;
+        while(true)
         {
-            cin>>tvarka;
-            if(cin.fail() || (tvarka!='d' && tvarka!='m'))
-                throw std::runtime_error("Iveskite 'd' arba 'm': ");
+            cin>>b;
+            if(b=="var" || b=="pav" || b=="gal_med" || b=="gal_vid")
+                break;
+            cerr<<"Neteisingas kriterijus! Irasykite is naujo: "<<endl;
+        }
+        char tvarka;
+        cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
+        while(true)
+        {
+            try
+            {
+                cin>>tvarka;
+                if(cin.fail() || (tvarka!='d' && tvarka!='m'))
+                    throw std::runtime_error("Iveskite 'd' arba 'm': ");
 
-            cin.ignore(1000, '\n');
-            break;
+                cin.ignore(1000, '\n');
+                break;
+            }
+            catch(const std::runtime_error& e)
+            {
+                cerr<<"Klaida! "<<e.what()<<endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
         }
-        catch(const std::runtime_error& e)
+        if(tvarka=='d')
         {
-            cerr<<"Klaida! "<<e.what()<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
+            if(b=="var")
+                sort(studentai.begin(), studentai.end(), did_var);
+            else if(b=="pav")
+                sort(studentai.begin(), studentai.end(), did_pav);
+            else if(b=="gal_med")
+                sort(studentai.begin(), studentai.end(), did_gal_med);
+            else sort(studentai.begin(), studentai.end(), did_gal_vid);
+        }
+        else
+        {
+            if(b=="var")
+                sort(studentai.begin(), studentai.end(), maz_var);
+            else if(b=="pav")
+                sort(studentai.begin(), studentai.end(), maz_pav);
+            else if(b=="gal_med")
+                sort(studentai.begin(), studentai.end(), maz_gal_med);
+            else sort(studentai.begin(), studentai.end(), maz_gal_vid);
         }
     }
-    if(tvarka=='d')
-    {
-        if(b=="vardas")
-            sort(studentai.begin(), studentai.end(), did_var);
-        else if(b=="pavarde")
-            sort(studentai.begin(), studentai.end(), did_pav);
-        else if(b=="gal_med")
-            sort(studentai.begin(), studentai.end(), did_gal_med);
-        else sort(studentai.begin(), studentai.end(), did_gal_vid);
-    }
-    else
-    {
-        if(b=="vardas")
-            sort(studentai.begin(), studentai.end(), maz_var);
-        else if(b=="pavarde")
-            sort(studentai.begin(), studentai.end(), maz_pav);
-        else if(b=="gal_med")
-            sort(studentai.begin(), studentai.end(), maz_gal_med);
-        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
-    }
-    }
-    
 }
 void spausdinimas(const vector<Studentas>&studentai)
 {
