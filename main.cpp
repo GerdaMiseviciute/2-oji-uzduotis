@@ -6,11 +6,23 @@ int main()
     
     cout<<"Spauskite 'f', jei norite, kad duomenys butu nuskaitomi is failo arba 'i', kad juos ivestumete patys"<<endl;
     char a;
-    while(!(cin>>a) || (a!='f' && a!='i'))
+    while(true)
     {
-        cout<<"Įveskite 'f' arba 'i': "<<endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
+        try
+        {
+            cin>>a;
+            if(cin.fail() || (a!='f' && a!='i'))
+                throw std::runtime_error("Iveskite 'f' arba 'i': ");
+
+            cin.ignore(1000, '\n');
+            break;
+        }
+        catch(const std::runtime_error& e)
+        {
+            cerr<<"Klaida! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
     }
     if(a=='f')
         skaitymas_is_failo(studentai);  
