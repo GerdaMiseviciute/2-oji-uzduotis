@@ -431,6 +431,12 @@ void failu_generavimas(int n)
     int m=rand()%20+1;
 
     auto start = high_resolution_clock::now();
+    f<<left<<setw(21)<<"Vardas"<<setw(21)<<"Pavarde";
+    for(int i=0; i<m; i++)
+    {
+        f<<setw(5)<<("ND"+std::to_string(i+1))<<" ";
+    }
+    f<<setw(5)<<"Egzaminas"<<endl;
     for(int i=0; i<n; i++)
     {
         f<<left<<setw(20)<<("Vardas"+std::to_string(i+1))<<" "<<setw(20)<<("Pavarde"+std::to_string(i+1))<<" ";
@@ -440,6 +446,7 @@ void failu_generavimas(int n)
         }
         f<<setw(5)<<rand()%10+1<<endl;
     }
+    f.close();
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start;
     cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
