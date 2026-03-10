@@ -285,7 +285,11 @@ void spausdinimas_i_ekrana(const vector<Studentas>&studentai)
 }
 void spausdinimas_i_faila(const vector<Studentas>&studentai)
 {
-    ofstream fr("rezultatai.txt");
+    string filename;
+    if(studentai[0].galutinis<5)
+        filename="tinginiai.txt";
+    else filename="darbstuoliai.txt";
+    ofstream fr(filename);
     ostringstream ss;
     ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
     for(int i=0; i<studentai.size(); i++)
@@ -450,4 +454,13 @@ void failu_generavimas(int n)
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start;
     cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+}
+void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai)
+{
+    for(int i=0; i<studentai.size(); i++)
+    {
+        if(studentai[i].galutinis<5)
+            tinginiai.push_back(studentai[i]);
+        else darbstuoliai.push_back(studentai[i]);
+    }
 }

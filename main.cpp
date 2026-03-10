@@ -22,9 +22,15 @@ int main()
         skaitymas_is_failo(studentai);  
     else ivedimas(studentai);
 
-    rikiavimas(studentai);
+    vector<Studentas> tinginiai;
+    vector<Studentas> darbstuoliai;
+    dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+
+    rikiavimas(tinginiai);
+    rikiavimas(darbstuoliai);
     
-    spausdinimas(studentai);
+    spausdinimas(tinginiai);
+    spausdinimas(darbstuoliai);
 
     return 0;
 }
