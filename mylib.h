@@ -1,12 +1,13 @@
 #include <iostream>
-#include <new>
+#include <stdexcept>
+#include <exception>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <iomanip>
 #include <algorithm>
-#include <stdlib.h>
+#include <cstdlib>
 #include <numeric>
 #include <chrono>
 using std::cin;
