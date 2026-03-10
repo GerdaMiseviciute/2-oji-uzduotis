@@ -1,4 +1,27 @@
 #include "funkcijos.h"
+char raides(char a, char b)
+{
+    char c;
+    while(true)
+    {
+        try
+        {
+            cin>>c;
+            if(cin.fail() || (c!=a && c!=b))
+                throw std::runtime_error(string("Iveskite '")+a+string("' arba '")+b+string("': "));
+
+            cin.ignore(1000, '\n');
+            break;
+        }
+        catch(const std::exception& e)
+        {
+            cerr<<"Klaida! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+    }
+    return c;
+}
 void skaiciavimai(Studentas& A)
 {
     sort(A.pazymiai.begin(), A.pazymiai.end());
@@ -367,26 +390,9 @@ void rikiavimas(vector<Studentas>&studentai)
                 cin.ignore(1000, '\n');
             }
         }
-        char tvarka;
         cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
-        while(true)
-        {
-            try
-            {
-                cin>>tvarka;
-                if(cin.fail() || (tvarka!='d' && tvarka!='m'))
-                    throw std::runtime_error("Iveskite 'd' arba 'm': ");
-
-                cin.ignore(1000, '\n');
-                break;
-            }
-            catch(const std::exception& e)
-            {
-                cerr<<"Klaida! "<<e.what()<<endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
-            }
-        }
+        char tvarka=raides('d', 'm');
+        
         if(tvarka=='d')
         {
             if(b=="var")
@@ -411,27 +417,25 @@ void rikiavimas(vector<Studentas>&studentai)
 }
 void spausdinimas(const vector<Studentas>&studentai)
 {
-    char s;
+    
     cout<<"Spauskite 'f', jei norite, kad duomenys butu spausdinami i faila, arba 'e', kad duomenys butu spausdinami i ekrana: "<<endl;
-    while(true)
-    {
-        try
-        {
-            cin>>s;
-            if(cin.fail() || (s!='f' && s!='e'))
-                throw std::runtime_error("Iveskite 'f' arba 'e': ");
+    char s=raides('f', 'e');
 
-            cin.ignore(1000, '\n');
-            break;
-        }
-        catch(const std::exception& e)
-        {
-            cerr<<"Klaida! "<<e.what()<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
-        }
-    }
     if(s=='f')
         spausdinimas_i_faila(studentai);
     else spausdinimas_i_ekrana(studentai);
+}
+void failu_generavimas(int n)
+{
+    ofstream f("failas_"+std::to_string(n)+".txt");
+    for(int i=0; i<n; i++)
+    {
+        f<<"Vardas"<<i+1<<" "<<"Pavarde"<<i+1<<" ";
+        int m=rand()%20+1;
+        for(int j=0; j<m; j++)
+        {
+            f<<rand()%10+1<<" ";
+        }
+        f<<rand()%10+1<<endl;
+    }
 }

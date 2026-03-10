@@ -3,27 +3,17 @@ int main()
 {
     srand(time(NULL));
     vector<Studentas> studentai;
-    
-    cout<<"Spauskite 'f', jei norite, kad duomenys butu nuskaitomi is failo arba 'i', kad juos ivestumete patys"<<endl;
-    char a;
-    while(true)
+    cout<<"Spauskite 'g', jei norite, kad duomenys butu generuojami i faila arba 't', kad testumete programos veikima"<<endl;
+    char c=raides('g', 't');
+    if(c=='g')
     {
-        try
-        {
-            cin>>a;
-            if(cin.fail() || (a!='f' && a!='i'))
-                throw std::runtime_error("Iveskite 'f' arba 'i': ");
-
-            cin.ignore(1000, '\n');
-            break;
-        }
-        catch(const std::exception& e)
-        {
-            cerr<<"Klaida! "<<e.what()<<endl;
-            cin.clear();
-            cin.ignore(1000, '\n');
-        }
+        failu_generavimas(1000);
     }
+
+
+    cout<<"Spauskite 'f', jei norite, kad duomenys butu nuskaitomi is failo arba 'i', kad juos ivestumete patys"<<endl;
+    char a=raides('f', 'i');
+    
     if(a=='f')
         skaitymas_is_failo(studentai);  
     else ivedimas(studentai);

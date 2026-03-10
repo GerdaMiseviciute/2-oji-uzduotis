@@ -1,4 +1,5 @@
 #include "mylib.h"
+char raides(char a, char b);
 void skaiciavimai(Studentas& A);
 void skaitymas_is_failo(vector<Studentas>&studentai);
 void skaitymas(vector<Studentas>&studentai);
@@ -17,3 +18,4 @@ bool did_gal_vid(Studentas& A, Studentas& B);
 bool maz_gal_vid(Studentas& A, Studentas& B);
 void rikiavimas(vector<Studentas>&studentai);
 void spausdinimas(const vector<Studentas>&studentai);
+void failu_generavimas(int n);
