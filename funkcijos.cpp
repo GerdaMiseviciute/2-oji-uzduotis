@@ -428,14 +428,19 @@ void spausdinimas(const vector<Studentas>&studentai)
 void failu_generavimas(int n)
 {
     ofstream f("failas_"+std::to_string(n)+".txt");
+    int m=rand()%20+1;
+
+    auto start = high_resolution_clock::now();
     for(int i=0; i<n; i++)
     {
-        f<<"Vardas"<<i+1<<" "<<"Pavarde"<<i+1<<" ";
-        int m=rand()%20+1;
+        f<<left<<setw(20)<<("Vardas"+std::to_string(i+1))<<" "<<setw(20)<<("Pavarde"+std::to_string(i+1))<<" ";
         for(int j=0; j<m; j++)
         {
-            f<<rand()%10+1<<" ";
+            f<<setw(5)<<rand()%10+1<<" ";
         }
-        f<<rand()%10+1<<endl;
+        f<<setw(5)<<rand()%10+1<<endl;
     }
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start;
+    cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }

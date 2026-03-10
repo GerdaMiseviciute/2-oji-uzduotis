@@ -8,6 +8,10 @@ int main()
     if(c=='g')
     {
         failu_generavimas(1000);
+        failu_generavimas(10000);
+        failu_generavimas(100000);
+        failu_generavimas(1000000);
+        failu_generavimas(10000000);
     }
 
 
