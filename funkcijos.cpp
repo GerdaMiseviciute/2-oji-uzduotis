@@ -471,21 +471,23 @@ void failu_generavimas(int n)
     ofstream f("failas_"+std::to_string(n)+".txt");
     int m=rand()%20+1;
 
-    f<<left<<setw(21)<<"Vardas"<<setw(21)<<"Pavarde";
+    ostringstream ss;
+    ss<<left<<setw(21)<<"Vardas"<<setw(21)<<"Pavarde";
     for(int i=0; i<m; i++)
     {
-        f<<setw(5)<<("ND"+std::to_string(i+1))<<" ";
+        ss<<setw(5)<<("ND"+std::to_string(i+1))<<" ";
     }
-    f<<setw(5)<<"Egzaminas"<<endl;
+    ss<<setw(5)<<"Egzaminas"<<endl;
     for(int i=0; i<n; i++)
     {
-        f<<left<<setw(20)<<("Vardas"+std::to_string(i+1))<<" "<<setw(20)<<("Pavarde"+std::to_string(i+1))<<" ";
+        ss<<left<<setw(20)<<("Vardas"+std::to_string(i+1))<<" "<<setw(20)<<("Pavarde"+std::to_string(i+1))<<" ";
         for(int j=0; j<m; j++)
         {
-            f<<setw(5)<<rand()%10+1<<" ";
+            ss<<setw(5)<<rand()%10+1<<" ";
         }
-        f<<setw(5)<<rand()%10+1<<endl;
+        ss<<setw(5)<<rand()%10+1<<endl;
     }
+    f<<ss.str();
     f.close();
 }
 void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai)
