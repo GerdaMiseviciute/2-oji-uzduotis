@@ -302,7 +302,7 @@ void ivedimas(vector<Studentas>&studentai)
 {
     int choice;
     cout<<"===Meniu==="<<endl;
-    cout<<"1. Ranka"<<endl;
+    cout<<"1. Ivesti duomenis ranka"<<endl;
     cout<<"2. Generuoti pazymius"<<endl;
     cout<<"3. Generuoti studentu vardus, pavardes ir pazymius"<<endl;
     cout<<"4. Baigti darba"<<endl;
