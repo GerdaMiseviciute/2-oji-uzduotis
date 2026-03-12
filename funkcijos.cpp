@@ -298,21 +298,25 @@ void spausdinimas_i_faila(const vector<Studentas>&studentai)
     }
     fr<<ss.str();
 }
-void ivedimas(vector<Studentas>&studentai)
+void pasirinkimas(vector<Studentas>&studentai)
 {
     int choice;
     cout<<"===Meniu==="<<endl;
     cout<<"1. Ivesti duomenis ranka"<<endl;
     cout<<"2. Generuoti pazymius"<<endl;
     cout<<"3. Generuoti studentu vardus, pavardes ir pazymius"<<endl;
-    cout<<"4. Baigti darba"<<endl;
+    cout<<"4. Nuskaityti duomenis is failo"<<endl;
+    cout<<"5. Generuoti failus"<<endl;
+    cout<<"6. Programos testavimas 1 (failu generavimas)"<<endl;
+    cout<<"7. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
+    cout<<"8. Baigti darba"<<endl;
     while(true)
     {
         try
         {
             cin>>choice;
-            if(cin.fail() || choice<1 || choice>4)
-                throw std::runtime_error("Iveskite skaiciu 1-4: ");
+            if(cin.fail() || choice<1 || choice>8)
+                throw std::runtime_error("Iveskite skaiciu 1-8: ");
 
             cin.ignore(1000, '\n');
             break;
@@ -336,7 +340,21 @@ void ivedimas(vector<Studentas>&studentai)
             generuoti_viska(studentai);
             break;
         case 4:
+            skaitymas_is_failo(studentai); 
             break; 
+        case 5:
+            failu_generavimas(1000);
+            failu_generavimas(10000);
+            failu_generavimas(100000);
+            failu_generavimas(1000000);
+            failu_generavimas(10000000);
+            pasirinkimas(studentai);
+        case 6:
+            testas_1();
+        case 7:
+
+        case 8:
+            exit(0);
     }
 }
 bool did_var(Studentas& A, Studentas& B)
@@ -373,50 +391,47 @@ bool maz_gal_vid(Studentas& A, Studentas& B)
 }
 void rikiavimas(vector<Studentas>&studentai)
 {
-    if(studentai.size()>1)
+    string b;
+    cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): ";
+    while(true)
     {
-        string b;
-        cout<<"Pasirinkite rusiavimo kriteriju - varda, pavarde, galutini rezultata pagal mediana arba galutini rezultata pagal vidurka (var / pav / gal_med / gal_vid): ";
-        while(true)
+        try
         {
-            try
-            {
-                cin>>b;
-                if(cin.fail() || (b!="var" && b!="pav" && b!="gal_med" && b!="gal_vid"))
-                    throw std::runtime_error("Irasykite is naujo: ");
+            cin>>b;
+            if(cin.fail() || (b!="var" && b!="pav" && b!="gal_med" && b!="gal_vid"))
+                throw std::runtime_error("Irasykite is naujo: ");
 
-                break;
-            }
-            catch(const std::exception& e)
-            {
-                cerr<<"Neteisingas kriterijus! "<<e.what()<<endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
-            }
+            break;
         }
-        cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
-        char tvarka=raides('d', 'm');
+        catch(const std::exception& e)
+        {
+            cerr<<"Neteisingas kriterijus! "<<e.what()<<endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+    }
+    cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
+    char tvarka=raides('d', 'm');
         
-        if(tvarka=='d')
-        {
-            if(b=="var")
-                sort(studentai.begin(), studentai.end(), did_var);
-            else if(b=="pav")
-                sort(studentai.begin(), studentai.end(), did_pav);
-            else if(b=="gal_med")
-                sort(studentai.begin(), studentai.end(), did_gal_med);
-            else sort(studentai.begin(), studentai.end(), did_gal_vid);
-        }
-        else
-        {
-            if(b=="var")
-                sort(studentai.begin(), studentai.end(), maz_var);
-            else if(b=="pav")
-                sort(studentai.begin(), studentai.end(), maz_pav);
-            else if(b=="gal_med")
-                sort(studentai.begin(), studentai.end(), maz_gal_med);
-            else sort(studentai.begin(), studentai.end(), maz_gal_vid);
-        }
+    if(tvarka=='d')
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), did_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), did_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), did_gal_med);
+        else sort(studentai.begin(), studentai.end(), did_gal_vid);
+    }
+    else
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), maz_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), maz_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), maz_gal_med);
+        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
     }
 }
 void spausdinimas(const vector<Studentas>&studentai)
@@ -434,7 +449,7 @@ void failu_generavimas(int n)
     ofstream f("failas_"+std::to_string(n)+".txt");
     int m=rand()%20+1;
 
-    auto start = high_resolution_clock::now();
+    //auto start = high_resolution_clock::now();
     f<<left<<setw(21)<<"Vardas"<<setw(21)<<"Pavarde";
     for(int i=0; i<m; i++)
     {
@@ -451,9 +466,9 @@ void failu_generavimas(int n)
         f<<setw(5)<<rand()%10+1<<endl;
     }
     f.close();
-    auto end = high_resolution_clock::now();
-    duration<double> laikas=end-start;
-    cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+    // auto end = high_resolution_clock::now();
+    // duration<double> laikas=end-start;
+    // cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
 void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai)
 {
@@ -463,4 +478,36 @@ void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&ting
             tinginiai.push_back(studentai[i]);
         else darbstuoliai.push_back(studentai[i]);
     }
+}
+void testas_1()
+{
+    auto start = high_resolution_clock::now();
+    failu_generavimas(1000);
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start;
+    cout<<"1000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+
+    start = high_resolution_clock::now();
+    failu_generavimas(10000);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"10000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+    
+    start = high_resolution_clock::now();
+    failu_generavimas(100000);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"100000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+    
+    start = high_resolution_clock::now();
+    failu_generavimas(1000000);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"1000000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+
+    start = high_resolution_clock::now();
+    failu_generavimas(10000000);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"10000000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
