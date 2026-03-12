@@ -373,7 +373,11 @@ void pasirinkimas(vector<Studentas>&studentai)
             testas_1(10000000);
             exit(0);
         case 7:
-            testas_2();
+            testas_2(studentai, 1000);
+            testas_2(studentai, 10000);
+            testas_2(studentai, 100000);
+            testas_2(studentai, 1000000);
+            testas_2(studentai, 10000000);
             exit(0);
         case 8:
             exit(0);
@@ -503,8 +507,73 @@ void testas_1(int n)
     failu_generavimas(n);
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start;
+    cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
-void testas_2()
+void testas_2(vector<Studentas>&studentai, int n)
 {
+    studentai.clear();
+    auto start = high_resolution_clock::now();
+    try
+    {
+        string eil;
+        
+        ifstream fd("failas_"+std::to_string(n)+".txt");
+        if(!fd)
+        {
+            throw std::runtime_error("Nepavyko atidaryti failo.");
+        }
+        getline(fd, eil);
+        while(getline(fd, eil))
+        {
+            if (eil.empty()) 
+                continue;
+            istringstream ss(eil);
+            Studentas A;
+            ss>>A.vardas>>A.pavarde;
+            int x;
+            while(ss>>x)
+            {
+                A.pazymiai.push_back(x);
+            }
+            if(!A.pazymiai.empty())
+            {
+                A.egzaminas=A.pazymiai.back();
+                A.pazymiai.pop_back();
+            }
+            skaiciavimai(A);
+            studentai.push_back(A);
+            A.pazymiai.clear();
+        }
+        fd.close();
+        auto end = high_resolution_clock::now();
+        duration<double> laikas=end-start;
+        cout<<n<<" dydzio faila nuskaityti uztruko "<<laikas.count()<<" s"<<endl;
+    }
+    catch(const std::exception& e)
+    {
+        cerr<<"Klaida: "<<e.what()<<endl;
+        terminate();
+    }
+    auto start1 = high_resolution_clock::now();
+    vector<Studentas> tinginiai;
+    vector<Studentas> darbstuoliai;
+    dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start1;
+    cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
 
+    start1 = high_resolution_clock::now();
+    spausdinimas_i_faila(tinginiai);
+    end = high_resolution_clock::now();
+    laikas=end-start1;
+    cout<<"Prastai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+
+    start1 = high_resolution_clock::now();
+    spausdinimas_i_faila(darbstuoliai);
+    end = high_resolution_clock::now();
+    laikas=end-start1;
+    cout<<"Gerai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+
+    laikas=end-start;
+    cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
 }

@@ -21,4 +21,4 @@ void spausdinimas(const vector<Studentas>&studentai);
 void failu_generavimas(int n);
 void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai);
 void testas_1(int n);
-void testas_2();
+void testas_2(vector<Studentas>&studentai, int n);
