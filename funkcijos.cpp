@@ -48,7 +48,6 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
     try
     {
         string eil;
-        auto start = high_resolution_clock::now();
         ifstream fd(filename);
         if(!fd)
         {
@@ -77,9 +76,6 @@ void skaitymas_is_failo(vector<Studentas>&studentai)
             A.pazymiai.clear();
         }
         fd.close();
-        auto end = high_resolution_clock::now();
-        duration<double> laikas=end-start;
-        //cout<<laikas.count()<<endl;
     }
     catch(const std::exception& e)
     {
