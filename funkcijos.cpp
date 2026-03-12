@@ -306,7 +306,7 @@ void pasirinkimas(vector<Studentas>&studentai)
     cout<<"2. Generuoti pazymius"<<endl;
     cout<<"3. Generuoti studentu vardus, pavardes ir pazymius"<<endl;
     cout<<"4. Nuskaityti duomenis is failo"<<endl;
-    cout<<"5. Generuoti failus"<<endl;
+    cout<<"5. Generuoti faila"<<endl;
     cout<<"6. Programos testavimas 1 (failu generavimas)"<<endl;
     cout<<"7. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
     cout<<"8. Baigti darba"<<endl;
@@ -343,16 +343,38 @@ void pasirinkimas(vector<Studentas>&studentai)
             skaitymas_is_failo(studentai); 
             break; 
         case 5:
-            failu_generavimas(1000);
-            failu_generavimas(10000);
-            failu_generavimas(100000);
-            failu_generavimas(1000000);
-            failu_generavimas(10000000);
+            int k;
+            cout<<"Iveskite generuojamo failo dydi: ";
+            while(true)
+            {
+                try
+                {
+                    cin>>k;
+                    if(cin.fail() || k<1)
+                        throw std::runtime_error("Iveskite teigiama skaiciu: ");
+
+                    cin.ignore(1000, '\n');
+                    break;
+                }
+                catch(const std::exception& e)
+                {
+                    cerr<<"Klaida! "<<e.what()<<endl;
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                }
+            }
+            failu_generavimas(k);
             pasirinkimas(studentai);
         case 6:
-            testas_1();
+            testas_1(1000);
+            testas_1(10000);
+            testas_1(100000);
+            testas_1(1000000);
+            testas_1(10000000);
+            exit(0);
         case 7:
-
+            testas_2();
+            exit(0);
         case 8:
             exit(0);
     }
@@ -449,7 +471,6 @@ void failu_generavimas(int n)
     ofstream f("failas_"+std::to_string(n)+".txt");
     int m=rand()%20+1;
 
-    //auto start = high_resolution_clock::now();
     f<<left<<setw(21)<<"Vardas"<<setw(21)<<"Pavarde";
     for(int i=0; i<m; i++)
     {
@@ -466,9 +487,6 @@ void failu_generavimas(int n)
         f<<setw(5)<<rand()%10+1<<endl;
     }
     f.close();
-    // auto end = high_resolution_clock::now();
-    // duration<double> laikas=end-start;
-    // cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
 void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai)
 {
@@ -479,35 +497,14 @@ void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&ting
         else darbstuoliai.push_back(studentai[i]);
     }
 }
-void testas_1()
+void testas_1(int n)
 {
     auto start = high_resolution_clock::now();
-    failu_generavimas(1000);
+    failu_generavimas(n);
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start;
-    cout<<"1000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
+}
+void testas_2()
+{
 
-    start = high_resolution_clock::now();
-    failu_generavimas(10000);
-    end = high_resolution_clock::now();
-    laikas=end-start;
-    cout<<"10000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
-    
-    start = high_resolution_clock::now();
-    failu_generavimas(100000);
-    end = high_resolution_clock::now();
-    laikas=end-start;
-    cout<<"100000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
-    
-    start = high_resolution_clock::now();
-    failu_generavimas(1000000);
-    end = high_resolution_clock::now();
-    laikas=end-start;
-    cout<<"1000000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
-
-    start = high_resolution_clock::now();
-    failu_generavimas(10000000);
-    end = high_resolution_clock::now();
-    laikas=end-start;
-    cout<<"10000000 dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
