@@ -492,11 +492,11 @@ void failu_generavimas(int n)
 }
 void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai)
 {
-    for(int i=0; i<studentai.size(); i++)
+    for(auto &a:studentai)
     {
-        if(studentai[i].galutinis<5)
-            tinginiai.push_back(studentai[i]);
-        else darbstuoliai.push_back(studentai[i]);
+        if(a.galutinis<5)
+            tinginiai.push_back(a);
+        else darbstuoliai.push_back(a);
     }
 }
 void testas_1(int n)
@@ -553,11 +553,17 @@ void testas_2(vector<Studentas>&studentai, int n)
         terminate();
     }
     auto start1 = high_resolution_clock::now();
+    sort(studentai.begin(), studentai.end(), did_gal_vid);    
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start1;
+    cout<<"Rikiavimas uztruko "<<laikas.count()<<" s"<<endl;
+    
+    start1 = high_resolution_clock::now();
+    end = high_resolution_clock::now();
     vector<Studentas> tinginiai;
     vector<Studentas> darbstuoliai;
     dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
-    auto end = high_resolution_clock::now();
-    duration<double> laikas=end-start1;
+    laikas=end-start1;
     cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
 
     start1 = high_resolution_clock::now();
