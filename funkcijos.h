@@ -1,13 +1,20 @@
 #include "mylib.h"
 char raides(char a, char b);
 void skaiciavimai(Studentas& A);
-void skaitymas_is_failo(vector<Studentas>&studentai);
-void skaitymas(vector<Studentas>&studentai);
-void pazymiu_generavimas(vector<Studentas>&studentai);
-void generuoti_viska(vector<Studentas>&studentai);
-void spausdinimas_i_ekrana(const vector<Studentas>&studentai);
-void spausdinimas_i_faila(const vector<Studentas>&studentai);
-void pasirinkimas(vector<Studentas>&studentai);
+template <typename Konteineris>
+void skaitymas_is_failo(Konteineris&studentai);
+template <typename Konteineris>
+void skaitymas(Konteineris&studentai);
+template <typename Konteineris>
+void pazymiu_generavimas(Konteineris&studentai);
+template <typename Konteineris>
+void generuoti_viska(Konteineris&studentai);
+template <typename Konteineris>
+void spausdinimas_i_ekrana(const Konteineris&studentai);
+template <typename Konteineris>
+void spausdinimas_i_faila(const Konteineris&studentai);
+template <typename Konteineris>
+void pasirinkimas(Konteineris&studentai);
 bool did_var(Studentas& A, Studentas& B);
 bool maz_var(Studentas& A, Studentas& B);
 bool did_pav(Studentas& A, Studentas& B);
@@ -16,9 +23,14 @@ bool did_gal_med(Studentas& A, Studentas& B);
 bool maz_gal_med(Studentas& A, Studentas& B);
 bool did_gal_vid(Studentas& A, Studentas& B);
 bool maz_gal_vid(Studentas& A, Studentas& B);
-void rikiavimas(vector<Studentas>&studentai);
-void spausdinimas(const vector<Studentas>&studentai);
+template <typename Konteineris>
+void rikiavimas(Konteineris&studentai);
+template <typename Konteineris>
+void spausdinimas(const Konteineris&studentai);
 void failu_generavimas(int n);
-void dalinimas_i_kategorijas(vector<Studentas>&studentai, vector<Studentas>&tinginiai, vector<Studentas>&darbstuoliai);
+template <typename Konteineris>
+void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
 void testas_1(int n);
-void testas_2(vector<Studentas>&studentai, int n);
+template <typename Konteineris>
+void testas_2(Konteineris&studentai, int n);
+#include "funkcijos.tpp"
