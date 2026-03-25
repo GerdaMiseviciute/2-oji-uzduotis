@@ -37,5 +37,5 @@ void testas_1(int n);
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n);
 template <typename Konteineris>
-void vector_list_deque(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
+void vector_list_deque(Konteineris&studentai);
 #include "funkcijos.tpp"

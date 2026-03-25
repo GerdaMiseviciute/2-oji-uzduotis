@@ -33,104 +33,19 @@ int main()
         case 1:
         {
             vector<Studentas> studentai;
-
-            pasirinkimas(studentai);
-
-            vector<Studentas> tinginiai;
-            vector<Studentas> darbstuoliai;
-            dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
-
-            if(tinginiai.size()>1)
-            {
-            cout<<"Prastai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(tinginiai);
-            }
-
-            if(darbstuoliai.size()>1)
-            {
-            cout<<"Gerai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(darbstuoliai);
-            }
-
-            cout<<"Prastai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(tinginiai);
-            cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(darbstuoliai);
-
-            // vector<Studentas> studentai;
-            // vector<Studentas> tinginiai;
-            // vector<Studentas> darbstuoliai;
-            // vector_list_deque(studentai, tinginiai, darbstuoliai);
-
-            //skaitymas(studentai);
+            vector_list_deque(studentai);
             break;
         }
         case 2:
         {    
             list<Studentas> studentai;
-
-            pasirinkimas(studentai);
-
-            list<Studentas> tinginiai;
-            list<Studentas> darbstuoliai;
-            dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
-
-            if(tinginiai.size()>1)
-            {
-            cout<<"Prastai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(tinginiai);
-            }
-
-            if(darbstuoliai.size()>1)
-            {
-            cout<<"Gerai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(darbstuoliai);
-            }
-
-            cout<<"Prastai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(tinginiai);
-            cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(darbstuoliai);
-
-            // list<Studentas> studentai1;
-            // list<Studentas> tinginiai1;
-            // list<Studentas> darbstuoliai1;
-            // vector_list_deque(studentai1, tinginiai1, darbstuoliai1);
-            //pazymiu_generavimas(studentai);
+            vector_list_deque(studentai);
             break;
         }
         case 3:
         {
             deque<Studentas> studentai;
-
-            pasirinkimas(studentai);
-
-            deque<Studentas> tinginiai;
-            deque<Studentas> darbstuoliai;
-            dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
-
-            if(tinginiai.size()>1)
-            {
-            cout<<"Prastai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(tinginiai);
-            }
-
-            if(darbstuoliai.size()>1)
-            {
-            cout<<"Gerai besimokanciu studentu rikiavimas"<<endl;
-            rikiavimas(darbstuoliai);
-            }
-
-            cout<<"Prastai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(tinginiai);
-            cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
-            spausdinimas(darbstuoliai);
-
-            // deque<Studentas> studentai2;
-            // deque<Studentas> tinginiai2;
-            // deque<Studentas> darbstuoliai2;
-            // vector_list_deque(studentai2, tinginiai2, darbstuoliai2);
-            //generuoti_viska(studentai);
+            vector_list_deque(studentai);
             break;
         }
         case 4:
@@ -139,32 +54,6 @@ int main()
         case 5:
             exit(0);
     }
-
-
-    // //vector<Studentas> studentai;
-
-    // pasirinkimas(studentai);
-    
-    // // vector<Studentas> tinginiai;
-    // // vector<Studentas> darbstuoliai;
-    // dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
-
-    // if(tinginiai.size()>1)
-    // {
-    //     cout<<"Prastai besimokanciu studentu rikiavimas"<<endl;
-    //     rikiavimas(tinginiai);
-    // }
-    
-    // if(darbstuoliai.size()>1)
-    // {
-    //     cout<<"Gerai besimokanciu studentu rikiavimas"<<endl;
-    //     rikiavimas(darbstuoliai);
-    // }
-
-    // cout<<"Prastai besimokanciu studentu spausdinimas"<<endl;
-    // spausdinimas(tinginiai);
-    // cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
-    // spausdinimas(darbstuoliai);
 
     return 0;
 }

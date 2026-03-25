@@ -470,9 +470,11 @@ void testas_2(Konteineris&studentai, int n)
     cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
 }
 template <typename Konteineris>
-void vector_list_deque(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
+void vector_list_deque(Konteineris&studentai)
 {
     pasirinkimas(studentai);
+    Konteineris tinginiai;
+    Konteineris darbstuoliai;
     dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
 
     if(tinginiai.size()>1)
@@ -492,4 +494,3 @@ void vector_list_deque(Konteineris&studentai, Konteineris&tinginiai, Konteineris
     cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
     spausdinimas(darbstuoliai);
 }
-
