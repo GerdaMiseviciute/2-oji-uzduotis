@@ -371,55 +371,6 @@ void rikiavimas(Konteineris&studentai)
     char tvarka=raides('d', 'm');
     
     rikiuoti(studentai, tvarka, b);
-
-    // if constexpr (requires(Konteineris& c) { c.sort(did_var); })
-    // {
-    //     //studentai.sort(did_var);  // list
-    //     if(tvarka=='d')
-    //     {
-    //         if(b=="var")
-    //             studentai.sort(did_var);
-    //         else if(b=="pav")
-    //             studentai.sort(did_pav);
-    //         else if(b=="gal_med")
-    //             studentai.sort(did_gal_med);
-    //         else studentai.sort(did_gal_vid);
-    //     }
-    //     else
-    //     {
-    //         if(b=="var")
-    //             studentai.sort(maz_var);
-    //         else if(b=="pav")
-    //             studentai.sort(maz_pav);
-    //         else if(b=="gal_med")
-    //             studentai.sort(maz_gal_med);
-    //         else studentai.sort(maz_gal_vid);
-    //     }
-    // }
-    // else
-    // {
-    //     //std::sort(studentai.begin(), studentai.end(), did_var);
-    //     if(tvarka=='d')
-    //     {
-    //         if(b=="var")
-    //             sort(studentai.begin(), studentai.end(), did_var);
-    //         else if(b=="pav")
-    //             sort(studentai.begin(), studentai.end(), did_pav);
-    //         else if(b=="gal_med")
-    //             sort(studentai.begin(), studentai.end(), did_gal_med);
-    //         else sort(studentai.begin(), studentai.end(), did_gal_vid);
-    //     }
-    //     else
-    //     {
-    //         if(b=="var")
-    //             sort(studentai.begin(), studentai.end(), maz_var);
-    //         else if(b=="pav")
-    //             sort(studentai.begin(), studentai.end(), maz_pav);
-    //         else if(b=="gal_med")
-    //             sort(studentai.begin(), studentai.end(), maz_gal_med);
-    //         else sort(studentai.begin(), studentai.end(), maz_gal_vid);
-    //     }
-    // }
     
 }
 template <typename Konteineris>
@@ -490,7 +441,7 @@ void testas_2(Konteineris&studentai, int n)
         terminate();
     }
     auto start1 = high_resolution_clock::now();
-    //sort(studentai.begin(), studentai.end(), did_gal_vid);    
+    rikiuoti(studentai, 'd', "gal_vid");
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start1;
     cout<<"Rikiavimas uztruko "<<laikas.count()<<" s"<<endl;
