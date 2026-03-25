@@ -237,9 +237,9 @@ void spausdinimas_i_ekrana(const Konteineris&studentai)
 {
     ostringstream ss;
     ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
-    for(int i=0; i<studentai.size(); i++)
+    for(auto &s:studentai)
     {
-        ss<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;
+        ss<<left<<setw(20)<<s.vardas<<setw(20)<<s.pavarde<<setw(20)<<fixed<<setprecision(2)<<s.galutinis<<setw(20)<<fixed<< setprecision(2)<<s.galutinis_mediana<<endl;
     }
     cout<<ss.str();
 }
@@ -247,15 +247,15 @@ template <typename Konteineris>
 void spausdinimas_i_faila(const Konteineris&studentai)
 {
     string filename;
-    if(studentai[0].galutinis<5)
+    if(studentai.front().galutinis<5)
         filename="tinginiai.txt";
     else filename="darbstuoliai.txt";
     ofstream fr(filename);
     ostringstream ss;
     ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
-    for(int i=0; i<studentai.size(); i++)
+    for(auto &s:studentai)
     {
-        ss<<left<<setw(20)<<studentai[i].vardas<<setw(20)<<studentai[i].pavarde<<setw(20)<<fixed<<setprecision(2)<<studentai[i].galutinis<<setw(20)<<fixed<< setprecision(2)<<studentai[i].galutinis_mediana<<endl;  
+        ss<<left<<setw(20)<<s.vardas<<setw(20)<<s.pavarde<<setw(20)<<fixed<<setprecision(2)<<s.galutinis<<setw(20)<<fixed<< setprecision(2)<<s.galutinis_mediana<<endl;  
     }
     fr<<ss.str();
 }
@@ -369,27 +369,58 @@ void rikiavimas(Konteineris&studentai)
     }
     cout<<"Spauskite 'd', jei norite, kad duomenys butu spausdinami didejimo tvarka, arba 'm', kad duomenys butu spausdinami mazejimo tvarka: "<<endl;
     char tvarka=raides('d', 'm');
-        
-    if(tvarka=='d')
-    {
-        if(b=="var")
-            sort(studentai.begin(), studentai.end(), did_var);
-        else if(b=="pav")
-            sort(studentai.begin(), studentai.end(), did_pav);
-        else if(b=="gal_med")
-            sort(studentai.begin(), studentai.end(), did_gal_med);
-        else sort(studentai.begin(), studentai.end(), did_gal_vid);
-    }
-    else
-    {
-        if(b=="var")
-            sort(studentai.begin(), studentai.end(), maz_var);
-        else if(b=="pav")
-            sort(studentai.begin(), studentai.end(), maz_pav);
-        else if(b=="gal_med")
-            sort(studentai.begin(), studentai.end(), maz_gal_med);
-        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
-    }
+    
+    rikiuoti(studentai, tvarka, b);
+
+    // if constexpr (requires(Konteineris& c) { c.sort(did_var); })
+    // {
+    //     //studentai.sort(did_var);  // list
+    //     if(tvarka=='d')
+    //     {
+    //         if(b=="var")
+    //             studentai.sort(did_var);
+    //         else if(b=="pav")
+    //             studentai.sort(did_pav);
+    //         else if(b=="gal_med")
+    //             studentai.sort(did_gal_med);
+    //         else studentai.sort(did_gal_vid);
+    //     }
+    //     else
+    //     {
+    //         if(b=="var")
+    //             studentai.sort(maz_var);
+    //         else if(b=="pav")
+    //             studentai.sort(maz_pav);
+    //         else if(b=="gal_med")
+    //             studentai.sort(maz_gal_med);
+    //         else studentai.sort(maz_gal_vid);
+    //     }
+    // }
+    // else
+    // {
+    //     //std::sort(studentai.begin(), studentai.end(), did_var);
+    //     if(tvarka=='d')
+    //     {
+    //         if(b=="var")
+    //             sort(studentai.begin(), studentai.end(), did_var);
+    //         else if(b=="pav")
+    //             sort(studentai.begin(), studentai.end(), did_pav);
+    //         else if(b=="gal_med")
+    //             sort(studentai.begin(), studentai.end(), did_gal_med);
+    //         else sort(studentai.begin(), studentai.end(), did_gal_vid);
+    //     }
+    //     else
+    //     {
+    //         if(b=="var")
+    //             sort(studentai.begin(), studentai.end(), maz_var);
+    //         else if(b=="pav")
+    //             sort(studentai.begin(), studentai.end(), maz_pav);
+    //         else if(b=="gal_med")
+    //             sort(studentai.begin(), studentai.end(), maz_gal_med);
+    //         else sort(studentai.begin(), studentai.end(), maz_gal_vid);
+    //     }
+    // }
+    
 }
 template <typename Konteineris>
 void spausdinimas(const Konteineris&studentai)
@@ -459,15 +490,15 @@ void testas_2(Konteineris&studentai, int n)
         terminate();
     }
     auto start1 = high_resolution_clock::now();
-    sort(studentai.begin(), studentai.end(), did_gal_vid);    
+    //sort(studentai.begin(), studentai.end(), did_gal_vid);    
     auto end = high_resolution_clock::now();
     duration<double> laikas=end-start1;
     cout<<"Rikiavimas uztruko "<<laikas.count()<<" s"<<endl;
     
     start1 = high_resolution_clock::now();
     end = high_resolution_clock::now();
-    vector<Studentas> tinginiai;
-    vector<Studentas> darbstuoliai;
+    Konteineris tinginiai;
+    Konteineris darbstuoliai;
     dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
     laikas=end-start1;
     cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
@@ -487,3 +518,27 @@ void testas_2(Konteineris&studentai, int n)
     laikas=end-start;
     cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
 }
+template <typename Konteineris>
+void vector_list_deque(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
+{
+    pasirinkimas(studentai);
+    dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+
+    if(tinginiai.size()>1)
+    {
+        cout<<"Prastai besimokanciu studentu rikiavimas"<<endl;
+        rikiavimas(tinginiai);
+    }
+    
+    if(darbstuoliai.size()>1)
+    {
+        cout<<"Gerai besimokanciu studentu rikiavimas"<<endl;
+        rikiavimas(darbstuoliai);
+    }
+
+    cout<<"Prastai besimokanciu studentu spausdinimas"<<endl;
+    spausdinimas(tinginiai);
+    cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
+    spausdinimas(darbstuoliai);
+}
+

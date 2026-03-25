@@ -23,6 +23,9 @@ bool did_gal_med(Studentas& A, Studentas& B);
 bool maz_gal_med(Studentas& A, Studentas& B);
 bool did_gal_vid(Studentas& A, Studentas& B);
 bool maz_gal_vid(Studentas& A, Studentas& B);
+void rikiuoti(vector<Studentas>&studentai, char tvarka, string b);
+void rikiuoti(deque<Studentas>&studentai, char tvarka, string b);
+void rikiuoti(list<Studentas>&studentai, char tvarka, string b);
 template <typename Konteineris>
 void rikiavimas(Konteineris&studentai);
 template <typename Konteineris>
@@ -33,4 +36,6 @@ void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konte
 void testas_1(int n);
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n);
+template <typename Konteineris>
+void vector_list_deque(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
 #include "funkcijos.tpp"

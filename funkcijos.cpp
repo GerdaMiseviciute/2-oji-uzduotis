@@ -71,6 +71,75 @@ bool maz_gal_vid(Studentas& A, Studentas& B)
 {
     return A.galutinis>B.galutinis;
 }
+void rikiuoti(vector<Studentas>&studentai, char tvarka, string b)
+{
+    if(tvarka=='d')
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), did_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), did_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), did_gal_med);
+        else sort(studentai.begin(), studentai.end(), did_gal_vid);
+    }
+    else
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), maz_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), maz_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), maz_gal_med);
+        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
+    }
+}
+void rikiuoti(deque<Studentas>&studentai, char tvarka, string b)
+{
+    if(tvarka=='d')
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), did_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), did_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), did_gal_med);
+        else sort(studentai.begin(), studentai.end(), did_gal_vid);
+    }
+    else
+    {
+        if(b=="var")
+            sort(studentai.begin(), studentai.end(), maz_var);
+        else if(b=="pav")
+            sort(studentai.begin(), studentai.end(), maz_pav);
+        else if(b=="gal_med")
+            sort(studentai.begin(), studentai.end(), maz_gal_med);
+        else sort(studentai.begin(), studentai.end(), maz_gal_vid);
+    }
+}
+void rikiuoti(list<Studentas>&studentai, char tvarka, string b)
+{
+    if(tvarka=='d')
+    {
+        if(b=="var")
+            studentai.sort(did_var);
+        else if(b=="pav")
+            studentai.sort(did_pav);
+        else if(b=="gal_med")
+            studentai.sort(did_gal_med);
+        else studentai.sort(did_gal_vid);
+    }
+    else
+    {
+        if(b=="var")
+            studentai.sort(maz_var);
+        else if(b=="pav")
+            studentai.sort(maz_pav);
+        else if(b=="gal_med")
+            studentai.sort(maz_gal_med);
+        else studentai.sort(maz_gal_vid);
+    }
+}
 void failu_generavimas(int n)
 {
     ofstream f("failas_"+std::to_string(n)+".txt");

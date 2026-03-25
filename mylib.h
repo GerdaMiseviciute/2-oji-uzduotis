@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <exception>
+#include <list>
+#include <deque>
+#include <type_traits>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -13,6 +16,8 @@
 using std::cin;
 using std::cout;
 using std::vector;
+using std::list;
+using std::deque;
 using std::left;
 using std::setw;
 using std::string;
