@@ -10,7 +10,7 @@ int main()
     cout<<"3. Naudoti deque"<<endl;
     cout<<"4. Programos testavimas 1 (failu generavimas)"<<endl;
     cout<<"5. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
-    cout<<"6. Programos testavimas 3 (strategij lyginimas)"<<endl;
+    cout<<"6. Programos testavimas 3 (strategiju lyginimas)"<<endl;
     cout<<"7. Baigti darba"<<endl;
     while(true)
     {

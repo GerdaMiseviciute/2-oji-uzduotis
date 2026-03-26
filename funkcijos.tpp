@@ -407,7 +407,13 @@ void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai)
         else ++it;
     }
 }
-
+template <typename Konteineris>
+void dalinimas_i_kategorijas_3(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
+{
+    auto it = std::partition(studentai.begin(), studentai.end(), [](const auto& a){ return a.galutinis < 5; });
+    tinginiai.assign(studentai.begin(), it);
+    darbstuoliai.assign(it, studentai.end());
+}
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n)
 {
@@ -566,7 +572,14 @@ void testas_3(Konteineris&studentai, int n)
     end = high_resolution_clock::now();
     laikas=end-start;
     cout<<"Skirstymas i 2 kategorijas naudojant ANTRA strategija uztruko "<<laikas.count()<<" s"<<endl;
-    
     tinginiai.clear();
+
+    start = high_resolution_clock::now();
+    dalinimas_i_kategorijas_3(studentai, tinginiai, darbstuoliai);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"Skirstymas i 2 kategorijas naudojant TRECIA strategija uztruko "<<laikas.count()<<" s"<<endl;
+    tinginiai.clear();
+    darbstuoliai.clear();
     studentai.clear();
 }

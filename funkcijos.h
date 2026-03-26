@@ -35,6 +35,8 @@ template <typename Konteineris>
 void dalinimas_i_kategorijas_1(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
 template <typename Konteineris>
 void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai);
+template <typename Konteineris>
+void dalinimas_i_kategorijas_3(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
 void testas_1(int n);
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n);

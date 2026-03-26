@@ -75,4 +75,36 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 | Skirstymas į 2 kategorijas | 0,000363267 | 0,002833733 | 0,0256732 | 0,280710667 | 3,74385 |
 | Iš viso | 0,005840733 | 0,038334633 | 0,518905333 | 5,13525 | 61,04193333 |
 
-Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, naudojančios vector, veikia truputį sparčiau, tačiau mažesnės apimties failų testavime geriausiai pasirodė list naudojusios programos.
+Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, naudojančios *vector*, veikia truputį sparčiau, tačiau mažesnės apimties failų testavime geriausiai pasirodė *list* naudojusios programos.
+
+
+**Rūšiavimo į kategorijas strategijų testavimo analizė**
+
+***Vector analizė***
+
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
+| -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,0004426 | 0,004797133 | 0,027902367 |
+| Antra strategija | 0,015130533 | 1,37932 | 175,3073333 |
+| Trečia strategija | 0,0002278 | 0,0011667 | 0,0120372 |
+
+***List analizė***
+
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
+| -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,000414 | 0,0039804 | 0,043383033 |
+| Antra strategija | 0,000244 | 0,001921533 | 0,024759267 |
+| Trečia strategija | 0,000432367 | 0,002574333 | 0,0304103 |
+
+***Deque analizė***
+
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
+| -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,0005451 | 0,0043925 | 0,028658033 |
+| Antra strategija | 0,009903433 | 0,691698 | 73,6324 |
+| Trečia strategija | 0,0002936 | 0,001837733 | 0,024597967 |
+
+Išvados: matome, jog, nors antra strategija yra naudinga programoms, naudojančioms *list*, ji itin nepalanki *vector* ir *deque* programoms.
+
+![alt text](<Screenshot 2026-03-27 004419.png>)
+![alt text](<Screenshot 2026-03-27 004502.png>)
