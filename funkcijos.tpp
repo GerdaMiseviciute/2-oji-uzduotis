@@ -447,24 +447,24 @@ void testas_2(Konteineris&studentai, int n)
     cout<<"Rikiavimas uztruko "<<laikas.count()<<" s"<<endl;
     
     start1 = high_resolution_clock::now();
-    end = high_resolution_clock::now();
     Konteineris tinginiai;
     Konteineris darbstuoliai;
     dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+    end = high_resolution_clock::now();
     laikas=end-start1;
     cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
 
-    start1 = high_resolution_clock::now();
-    spausdinimas_i_faila(tinginiai);
-    end = high_resolution_clock::now();
-    laikas=end-start1;
-    cout<<"Prastai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+    // start1 = high_resolution_clock::now();
+    // spausdinimas_i_faila(tinginiai);
+    // end = high_resolution_clock::now();
+    // laikas=end-start1;
+    // cout<<"Prastai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
 
-    start1 = high_resolution_clock::now();
-    spausdinimas_i_faila(darbstuoliai);
-    end = high_resolution_clock::now();
-    laikas=end-start1;
-    cout<<"Gerai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+    // start1 = high_resolution_clock::now();
+    // spausdinimas_i_faila(darbstuoliai);
+    // end = high_resolution_clock::now();
+    // laikas=end-start1;
+    // cout<<"Gerai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
 
     laikas=end-start;
     cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
