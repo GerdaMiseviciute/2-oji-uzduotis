@@ -385,7 +385,7 @@ void spausdinimas(const Konteineris&studentai)
     else spausdinimas_i_ekrana(studentai);
 }
 template <typename Konteineris>
-void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
+void dalinimas_i_kategorijas_1(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
 {
     for(auto &a:studentai)
     {
@@ -394,6 +394,20 @@ void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konte
         else darbstuoliai.push_back(a);
     }
 }
+template <typename Konteineris>
+void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai)
+{
+    for (auto it = studentai.begin(); it != studentai.end(); )
+    {
+        if (it->galutinis < 5) 
+        {
+            tinginiai.push_back(*it);
+            it = studentai.erase(it);
+        }
+        else ++it;
+    }
+}
+
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n)
 {
@@ -448,7 +462,7 @@ void testas_2(Konteineris&studentai, int n)
     start1 = high_resolution_clock::now();
     Konteineris tinginiai;
     Konteineris darbstuoliai;
-    dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+    dalinimas_i_kategorijas_1(studentai, tinginiai, darbstuoliai);
     end = high_resolution_clock::now();
     laikas=end-start1;
     cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
@@ -477,7 +491,7 @@ void vector_list_deque(Konteineris&studentai)
     pasirinkimas(studentai);
     Konteineris tinginiai;
     Konteineris darbstuoliai;
-    dalinimas_i_kategorijas(studentai, tinginiai, darbstuoliai);
+    dalinimas_i_kategorijas_1(studentai, tinginiai, darbstuoliai);
 
     if(tinginiai.size()>1)
     {
@@ -495,4 +509,64 @@ void vector_list_deque(Konteineris&studentai)
     spausdinimas(tinginiai);
     cout<<"Gerai besimokanciu studentu spausdinimas"<<endl;
     spausdinimas(darbstuoliai);
+}
+template <typename Konteineris>
+void testas_3(Konteineris&studentai, int n)
+{
+    try
+    {
+        string eil;
+        
+        ifstream fd("failas_"+std::to_string(n)+".txt");
+        if(!fd)
+        {
+            throw std::runtime_error("Nepavyko atidaryti failo.");
+        }
+        getline(fd, eil);
+        while(getline(fd, eil))
+        {
+            if (eil.empty()) 
+                continue;
+            istringstream ss(eil);
+            Studentas A;
+            ss>>A.vardas>>A.pavarde;
+            int x;
+            while(ss>>x)
+            {
+                A.pazymiai.push_back(x);
+            }
+            if(!A.pazymiai.empty())
+            {
+                A.egzaminas=A.pazymiai.back();
+                A.pazymiai.pop_back();
+            }
+            skaiciavimai(A);
+            studentai.push_back(A);
+            A.pazymiai.clear();
+        }
+        fd.close();
+    }
+    catch(const std::exception& e)
+    {
+        cerr<<"Klaida: "<<e.what()<<endl;
+        terminate();
+    }
+    auto start = high_resolution_clock::now();
+    Konteineris tinginiai;
+    Konteineris darbstuoliai;
+    dalinimas_i_kategorijas_1(studentai, tinginiai, darbstuoliai);
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start;
+    cout<<"Skirstymas i 2 kategorijas naudojant PIRMA strategija uztruko "<<laikas.count()<<" s"<<endl;
+    tinginiai.clear();
+    darbstuoliai.clear();
+
+    start = high_resolution_clock::now();
+    dalinimas_i_kategorijas_2(studentai, tinginiai);
+    end = high_resolution_clock::now();
+    laikas=end-start;
+    cout<<"Skirstymas i 2 kategorijas naudojant ANTRA strategija uztruko "<<laikas.count()<<" s"<<endl;
+    
+    tinginiai.clear();
+    studentai.clear();
 }

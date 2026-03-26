@@ -10,14 +10,15 @@ int main()
     cout<<"3. Naudoti deque"<<endl;
     cout<<"4. Programos testavimas 1 (failu generavimas)"<<endl;
     cout<<"5. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
-    cout<<"6. Baigti darba"<<endl;
+    cout<<"6. Programos testavimas 3 (strategij lyginimas)"<<endl;
+    cout<<"7. Baigti darba"<<endl;
     while(true)
     {
         try
         {
             cin>>choice;
-            if(cin.fail() || choice<1 || choice>6)
-                throw std::runtime_error("Iveskite skaiciu 1-6: ");
+            if(cin.fail() || choice<1 || choice>7)
+                throw std::runtime_error("Iveskite skaiciu 1-7: ");
 
             cin.ignore(1000, '\n');
             break;
@@ -105,6 +106,53 @@ int main()
             exit(0);
         }
         case 6:
+        {
+            vector<Studentas> studentai;
+            list<Studentas> studentai1;
+            deque<Studentas> studentai2;
+            cout<<"1000 irasu failai:"<<endl;
+            cout<<"--Vector--"<<endl;
+            testas_3(studentai, 1000);
+            cout<<"--List--"<<endl;
+            testas_3(studentai1, 1000);
+            cout<<"--Deque--"<<endl;
+            testas_3(studentai2, 1000);
+            
+            cout<<endl<<"10000 irasu failai:"<<endl;
+            cout<<"--Vector--"<<endl;
+            testas_3(studentai, 10000);
+            cout<<"--List--"<<endl;
+            testas_3(studentai1, 10000);
+            cout<<"--Deque--"<<endl;
+            testas_3(studentai2, 10000);
+
+            cout<<endl<<"100000 irasu failai:"<<endl;
+            cout<<"--Vector--"<<endl;
+            testas_3(studentai, 100000);
+            cout<<"--List--"<<endl;
+            testas_3(studentai1, 100000);
+            cout<<"--Deque--"<<endl;
+            testas_3(studentai2, 100000);
+            
+            // cout<<endl<<"1000000 irasu failai:"<<endl;
+            // cout<<"--Vector--"<<endl;
+            // testas_3(studentai, 1000000);
+            // cout<<"--List--"<<endl;
+            // testas_3(studentai1, 1000000);
+            // cout<<"--Deque--"<<endl;
+            // testas_3(studentai2, 1000000);
+
+            // cout<<endl<<"10000000 irasu failai:"<<endl;
+            // cout<<"--Vector--"<<endl;
+            // testas_3(studentai, 10000000);
+            // cout<<"--List--"<<endl;
+            // testas_3(studentai1, 10000000);
+            // cout<<"--Deque--"<<endl;
+            // testas_3(studentai2, 10000000);
+
+            break;
+        }
+        case 7:
             exit(0);
     }
 

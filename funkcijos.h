@@ -32,10 +32,14 @@ template <typename Konteineris>
 void spausdinimas(const Konteineris&studentai);
 void failu_generavimas(int n);
 template <typename Konteineris>
-void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
+void dalinimas_i_kategorijas_1(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai);
+template <typename Konteineris>
+void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai);
 void testas_1(int n);
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n);
 template <typename Konteineris>
 void vector_list_deque(Konteineris&studentai);
+template <typename Konteineris>
+void testas_3(Konteineris&studentai, int n);
 #include "funkcijos.tpp"
