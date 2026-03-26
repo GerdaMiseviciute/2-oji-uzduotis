@@ -1,7 +1,7 @@
 # Objektinis-programavimas
 Programa, kuri apskaičiuoja studentų galutinius rezultatus pagal vidurkį ir pagal medianą. Pagal meniu vartotojas gali pasirinkti, ar jis nori visus studentų duomenis įrašyti pats, ar kad dalis studentų duomenų (studentų pažymius) arba visi duomenys (vardus, pavardes ir pažymius) būtų generuojami.
 
-### V0.4 versijos testavimai
+**V0.4 versijos testavimai**
 
 Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, duomenis išskirstyti į gerai ir prastai besimokančių studentų sąrašus bei juos atspausdinti į skirtingus failus.
 
@@ -39,12 +39,12 @@ Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, d
 ![alt text](<Screenshot 2026-03-12 230216.png>)
 ![alt text](<Screenshot 2026-03-12 225838.png>)
 
-### V1.0 versijos testavimai
+**V1.0 versijos testavimai**
 
-**Testavimo sistemos parametrai:** 
-- 
-- 
-- 
+### Testavimo sistemos parametrai: 
+- CPU: 3.4 GHz, 4 branduoliai
+- RAM: 3200 MT/s, 16 GB
+- SSD: 512 GB
 
 Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis
 
@@ -74,3 +74,5 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 | Rikiavimas | 0,0009713 | 0,008097533 | 0,103303233 | 1,228936667 | 15,94126667 |
 | Skirstymas į 2 kategorijas | 0,000363267 | 0,002833733 | 0,0256732 | 0,280710667 | 3,74385 |
 | Iš viso | 0,005840733 | 0,038334633 | 0,518905333 | 5,13525 | 61,04193333 |
+
+Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, naudojančios vector, veikia truputį sparčiau, tačiau mažesnės apimties failų testavime geriausiai pasirodė list naudojusios programos.
