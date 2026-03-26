@@ -70,9 +70,9 @@ int main()
             testas_2(studentai1, 1000);
             cout<<"Deque testas:"<<endl;
             testas_2(studentai2, 1000);
-            cout<<"Vector testas:"<<endl;
 
             cout<<"10000 irasu failai:"<<endl;
+            cout<<"Vector testas:"<<endl;
             testas_2(studentai, 10000);
             cout<<"List testas:"<<endl;
             testas_2(studentai1, 10000);

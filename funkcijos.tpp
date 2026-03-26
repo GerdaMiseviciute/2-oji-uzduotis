@@ -397,7 +397,6 @@ void dalinimas_i_kategorijas(Konteineris&studentai, Konteineris&tinginiai, Konte
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n)
 {
-    studentai.clear();
     auto start = high_resolution_clock::now();
     try
     {
@@ -468,6 +467,9 @@ void testas_2(Konteineris&studentai, int n)
 
     laikas=end-start;
     cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
+    tinginiai.clear();
+    darbstuoliai.clear();
+    studentai.clear();
 }
 template <typename Konteineris>
 void vector_list_deque(Konteineris&studentai)
