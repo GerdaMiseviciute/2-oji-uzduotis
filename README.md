@@ -49,6 +49,7 @@ Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, d
 Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis
 
 ***Vektorių spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
+
 | | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
 | ---- | ---- |
 | Failo nuskaitymas | 0,005600733 | 0,029518033 | 0,435859667 | 3,56562 | 41,54203333 |
