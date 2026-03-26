@@ -50,7 +50,7 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 
 ***Vektorių spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
 
-| | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
 | ---- | ---- |
 | Failo nuskaitymas | 0,005600733 | 0,029518033 | 0,435859667 | 3,56562 | 41,54203333 |
 | Rikiavimas | 0,0007025 | 0,006810833 | 0,0827156 | 0,931385667 | 11,8154 |
