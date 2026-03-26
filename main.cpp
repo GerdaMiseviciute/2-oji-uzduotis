@@ -8,15 +8,16 @@ int main()
     cout<<"1. Naudoti vektorius"<<endl;
     cout<<"2. Naudoti list"<<endl;
     cout<<"3. Naudoti deque"<<endl;
-    cout<<"4. Testavimas"<<endl;
-    cout<<"5. Baigti darba"<<endl;
+    cout<<"4. Programos testavimas 1 (failu generavimas)"<<endl;
+    cout<<"5. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
+    cout<<"6. Baigti darba"<<endl;
     while(true)
     {
         try
         {
             cin>>choice;
-            if(cin.fail() || choice<1 || choice>5)
-                throw std::runtime_error("Iveskite skaiciu 1-5: ");
+            if(cin.fail() || choice<1 || choice>6)
+                throw std::runtime_error("Iveskite skaiciu 1-6: ");
 
             cin.ignore(1000, '\n');
             break;
@@ -49,6 +50,15 @@ int main()
             break;
         }
         case 4:
+        {
+            testas_1(1000);
+            testas_1(10000);
+            testas_1(100000);
+            testas_1(1000000);
+            testas_1(10000000);
+            exit(0);
+        }
+        case 5:
         {
             vector<Studentas> studentai;
             list<Studentas> studentai1;
@@ -92,9 +102,9 @@ int main()
             testas_2(studentai1, 10000000);
             cout<<"Deque testas:"<<endl;
             testas_2(studentai2, 10000000);
-            break; 
+            exit(0);
         }
-        case 5:
+        case 6:
             exit(0);
     }
 

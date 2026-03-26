@@ -269,16 +269,16 @@ void pasirinkimas(Konteineris&studentai)
     cout<<"3. Generuoti studentu vardus, pavardes ir pazymius"<<endl;
     cout<<"4. Nuskaityti duomenis is failo"<<endl;
     cout<<"5. Generuoti faila"<<endl;
-    cout<<"6. Programos testavimas 1 (failu generavimas)"<<endl;
-    cout<<"7. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
-    cout<<"8. Baigti darba"<<endl;
+    // cout<<"6. Programos testavimas 1 (failu generavimas)"<<endl;
+    // cout<<"7. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
+    cout<<"6. Baigti darba"<<endl;
     while(true)
     {
         try
         {
             cin>>choice;
-            if(cin.fail() || choice<1 || choice>8)
-                throw std::runtime_error("Iveskite skaiciu 1-8: ");
+            if(cin.fail() || choice<1 || choice>6)
+                throw std::runtime_error("Iveskite skaiciu 1-6: ");
 
             cin.ignore(1000, '\n');
             break;
@@ -327,21 +327,21 @@ void pasirinkimas(Konteineris&studentai)
             }
             failu_generavimas(k);
             pasirinkimas(studentai);
+        // case 6:
+        //     testas_1(1000);
+        //     testas_1(10000);
+        //     testas_1(100000);
+        //     testas_1(1000000);
+        //     testas_1(10000000);
+        //     exit(0);
+        // case 7:
+        //     testas_2(studentai, 1000);
+        //     testas_2(studentai, 10000);
+        //     testas_2(studentai, 100000);
+        //     testas_2(studentai, 1000000);
+        //     testas_2(studentai, 10000000);
+        //     exit(0);
         case 6:
-            testas_1(1000);
-            testas_1(10000);
-            testas_1(100000);
-            testas_1(1000000);
-            testas_1(10000000);
-            exit(0);
-        case 7:
-            testas_2(studentai, 1000);
-            testas_2(studentai, 10000);
-            testas_2(studentai, 100000);
-            testas_2(studentai, 1000000);
-            testas_2(studentai, 10000000);
-            exit(0);
-        case 8:
             exit(0);
     }
 }
