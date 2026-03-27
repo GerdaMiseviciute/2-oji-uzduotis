@@ -1,7 +1,7 @@
 # Objektinis-programavimas
 Programa, kuri apskaičiuoja studentų galutinius rezultatus pagal vidurkį ir pagal medianą. Pagal meniu vartotojas gali pasirinkti, ar jis nori visus studentų duomenis įrašyti pats, ar kad dalis studentų duomenų (studentų pažymius) arba visi duomenys (vardus, pavardes ir pažymius) būtų generuojami.
 
-**V0.4 versijos testavimai**
+## V0.4 versijos testavimai
 
 Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, duomenis išskirstyti į gerai ir prastai besimokančių studentų sąrašus bei juos atspausdinti į skirtingus failus.
 
@@ -39,7 +39,7 @@ Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, d
 ![alt text](<Screenshot 2026-03-12 230216.png>)
 ![alt text](<Screenshot 2026-03-12 225838.png>)
 
-**V1.0 versijos testavimai**
+## V1.0 versijos testavimai
 
 ### Testavimo sistemos parametrai: 
 - CPU: 3.4 GHz, 4 branduoliai
@@ -75,7 +75,7 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 | Skirstymas į 2 kategorijas | 0,000363267 | 0,002833733 | 0,0256732 | 0,280710667 | 3,74385 |
 | Iš viso | 0,005840733 | 0,038334633 | 0,518905333 | 5,13525 | 61,04193333 |
 
-Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, naudojančios *vector*, veikia truputį sparčiau, tačiau mažesnės apimties failų testavime geriausiai pasirodė *list* naudojusios programos.
+Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, naudojančios **vector**, veikia truputį sparčiau, tačiau mažesnės apimties failų testavime geriausiai pasirodė **list** naudojusios programos.
 
 
 **Rūšiavimo į kategorijas strategijų testavimo analizė**
@@ -104,7 +104,18 @@ Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, 
 | Antra strategija | 0,009903433 | 0,691698 | 73,6324 |
 | Trečia strategija | 0,0002936 | 0,001837733 | 0,024597967 |
 
-Išvados: matome, jog, nors antra strategija yra naudinga programoms, naudojančioms *list*, ji itin nepalanki *vector* ir *deque* programoms.
+Išvados: matome, jog, nors antra strategija yra naudinga programoms, naudojančioms **list**, ji itin nepalanki **vector** ir **deque** programoms. **Vector** ir **deque** sparčiausiai veikia naudodami trečią strategiją.
 
 ![alt text](<Screenshot 2026-03-27 004419.png>)
 ![alt text](<Screenshot 2026-03-27 004502.png>)
+
+
+## Naudojimo instrukcijos ##
+1. Įsitikinkite, jog jūsų įrenginyje yra įdiegta CMake
+- Atsidarykite Command Prompt arba PowerShell
+- Įveskite: **cmake --version**
+- Jei terminalas parodo versiją, viskas gerai. Jei ne, reikia įsidiegti CMake
+2. Raskite **run.bat** failą (jis turi būti pagrindiniame projekto kataloge)
+3. Paleiskite **run.bat** failą
+- *1 variantas:* dukart spustelėkite
+- *2 variantas:* atidarykite PowerShell arba Command Prompt, nueikite į projekto katalogą ir įveskite **.\run.bat**

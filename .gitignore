@@ -1,5 +1,6 @@
 
 *.txt
+!CMakeLists.txt
 
 *.exe
 
