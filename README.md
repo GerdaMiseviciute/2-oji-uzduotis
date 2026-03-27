@@ -1,7 +1,24 @@
 # Objektinis-programavimas
-Programa, kuri apskaičiuoja studentų galutinius rezultatus pagal vidurkį ir pagal medianą. Pagal meniu vartotojas gali pasirinkti, ar jis nori visus studentų duomenis įrašyti pats, ar kad dalis studentų duomenų (studentų pažymius) arba visi duomenys (vardus, pavardes ir pažymius) būtų generuojami.
 
-## V0.4 versijos testavimai
+## V0.1 versija
+
+Programa, kuri apskaičiuoja studentų galutinius rezultatus pagal vidurkį ir pagal medianą. Pagal meniu vartotojas gali pasirinkti, ar jis nori visus studentų duomenis įrašyti pats, ar kad dalis studentų duomenų (studentų pažymius) arba visi duomenys (vardus, pavardes ir pažymius) būtų generuojami. Parašytas kodas realizuotas vektoriais (main.cpp) ir masyvais (main1.cpp).
+
+## V0.2 versija
+
+Programa gali nuskaityti iš pasirinkto failo ir duomenis išvesti pasirinktinai į ekraną arba į failą. Duomenys yra išrikiuojami pagal naudotojo pasirinktą kriterijų: vardą, pavardę, galutinį pažymį pagal vidurkį arba galutinį pagal medianą.
+
+10000 eilučių failo nuskaitymo laiko vidurkis - 0.61 s 
+
+100000 eilučių failo nuskaitymo laiko vidurkis - 2.59 s 
+
+1000000 eilučių failo nuskaitymo laiko vidurkis - 17.01 s
+
+## V0.3 versija
+
+Naudojami klaidų gaudymo mechanizmai, programa išskirstyta į atskirus failus. 
+
+## V0.4 versija
 
 Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, duomenis išskirstyti į gerai ir prastai besimokančių studentų sąrašus bei juos atspausdinti į skirtingus failus.
 
@@ -39,7 +56,9 @@ Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, d
 ![alt text](<Screenshot 2026-03-12 230216.png>)
 ![alt text](<Screenshot 2026-03-12 225838.png>)
 
-## V1.0 versijos testavimai
+## V1.0 versija
+
+Programa realizuota su **vector**, **list** ir **deque** konteineriais, taip pat realizuotos trys studentų skirstymo į kategorijas strategijos. Vartotojo patogumui paruoštas **run.bat** failas.
 
 ### Testavimo sistemos parametrai: 
 - CPU: 3.4 GHz, 4 branduoliai
@@ -48,7 +67,7 @@ Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, d
 
 Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis
 
-***Vektorių spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
+***Vector spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
 
 | Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
 | -------- | -------- | -------- | -------- | -------- | -------- |
@@ -117,5 +136,5 @@ Išvados: matome, jog, nors antra strategija yra naudinga programoms, naudojanč
 - Jei terminalas parodo versiją, viskas gerai. Jei ne, reikia įsidiegti CMake
 2. Raskite **run.bat** failą (jis turi būti pagrindiniame projekto kataloge)
 3. Paleiskite **run.bat** failą
-- *1 variantas:* dukart spustelėkite
+- *1 variantas:* dukart spustelėkite failą
 - *2 variantas:* atidarykite PowerShell arba Command Prompt, nueikite į projekto katalogą ir įveskite **.\run.bat**
