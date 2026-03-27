@@ -397,14 +397,11 @@ void dalinimas_i_kategorijas_1(Konteineris&studentai, Konteineris&tinginiai, Kon
 template <typename Konteineris>
 void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai)
 {
-    for (auto it = studentai.begin(); it != studentai.end(); )
+    rikiuoti(studentai, 'm', "gal_vid");
+    while(studentai.back().galutinis<5)
     {
-        if (it->galutinis < 5) 
-        {
-            tinginiai.push_back(*it);
-            it = studentai.erase(it);
-        }
-        else ++it;
+        tinginiai.push_back(studentai.back());
+        studentai.pop_back();
     }
 }
 template <typename Konteineris>
@@ -568,18 +565,18 @@ void testas_3(Konteineris&studentai, int n)
     darbstuoliai.clear();
 
     start = high_resolution_clock::now();
-    dalinimas_i_kategorijas_2(studentai, tinginiai);
-    end = high_resolution_clock::now();
-    laikas=end-start;
-    cout<<"Skirstymas i 2 kategorijas naudojant ANTRA strategija uztruko "<<laikas.count()<<" s"<<endl;
-    tinginiai.clear();
-
-    start = high_resolution_clock::now();
     dalinimas_i_kategorijas_3(studentai, tinginiai, darbstuoliai);
     end = high_resolution_clock::now();
     laikas=end-start;
-    cout<<"Skirstymas i 2 kategorijas naudojant TRECIA strategija uztruko "<<laikas.count()<<" s"<<endl;
     tinginiai.clear();
     darbstuoliai.clear();
+
+    start = high_resolution_clock::now();
+    dalinimas_i_kategorijas_2(studentai, tinginiai);
+    end = high_resolution_clock::now();
+    duration<double> laikas1=end-start;
+    cout<<"Skirstymas i 2 kategorijas naudojant ANTRA strategija uztruko "<<laikas1.count()<<" s"<<endl;
+    cout<<"Skirstymas i 2 kategorijas naudojant TRECIA strategija uztruko "<<laikas.count()<<" s"<<endl;
+    tinginiai.clear();
     studentai.clear();
 }

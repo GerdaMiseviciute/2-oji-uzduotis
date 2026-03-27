@@ -134,21 +134,21 @@ int main()
             cout<<"--Deque--"<<endl;
             testas_3(studentai2, 100000);
             
-            // cout<<endl<<"1000000 irasu failai:"<<endl;
-            // cout<<"--Vector--"<<endl;
-            // testas_3(studentai, 1000000);
-            // cout<<"--List--"<<endl;
-            // testas_3(studentai1, 1000000);
-            // cout<<"--Deque--"<<endl;
-            // testas_3(studentai2, 1000000);
+            cout<<endl<<"1000000 irasu failai:"<<endl;
+            cout<<"--Vector--"<<endl;
+            testas_3(studentai, 1000000);
+            cout<<"--List--"<<endl;
+            testas_3(studentai1, 1000000);
+            cout<<"--Deque--"<<endl;
+            testas_3(studentai2, 1000000);
 
-            // cout<<endl<<"10000000 irasu failai:"<<endl;
-            // cout<<"--Vector--"<<endl;
-            // testas_3(studentai, 10000000);
-            // cout<<"--List--"<<endl;
-            // testas_3(studentai1, 10000000);
-            // cout<<"--Deque--"<<endl;
-            // testas_3(studentai2, 10000000);
+            cout<<endl<<"10000000 irasu failai:"<<endl;
+            cout<<"--Vector--"<<endl;
+            testas_3(studentai, 10000000);
+            cout<<"--List--"<<endl;
+            testas_3(studentai1, 10000000);
+            cout<<"--Deque--"<<endl;
+            testas_3(studentai2, 10000000);
 
             break;
         }

@@ -101,32 +101,32 @@ Išvados: didesnės apimties failų testavime galime įžvelgti, jog programos, 
 
 ***Vector analizė***
 
-| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
-| -------- | -------- | -------- | -------- |
-| Pirma strategija | 0,0004426 | 0,004797133 | 0,027902367 |
-| Antra strategija | 0,015130533 | 1,37932 | 175,3073333 |
-| Trečia strategija | 0,0002278 | 0,0011667 | 0,0120372 |
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,000213267 | 0,0025555 | 0,028144167 | 0,315669667 | 2,113413333|
+| Antra strategija | 0,0005327 | 0,007126233 | 0,091599833 | 1,473003333 | 14,38853333 |
+| Trečia strategija | 0,0001646 | 0,001723133 | 0,019166867 | 0,271909 | 1,876206667 |
 
 ***List analizė***
 
-| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
-| -------- | -------- | -------- | -------- |
-| Pirma strategija | 0,000414 | 0,0039804 | 0,043383033 |
-| Antra strategija | 0,000244 | 0,001921533 | 0,024759267 |
-| Trečia strategija | 0,000432367 | 0,002574333 | 0,0304103 |
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,000247133 | 0,003962933 | 0,023656733 | 0,378496667 | 3,156196667 |
+| Antra strategija | 0,000263967 | 0,002993433 | 0,054836967 | 1,376689667 | 13,25733333 |
+| Trečia strategija | 0,0003482 | 0,003692967 | 0,037266233 | 0,484794667 | 3,54157 |
 
 ***Deque analizė***
 
-| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas |
-| -------- | -------- | -------- | -------- |
-| Pirma strategija | 0,0005451 | 0,0043925 | 0,028658033 |
-| Antra strategija | 0,009903433 | 0,691698 | 73,6324 |
-| Trečia strategija | 0,0002936 | 0,001837733 | 0,024597967 |
+| Failų dydžiai | 1000 dydžio failas | 10000 dydžio failas | 100000 dydžio failas | 1000000 dydžio failas | 10000000 dydžio failas |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| Pirma strategija | 0,0001793 | 0,0021333 | 0,017161767 | 0,200608333 | 1,715253333 |
+| Antra strategija | 0,000728067 | 0,007970833 | 0,112796333 | 1,548866667 | 17,72823333 |
+| Trečia strategija | 0,0002595 | 0,0033179 | 0,024069333 | 0,271357667 | 2,25674 |
 
-Išvados: matome, jog, nors antra strategija yra naudinga programoms, naudojančioms **list**, ji itin nepalanki **vector** ir **deque** programoms. **Vector** ir **deque** sparčiausiai veikia naudodami trečią strategiją.
+Išvados: matome, jog antra strategija nepalanki **vector**, **list** ir **deque** programoms jų spartos atžvelgiu. **List** ir **deque** sparčiausiai veikia naudodami pirmą strategiją, o **vector** - trečią.
 
-![alt text](<Screenshot 2026-03-27 004419.png>)
-![alt text](<Screenshot 2026-03-27 004502.png>)
+![alt text](<Screenshot 2026-03-27 234332.png>) 
+![alt text](<Screenshot 2026-03-27 233527.png>)
 
 
 ## Naudojimo instrukcijos ##
