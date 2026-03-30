@@ -53,4 +53,21 @@ class Studentas
         double galutinis_mediana;
         vector<int>pazymiai;
     public:
-}
+        Studentas()
+        {
+            vardas="Vardas";
+            pavarde="Pavarde";
+            egzaminas=0;
+            galutinis=0;
+            galutinis_mediana=0;
+        }
+        ~Studentas()
+        {
+            vardas.clear();
+            pavarde.clear();
+            pazymiai.clear();
+            egzaminas=0;
+            galutinis=0;
+            galutinis_mediana=0;
+        }
+};
