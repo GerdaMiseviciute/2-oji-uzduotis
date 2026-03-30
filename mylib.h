@@ -35,11 +35,22 @@ using std::istringstream;
 using std::ostringstream;
 using std::terminate;
 
-struct Studentas
+// struct Studentas
+// {
+//     string vardas, pavarde;
+//     vector<int> pazymiai;
+//     int egzaminas;
+//     double galutinis;
+//     double galutinis_mediana;
+// };
+class Studentas
 {
-    string vardas, pavarde;
-    vector<int> pazymiai;
-    int egzaminas;
-    double galutinis;
-    double galutinis_mediana;
-};
+    private:
+        string vardas;
+        string pavarde;
+        int egzaminas;
+        double galutinis;
+        double galutinis_mediana;
+        vector<int>pazymiai;
+    public:
+}
