@@ -61,6 +61,23 @@ class Studentas
             galutinis=0;
             galutinis_mediana=0;
         }
+        Studentas(string A, string B, vector<int>C, int D) : vardas{A}, pavarde{B}, pazymiai{C}, egzaminas{D} 
+        {
+            galutinis = Galutinis();
+            galutinis_mediana = Galutinis_mediana();
+        }
+        double Galutinis() 
+        {
+            return (pazymiai.size()!=0) ? accumulate(pazymiai.begin(), pazymiai.end(), 0.0)/pazymiai.size()*0.4 + egzaminas*0.6 : egzaminas*0,6;
+        }
+        double Galutinis_mediana()
+        {
+            sort(pazymiai.begin(), pazymiai.end());
+            if(pazymiai.size()==0)
+                return egzaminas*0.6;
+            else return (pazymiai.size()%2==1) ? pazymiai[pazymiai.size()/2]*0.4+egzaminas*0.6 : (pazymiai[pazymiai.size()/2]+pazymiai[pazymiai.size()/2-1])/2.0*0.4+egzaminas*0.6;
+        }
+        
         ~Studentas()
         {
             vardas.clear();
