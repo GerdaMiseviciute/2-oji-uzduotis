@@ -44,4 +44,4 @@ Matuojamas tik bendras programos veikimo laikas
 | O2 | 0,378048667 | 5,683196667 |
 | O3 | 0,387034667 | 5,554806667 |
 
-
+Matome, jog be optimizavimo vėliavėlių programos su klasėmis veikdavo truputį lėčiau negu su struktūromis, tačiau su optimizavimo vėliavėlėmis didesnės apimties failai apdorojami greičiau pasitelkiant klases.
