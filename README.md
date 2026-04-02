@@ -15,6 +15,15 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 
 **Struktūrų analizė**
 
+| Failų dydžiai | 100000 dydžio failas | 1000000 dydžio failas |
+| -------- | -------- | -------- |
+| Failo nuskaitymas | 0,153855667 | 3,47111 |
+| Rikiavimas | 0,0717167 | 0,896167333 |
+| Skirstymas į 2 kategorijas | 0,013489367 | 0,237404333 |
+| Spausdinimas | 0,122633667 | 1,14252 |
+| Iš viso | 0,363875333 | 5,74894 |
+
+
 
 
 ***Vector spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
