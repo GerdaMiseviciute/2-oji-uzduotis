@@ -36,3 +36,12 @@ Matuojamas tik bendras programos veikimo laikas
 | O2 | 0,460904667 | 4,501266667 |
 | O3 | 0,470426 | 4,508686667 |
 
+**Struktūrų analizė**
+
+| Failų dydžiai | 100000 dydžio failas | 1000000 dydžio failas |
+| -------- | -------- | -------- |
+| O1 | 0,402349667 | 5,888936667 |
+| O2 | 0,378048667 | 5,683196667 |
+| O3 | 0,387034667 | 5,554806667 |
+
+
