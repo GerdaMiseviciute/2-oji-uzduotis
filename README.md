@@ -1,71 +1,21 @@
 # Objektinis-programavimas
 
-## V0.1 versija
+## V1.1 versija
 
-Programa, kuri apskaičiuoja studentų galutinius rezultatus pagal vidurkį ir pagal medianą. Pagal meniu vartotojas gali pasirinkti, ar jis nori visus studentų duomenis įrašyti pats, ar kad dalis studentų duomenų (studentų pažymius) arba visi duomenys (vardus, pavardes ir pažymius) būtų generuojami. Parašytas kodas realizuotas vektoriais (main.cpp) ir masyvais (main1.cpp).
+Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis. Testui atlikti buvo naudoti **vector** tipo konteineriai, atlikti tyrimai su skirtingomis optimizavimo vėliavėlėmis - **o1**, **o2** ir **o3**
 
-## V0.2 versija
+**Klasių analizė**
+| Failų dydžiai | 100000 dydžio failas | 1000000 dydžio failas |
+| -------- | -------- | -------- |
+| Failo nuskaitymas | 0,178971333 | 1,711526667 |
+| Rikiavimas | 0,247536 | 3,258963333 |
+| Skirstymas į 2 kategorijas | 0,0115029 | 0,118587333 |
+| Spausdinimas | 0,149683 | 1,124083333 |
+| Iš viso | 0,590147 | 6,214986667 |
 
-Programa gali nuskaityti iš pasirinkto failo ir duomenis išvesti pasirinktinai į ekraną arba į failą. Duomenys yra išrikiuojami pagal naudotojo pasirinktą kriterijų: vardą, pavardę, galutinį pažymį pagal vidurkį arba galutinį pagal medianą.
-
-10000 eilučių failo nuskaitymo laiko vidurkis - 0.61 s 
-
-100000 eilučių failo nuskaitymo laiko vidurkis - 2.59 s 
-
-1000000 eilučių failo nuskaitymo laiko vidurkis - 17.01 s
-
-## V0.3 versija
-
-Naudojami klaidų gaudymo mechanizmai, programa išskirstyta į atskirus failus. 
-
-## V0.4 versija
-
-Programa gali generuoti failus su nurodytu duomenų kiekiu, nuskaityti failus, duomenis išskirstyti į gerai ir prastai besimokančių studentų sąrašus bei juos atspausdinti į skirtingus failus.
-
-1.
-
-1000 dydžio failą sugeneruoti vidutiniškai užtruko 0.0029793 s
-
-10000 dydžio failą sugeneruoti vidutiniškai užtruko 0.0167226 s
-
-100000 dydžio failą sugeneruoti vidutiniškai užtruko 0.178187 s
-
-1000000 dydžio failą sugeneruoti vidutiniškai užtruko 2.021443 s
-
-10000000 dydžio failą sugeneruoti vidutiniškai užtruko 9.25826 s
+**Struktūrų analizė**
 
 
-![alt text](<Screenshot 2026-03-12 231917.png>)
-![alt text](<Screenshot 2026-03-12 232126.png>) 
-![alt text](<Screenshot 2026-03-12 232156.png>)
-
-2.
-
-1000 dydžio failą nuskaityti, suskirstyti į dvi kategorijas ir atspausdinti į atskirus failus vidutiniškai užtruko 0.1699 s
-
-10000 dydžio failą nuskaityti, suskirstyti į dvi kategorijas ir atspausdinti į atskirus failus vidutiniškai užtruko 0.0948 s
-
-100000 dydžio failą nuskaityti, suskirstyti į dvi kategorijas ir atspausdinti į atskirus failus vidutiniškai užtruko 0.7442 s
-
-1000000 dydžio failą nuskaityti, suskirstyti į dvi kategorijas ir atspausdinti į atskirus failus vidutiniškai užtruko 4.9046 s
-
-10000000 dydžio failą nuskaityti, suskirstyti į dvi kategorijas ir atspausdinti į atskirus failus vidutiniškai užtruko 69.558 s
-
-
-![alt text](<Screenshot 2026-03-12 230500.png>)
-![alt text](<Screenshot 2026-03-12 230216.png>)
-![alt text](<Screenshot 2026-03-12 225838.png>)
-
-## V1.0 versija
-
-Programa realizuota su **vector**, **list** ir **deque** konteineriais, taip pat realizuotos trys studentų skirstymo į kategorijas strategijos. Vartotojo patogumui paruoštas **run.bat** failas.
-
-### Testavimo sistemos parametrai: 
-- CPU: 3.4 GHz, 4 branduoliai
-- RAM: 3200 MT/s, 16 GB
-- SSD: 512 GB
-
-Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis
 
 ***Vector spartos analizė su 1000, 10000, 100000, 1000000 ir 10000000 dydžio failais***
 

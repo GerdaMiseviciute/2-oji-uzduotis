@@ -44,4 +44,6 @@ template <typename Konteineris>
 void vector_list_deque(Konteineris& studentai);
 template <typename Konteineris>
 void testas_3(Konteineris&studentai, int n);
+template <typename Konteineris>
+void dar_vienas_testas(Konteineris&studentai, int n);
 #include "funkcijos.tpp"

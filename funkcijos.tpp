@@ -538,7 +538,6 @@ void testas_3(Konteineris&studentai, int n)
 
             ss>>A;
             studentai.push_back(A);
-            A.~Studentas();
         }
         fd.close();
     }
@@ -571,5 +570,71 @@ void testas_3(Konteineris&studentai, int n)
     cout<<"Skirstymas i 2 kategorijas naudojant ANTRA strategija uztruko "<<laikas1.count()<<" s"<<endl;
     cout<<"Skirstymas i 2 kategorijas naudojant TRECIA strategija uztruko "<<laikas.count()<<" s"<<endl;
     tinginiai.clear();
+    studentai.clear();
+}
+template <typename Konteineris>
+void dar_vienas_testas(Konteineris&studentai, int n)
+{
+    auto start = high_resolution_clock::now();
+    try
+    {
+        string eil;
+        
+        ifstream fd("failas_"+std::to_string(n)+".txt");
+        if(!fd)
+        {
+            throw std::runtime_error("Nepavyko atidaryti failo.");
+        }
+        getline(fd, eil);
+        while(getline(fd, eil))
+        {
+            if (eil.empty()) 
+                continue;
+            istringstream ss(eil);
+            Studentas A;
+
+            ss>>A;
+            studentai.push_back(A);
+        }
+        fd.close();
+        auto end = high_resolution_clock::now();
+        duration<double> laikas=end-start;
+        cout<<n<<" dydzio faila nuskaityti uztruko "<<laikas.count()<<" s"<<endl;
+    }
+    catch(const std::exception& e)
+    {
+        cerr<<"Klaida: "<<e.what()<<endl;
+        terminate();
+    }
+    auto start1 = high_resolution_clock::now();
+    rikiuoti(studentai, 'd', "gal_vid");
+    auto end = high_resolution_clock::now();
+    duration<double> laikas=end-start1;
+    cout<<"Rikiavimas uztruko "<<laikas.count()<<" s"<<endl;
+    
+    start1 = high_resolution_clock::now();
+    Konteineris tinginiai;
+    Konteineris darbstuoliai;
+    dalinimas_i_kategorijas_3(studentai, tinginiai, darbstuoliai);
+    end = high_resolution_clock::now();
+    laikas=end-start1;
+    cout<<n<<" dydzio faila i 2 kategorijas surusiuoti uztruko "<<laikas.count()<<" s"<<endl;
+
+    start1 = high_resolution_clock::now();
+    spausdinimas_i_faila(tinginiai);
+    //end = high_resolution_clock::now();
+    //laikas=end-start1;
+    ///cout<<"Prastai besimokanciu studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+
+    //start1 = high_resolution_clock::now();
+    spausdinimas_i_faila(darbstuoliai);
+    end = high_resolution_clock::now();
+    laikas=end-start1;
+    cout<<"Studentu spausdinimas i faila uztruko "<<laikas.count()<<" s"<<endl;
+
+    laikas=end-start;
+    cout<<n<<" irasu failo testo laikas: "<<laikas.count()<<" s"<<endl<<endl;
+    tinginiai.clear();
+    darbstuoliai.clear();
     studentai.clear();
 }
