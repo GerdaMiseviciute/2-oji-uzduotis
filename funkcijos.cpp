@@ -22,54 +22,54 @@ char raides(char a, char b)
     }
     return c;
 }
-void skaiciavimai(Studentas& A)
-{
-    sort(A.pazymiai.begin(), A.pazymiai.end());
-    if(A.pazymiai.size()==0)
-    {
-        A.galutinis=A.egzaminas*0.6;
-        A.galutinis_mediana=A.egzaminas*0.6;
-    }   
-    else 
-    {
-        double vid=accumulate(A.pazymiai.begin(), A.pazymiai.end(), 0.0)/A.pazymiai.size();
-        A.galutinis=vid*0.4+A.egzaminas*0.6;
-        if(A.pazymiai.size()%2==1)
-            A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
-        else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
-    }
-}
+// void skaiciavimai(Studentas& A)
+// {
+//     sort(A.pazymiai.begin(), A.pazymiai.end());
+//     if(A.pazymiai.size()==0)
+//     {
+//         A.galutinis=A.egzaminas*0.6;
+//         A.galutinis_mediana=A.egzaminas*0.6;
+//     }   
+//     else 
+//     {
+//         double vid=accumulate(A.pazymiai.begin(), A.pazymiai.end(), 0.0)/A.pazymiai.size();
+//         A.galutinis=vid*0.4+A.egzaminas*0.6;
+//         if(A.pazymiai.size()%2==1)
+//             A.galutinis_mediana=A.pazymiai[A.pazymiai.size()/2]*0.4+A.egzaminas*0.6;
+//         else A.galutinis_mediana=(A.pazymiai[A.pazymiai.size()/2]+A.pazymiai[A.pazymiai.size()/2-1])/2.0*0.4+A.egzaminas*0.6;
+//     }
+// }
 bool did_var(Studentas& A, Studentas& B)
 {
-    return A.vardas<B.vardas;
+    return A.getVardas()<B.getVardas();
 }
 bool maz_var(Studentas& A, Studentas& B)
 {
-    return A.vardas>B.vardas;
+    return A.getVardas()>B.getVardas();
 }
 bool did_pav(Studentas& A, Studentas& B)
 {
-    return A.pavarde<B.pavarde;
+    return A.getPavarde()<B.getPavarde();
 }
 bool maz_pav(Studentas& A, Studentas& B)
 {
-    return A.pavarde>B.pavarde;
+    return A.getPavarde()>B.getPavarde();
 }
 bool did_gal_med(Studentas& A, Studentas& B)
 {
-    return A.galutinis_mediana<B.galutinis_mediana;
+    return A.Galutinis_mediana()<B.Galutinis_mediana();
 }
 bool maz_gal_med(Studentas& A, Studentas& B)
 {
-    return A.galutinis_mediana>B.galutinis_mediana;
+    return A.Galutinis_mediana()>B.Galutinis_mediana();
 }
 bool did_gal_vid(Studentas& A, Studentas& B)
 {
-    return A.galutinis<B.galutinis;
+    return A.Galutinis()<B.Galutinis();
 }
 bool maz_gal_vid(Studentas& A, Studentas& B)
 {
-    return A.galutinis>B.galutinis;
+    return A.Galutinis()>B.Galutinis();
 }
 void rikiuoti(vector<Studentas>&studentai, char tvarka, string b)
 {

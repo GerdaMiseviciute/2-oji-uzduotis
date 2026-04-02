@@ -1,4 +1,7 @@
+#ifndef MYLIB_H
+#define MYLIB_H
 #include <iostream>
+#include <ctime>
 #include <stdexcept>
 #include <exception>
 #include <list>
@@ -66,17 +69,56 @@ class Studentas
             galutinis = Galutinis();
             galutinis_mediana = Galutinis_mediana();
         }
+        string getVardas() const
+        {
+            return vardas;
+        }
+        string getPavarde() const
+        {
+            return pavarde;
+        }
+        double getGalutinis() const
+        {
+            return galutinis;
+        }
+        double getGalutinis_mediana() const
+        {
+            return galutinis_mediana;
+        }
+        friend std::istream& operator>>(std::istream& in, Studentas& A)
+        {
+            in>>A.vardas>>A.pavarde;
+            int x;
+            while(in>>x)
+            {
+                A.pazymiai.push_back(x);
+            }
+            if(!A.pazymiai.empty())
+            {
+                A.egzaminas=A.pazymiai.back();
+                A.pazymiai.pop_back();
+            }
+            A.galutinis = A.Galutinis();
+            A.galutinis_mediana = A.Galutinis_mediana();
+            return in;
+        }
+        friend std::ostream& operator<<(std::ostream& out, const Studentas& A)
+        {
+            out<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.galutinis<<setw(20)<<fixed<< setprecision(2)<<A.galutinis_mediana<<endl;
+            return out;
+        }
         double Galutinis() 
         {
-            return (pazymiai.size()!=0) ? accumulate(pazymiai.begin(), pazymiai.end(), 0.0)/pazymiai.size()*0.4 + egzaminas*0.6 : egzaminas*0,6;
+            return (pazymiai.empty()) ? egzaminas*0.6 : accumulate(pazymiai.begin(), pazymiai.end(), 0.0)/pazymiai.size()*0.4 + egzaminas*0.6;
         }
         double Galutinis_mediana()
         {
             sort(pazymiai.begin(), pazymiai.end());
-            if(pazymiai.size()==0)
+            if(pazymiai.empty())
                 return egzaminas*0.6;
             else return (pazymiai.size()%2==1) ? pazymiai[pazymiai.size()/2]*0.4+egzaminas*0.6 : (pazymiai[pazymiai.size()/2]+pazymiai[pazymiai.size()/2-1])/2.0*0.4+egzaminas*0.6;
         }
+        
         
         ~Studentas()
         {
@@ -88,3 +130,4 @@ class Studentas
             galutinis_mediana=0;
         }
 };
+#endif

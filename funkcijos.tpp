@@ -20,20 +20,21 @@ void skaitymas_is_failo(Konteineris& studentai)
                 continue;
             istringstream ss(eil);
             Studentas A;
-            ss>>A.vardas>>A.pavarde;
-            int x;
-            while(ss>>x)
-            {
-                A.pazymiai.push_back(x);
-            }
-            if(!A.pazymiai.empty())
-            {
-                A.egzaminas=A.pazymiai.back();
-                A.pazymiai.pop_back();
-            }
-            skaiciavimai(A);
+            // ss>>A.vardas>>A.pavarde;
+            // int x;
+            // while(ss>>x)
+            // {
+            //     A.pazymiai.push_back(x);
+            // }
+            // if(!A.pazymiai.empty())
+            // {
+            //     A.egzaminas=A.pazymiai.back();
+            //     A.pazymiai.pop_back();
+            // }
+            // skaiciavimai(A);
+            ss>>A;
             studentai.push_back(A);
-            A.pazymiai.clear();
+            //A.~Studentas();
         }
         fd.close();
     }
@@ -48,7 +49,6 @@ void skaitymas(Konteineris& studentai)
 {
     for (int i=0; ; i++)
     {
-        Studentas A;
         int a;
         cout<<"Jei norite ivesti naujo studento duomenis, spauskite 1, jei baigete zmoniu ivedima, spauskite 0: ";
         while(true)
@@ -72,13 +72,15 @@ void skaitymas(Konteineris& studentai)
         if(a==1)
         {
             cout<<i+1<<" studentas:"<<endl;
+            string vard, pav;
             cout<<"Ivesk studento varda: ";
             cin.ignore();
-            getline(cin, A.vardas);
+            getline(cin, vard);
             cout<<endl<<"Ivesk studento pavarde: ";
-            getline(cin, A.pavarde);
+            getline(cin, pav);
             cout<<endl;
-            int pazymys;
+            int pazymys, egz;
+            vector<int>c;
             for(int j=0; ;j++)
             {
                 cout<<"Iveskite "<<j+1<<"-aji pazymi (jei ivedete visus pazymius, spauskite 0): ";
@@ -102,15 +104,15 @@ void skaitymas(Konteineris& studentai)
                 }
                 if(pazymys==0)
                     break;
-                else A.pazymiai.push_back(pazymys);
+                else c.push_back(pazymys);
             }
             cout<<"Iveskite egzamino rezultata: ";
             while(true)
             {
                 try
                 {
-                    cin>>A.egzaminas;
-                    if(cin.fail() || A.egzaminas<0 || A.egzaminas>10)
+                    cin>>egz;
+                    if(cin.fail() || egz<0 || egz>10)
                         throw std::runtime_error("Iveskite skaiciu 1-10: ");
 
                     cin.ignore(1000, '\n');
@@ -123,9 +125,10 @@ void skaitymas(Konteineris& studentai)
                     cin.ignore(1000, '\n');
                 }
             }
-            skaiciavimai(A);
+            Studentas A(vard, pav, c, egz);
             studentai.push_back(A);
-            A.pazymiai.clear();
+            //A.~Studentas();
+            c.clear();
         }
         else break;
     }
@@ -157,23 +160,26 @@ void pazymiu_generavimas(Konteineris&studentai)
         }
         if(a==1)
         {
-            Studentas A;
+            string vard, pav;
             cout<<i+1<<" studentas:"<<endl;
             cout<<"Ivesk studento varda: ";
             cin.ignore();
-            getline(cin, A.vardas);
+            getline(cin, vard);
             cout<<endl<<"Ivesk studento pavarde: ";
-            getline(cin, A.pavarde);
+            getline(cin, pav);
             cout<<endl;
+            int egz;
+            vector<int>c;
             int n=rand()%20+1;
             for(int j=0; j<n; j++)
             {
-                A.pazymiai.push_back(rand()%10+1);
+                c.push_back(rand()%10+1);
             }
-            A.egzaminas=rand()%10+1;
-            skaiciavimai(A);
+            egz=rand()%10+1;
+            Studentas A(vard, pav, c, egz);
             studentai.push_back(A);
-            A.pazymiai.clear();
+            //A.~Studentas();
+            c.clear();
         }
         else break;
     }
@@ -185,51 +191,55 @@ void generuoti_viska(Konteineris&studentai)
     for(int i=0; i<m; i++)
     {
         Studentas a;
+        string vard, pav;
+        int egz;
+        vector<int>c;
         switch(rand()%10)
         {
-            case 0: a.vardas="Renata"; break;
-            case 1: a.vardas="Jolanta"; break;
-            case 2: a.vardas="Lina"; break;
-            case 3: a.vardas="Amelija"; break;
-            case 4: a.vardas="Sofija"; break;
-            case 5: a.vardas="Mantas"; break;
-            case 6: a.vardas="Antanas"; break;
-            case 7: a.vardas="Rokas"; break;
-            case 8: a.vardas="Algirdas"; break;
-            case 9: a.vardas="Andrius"; break;
+            case 0: vard="Renata"; break;
+            case 1: vard="Jolanta"; break;
+            case 2: vard="Lina"; break;
+            case 3: vard="Amelija"; break;
+            case 4: vard="Sofija"; break;
+            case 5: vard="Mantas"; break;
+            case 6: vard="Antanas"; break;
+            case 7: vard="Rokas"; break;
+            case 8: vard="Algirdas"; break;
+            case 9: vard="Andrius"; break;
         }
-        switch(*a.vardas.rbegin())
+        switch(*vard.rbegin())
         {
             case 's':
                 switch(rand()%5)
                 {
-                    case 0: a.pavarde="Pavardenis1"; break;
-                    case 1: a.pavarde="Pavardenis2"; break;
-                    case 2: a.pavarde="Pavardenis3"; break;
-                    case 3: a.pavarde="Pavardenis4"; break;
-                    case 4: a.pavarde="Pavardenis5"; break;
+                    case 0: pav="Pavardenis1"; break;
+                    case 1: pav="Pavardenis2"; break;
+                    case 2: pav="Pavardenis3"; break;
+                    case 3: pav="Pavardenis4"; break;
+                    case 4: pav="Pavardenis5"; break;
                 }
                 break;
             default:
                 switch(rand()%5)
                 {
-                    case 0: a.pavarde="Pavardaite1"; break;
-                    case 1: a.pavarde="Pavardiene1"; break;
-                    case 2: a.pavarde="Pavardyte"; break;
-                    case 3: a.pavarde="Pavardaite2"; break;
-                    case 4: a.pavarde="Pavardiene2"; break;
+                    case 0: pav="Pavardaite1"; break;
+                    case 1: pav="Pavardiene1"; break;
+                    case 2: pav="Pavardyte"; break;
+                    case 3: pav="Pavardaite2"; break;
+                    case 4: pav="Pavardiene2"; break;
                 }
                 break;
         };
         int n=rand()%20+1;
         for(int j=0; j<n; j++)
         {
-            a.pazymiai.push_back(rand()%10+1);
+            c.push_back(rand()%10+1);
         }
-        a.egzaminas=rand()%10+1;
-        skaiciavimai(a);
-        studentai.push_back(a);
-        a.pazymiai.clear();
+        egz=rand()%10+1;
+        Studentas A(vard, pav, c, egz);
+        studentai.push_back(A);
+        //A.~Studentas();
+        c.clear();
     }
 }
 template <typename Konteineris>
@@ -239,7 +249,7 @@ void spausdinimas_i_ekrana(const Konteineris&studentai)
     ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
     for(auto &s:studentai)
     {
-        ss<<left<<setw(20)<<s.vardas<<setw(20)<<s.pavarde<<setw(20)<<fixed<<setprecision(2)<<s.galutinis<<setw(20)<<fixed<< setprecision(2)<<s.galutinis_mediana<<endl;
+        ss<<s;
     }
     cout<<ss.str();
 }
@@ -247,17 +257,20 @@ template <typename Konteineris>
 void spausdinimas_i_faila(const Konteineris&studentai)
 {
     string filename;
-    if(studentai.front().galutinis<5)
+    if(studentai.front().getGalutinis()<5)
         filename="tinginiai.txt";
     else filename="darbstuoliai.txt";
     ofstream fr(filename);
     ostringstream ss;
-    ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
-    for(auto &s:studentai)
+    if(!studentai.empty())
     {
-        ss<<left<<setw(20)<<s.vardas<<setw(20)<<s.pavarde<<setw(20)<<fixed<<setprecision(2)<<s.galutinis<<setw(20)<<fixed<< setprecision(2)<<s.galutinis_mediana<<endl;  
+        ss<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavardė"<<setw(20)<<"Galutinis (Vid.)"<<setw(20)<<"Galutinis (Med.)"<<endl;
+        for(auto &s:studentai)
+        {
+            ss<<s;
+        }
+        fr<<ss.str();
     }
-    fr<<ss.str();
 }
 template <typename Konteineris>
 void pasirinkimas(Konteineris&studentai)
@@ -389,7 +402,7 @@ void dalinimas_i_kategorijas_1(Konteineris&studentai, Konteineris&tinginiai, Kon
 {
     for(auto &a:studentai)
     {
-        if(a.galutinis<5)
+        if(a.getGalutinis()<5)
             tinginiai.push_back(a);
         else darbstuoliai.push_back(a);
     }
@@ -398,7 +411,7 @@ template <typename Konteineris>
 void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai)
 {
     rikiuoti(studentai, 'm', "gal_vid");
-    while(studentai.back().galutinis<5)
+    while(studentai.back().getGalutinis()<5)
     {
         tinginiai.push_back(studentai.back());
         studentai.pop_back();
@@ -407,7 +420,7 @@ void dalinimas_i_kategorijas_2(Konteineris&studentai, Konteineris&tinginiai)
 template <typename Konteineris>
 void dalinimas_i_kategorijas_3(Konteineris&studentai, Konteineris&tinginiai, Konteineris&darbstuoliai)
 {
-    auto it = std::partition(studentai.begin(), studentai.end(), [](const auto& a){ return a.galutinis < 5; });
+    auto it = std::partition(studentai.begin(), studentai.end(), [](const auto& a){ return a.getGalutinis() < 5; });
     tinginiai.assign(studentai.begin(), it);
     darbstuoliai.assign(it, studentai.end());
 }
@@ -431,20 +444,10 @@ void testas_2(Konteineris&studentai, int n)
                 continue;
             istringstream ss(eil);
             Studentas A;
-            ss>>A.vardas>>A.pavarde;
-            int x;
-            while(ss>>x)
-            {
-                A.pazymiai.push_back(x);
-            }
-            if(!A.pazymiai.empty())
-            {
-                A.egzaminas=A.pazymiai.back();
-                A.pazymiai.pop_back();
-            }
-            skaiciavimai(A);
+
+            ss>>A;
             studentai.push_back(A);
-            A.pazymiai.clear();
+            //A.~Studentas();
         }
         fd.close();
         auto end = high_resolution_clock::now();
@@ -532,20 +535,10 @@ void testas_3(Konteineris&studentai, int n)
                 continue;
             istringstream ss(eil);
             Studentas A;
-            ss>>A.vardas>>A.pavarde;
-            int x;
-            while(ss>>x)
-            {
-                A.pazymiai.push_back(x);
-            }
-            if(!A.pazymiai.empty())
-            {
-                A.egzaminas=A.pazymiai.back();
-                A.pazymiai.pop_back();
-            }
-            skaiciavimai(A);
+
+            ss>>A;
             studentai.push_back(A);
-            A.pazymiai.clear();
+            A.~Studentas();
         }
         fd.close();
     }

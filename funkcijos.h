@@ -41,7 +41,7 @@ void testas_1(int n);
 template <typename Konteineris>
 void testas_2(Konteineris&studentai, int n);
 template <typename Konteineris>
-void vector_list_deque(Konteineris&studentai);
+void vector_list_deque(Konteineris& studentai);
 template <typename Konteineris>
 void testas_3(Konteineris&studentai, int n);
 #include "funkcijos.tpp"
