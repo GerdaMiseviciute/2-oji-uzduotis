@@ -28,21 +28,27 @@ Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuoja
 
 Matuojamas tik bendras programos veikimo laikas
 
-**Klasių analizė**
+**100 000 dydžio failas**
 
-| Failų dydžiai | 100000 dydžio failas | 1000000 dydžio failas |
-| -------- | -------- | -------- |
-| O1 | 0,453891 | 4,51037 |
-| O2 | 0,460904667 | 4,501266667 |
-| O3 | 0,470426 | 4,508686667 |
+| Implementacija | Build flag | Testo vykdymo laikas | .exe failo dydis |
+| -------- | -------- | -------- | -------- |
+| CLASS | O1 | 0,453891 | 347 KB |
+| CLASS | O2 | 0,460904667 | 327 KB |
+| CLASS | O3 | 0,470426 | 352 KB |
+| STRUCT | O1 | 0,402349667 | 352 KB |
+| STRUCT | O2 | 0,378048667 | 319 KB | 
+| STRUCT | O3 | 0,387034667 | 334 KB | 
 
-**Struktūrų analizė**
+**1 000 000 dydžio failas**
 
-| Failų dydžiai | 100000 dydžio failas | 1000000 dydžio failas |
-| -------- | -------- | -------- |
-| O1 | 0,402349667 | 5,888936667 |
-| O2 | 0,378048667 | 5,683196667 |
-| O3 | 0,387034667 | 5,554806667 |
+| Implementacija | Build flag | Testo vykdymo laikas | .exe failo dydis |
+| -------- | -------- | -------- | -------- |
+| CLASS | O1 | 4,51037 | 347 KB |
+| CLASS | O2 | 4,501266667 | 327 KB |
+| CLASS | O3 | 4,508686667 | 352 KB |
+| STRUCT | O1 | 5,888936667 | 352 KB |
+| STRUCT | O2 | 5,683196667 | 319 KB |
+| STRUCT | O3 | 5,554806667 | 334 KB |
 
 Matome, jog be optimizavimo vėliavėlių programos su klasėmis veikdavo truputį lėčiau negu su struktūromis, tačiau su optimizavimo vėliavėlėmis didesnės apimties failai apdorojami greičiau pasitelkiant klases.
 

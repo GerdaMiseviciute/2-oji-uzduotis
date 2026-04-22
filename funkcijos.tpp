@@ -20,21 +20,8 @@ void skaitymas_is_failo(Konteineris& studentai)
                 continue;
             istringstream ss(eil);
             Studentas A;
-            // ss>>A.vardas>>A.pavarde;
-            // int x;
-            // while(ss>>x)
-            // {
-            //     A.pazymiai.push_back(x);
-            // }
-            // if(!A.pazymiai.empty())
-            // {
-            //     A.egzaminas=A.pazymiai.back();
-            //     A.pazymiai.pop_back();
-            // }
-            // skaiciavimai(A);
             ss>>A;
             studentai.push_back(A);
-            //A.~Studentas();
         }
         fd.close();
     }
@@ -127,7 +114,6 @@ void skaitymas(Konteineris& studentai)
             }
             Studentas A(vard, pav, c, egz);
             studentai.push_back(A);
-            //A.~Studentas();
             c.clear();
         }
         else break;
@@ -178,7 +164,6 @@ void pazymiu_generavimas(Konteineris&studentai)
             egz=rand()%10+1;
             Studentas A(vard, pav, c, egz);
             studentai.push_back(A);
-            //A.~Studentas();
             c.clear();
         }
         else break;
@@ -238,7 +223,6 @@ void generuoti_viska(Konteineris&studentai)
         egz=rand()%10+1;
         Studentas A(vard, pav, c, egz);
         studentai.push_back(A);
-        //A.~Studentas();
         c.clear();
     }
 }
@@ -447,7 +431,6 @@ void testas_2(Konteineris&studentai, int n)
 
             ss>>A;
             studentai.push_back(A);
-            //A.~Studentas();
         }
         fd.close();
         auto end = high_resolution_clock::now();
@@ -579,7 +562,6 @@ void dar_vienas_testas(Konteineris&studentai, int n)
     try
     {
         string eil;
-        
         ifstream fd("failas_"+std::to_string(n)+".txt");
         if(!fd)
         {
