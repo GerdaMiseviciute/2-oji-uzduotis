@@ -85,6 +85,11 @@ class Studentas
         {
             return galutinis_mediana;
         }
+        Studentas(const Studentas & s) : vardas{s.vardas}, pavarde{s.pavarde}, pazymiai{s.pazymiai}, egzaminas{s.egzaminas}
+        {
+            galutinis = Galutinis();
+            galutinis_mediana = Galutinis_mediana();
+        }
         friend std::istream& operator>>(std::istream& in, Studentas& A)
         {
             in>>A.vardas>>A.pavarde;
