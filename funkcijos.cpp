@@ -172,4 +172,61 @@ void testas_1(int n)
     duration<double> laikas=end-start;
     cout<<n<<" dydzio faila sugeneruoti uztruko "<<laikas.count()<<" s"<<endl;
 }
+void konstruktoriu_testas()
+{
+    Studentas stud;
+    if(stud==Studentas("Vardas", "Pavarde", { }, 0))
+        cout<<"Default konstruktorius veikia"<<endl;
+    else cout<<"Default konstruktorius neveikia"<<endl;
 
+    Studentas Stud("Vardenis", "Pavardenis", {5, 8, 3}, 9);
+    if(Stud==Studentas("Vardenis", "Pavardenis", {5, 8, 3}, 9))
+        cout<<"Konstruktorius su parametrais veikia"<<endl;
+    else cout<<"Konstruktorius su parametrais neveikia"<<endl;
+    
+    if((Stud.getVardas()=="Vardenis") && (Stud.getPavarde()=="Pavardenis") && (Stud.getEgzaminas()==9)&& (Stud.getGalutinis()==Stud.Galutinis()) && (Stud.getGalutinis_mediana()==Stud.Galutinis_mediana()))
+        cout<<"Visi 'getteriai' veikia"<<endl;
+    else cout<<"'Getteriai' neveikia"<<endl;
+
+    Studentas stud2(Stud);
+    if(stud2==Stud)
+        cout<<"Kopijavimo konstruktorius veikia"<<endl;
+    else cout<<"Kopijavimo konstruktorius neveikia"<<endl;
+
+    Studentas stud3;
+    stud3=Stud;
+    if(stud3==Stud)
+        cout<<"Kopijavimo priskyrimas veikia"<<endl;
+    else cout<<"Kopijavimo priskyrimas neveikia"<<endl;
+
+    Studentas Stud2(std::move(Stud));
+    if(Stud2==Studentas("Vardenis", "Pavardenis", {5, 8, 3}, 9) && Stud.Clear()==true)
+        cout<<"Move konstruktorius veikia"<<endl;
+    else cout<<"Move konstruktorius neveikia"<<endl;
+
+    Studentas Stud1("Vardenis", "Pavardenis", {5, 8, 3}, 9);
+    Studentas stud1;
+    stud1=std::move(Stud1);
+    if(stud1==Studentas("Vardenis", "Pavardenis", {5, 8, 3}, 9) && Stud1.Clear()==true)
+        cout<<"Move priskyrimas veikia"<<endl;
+    else cout<<"Move priskyrimas neveikia"<<endl;
+
+    Stud1.~Studentas();
+    if(Stud1.Clear()==true)
+        cout<<"Destruktorius veikia"<<endl;
+    else cout<<"Destruktorius neveikia"<<endl;
+
+    std::istringstream in("Jonas Jonaitis 10 9 8 7");
+    Studentas s;
+    in >> s;
+    if(s.getVardas()=="Jonas" && s.getPavarde()=="Jonaitis")
+        cout<<"Ivesties metodas veikia"<<endl;
+    else cout<<"Ivesties metodas neveikia"<<endl;
+
+    Studentas s1("Jonas", "Jonaitis", {10, 9, 8}, 7);
+    std::ostringstream out;
+    out << s1;
+    if(out.str().find("Jonas") != string::npos && out.str().find("Jonaitis") != string::npos)
+        cout<<"Isvesties metodas veikia"<<endl;
+    else cout<<"Isvesties metodas neveikia"<<endl;
+}

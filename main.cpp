@@ -12,14 +12,15 @@ int main()
     cout<<"5. Programos testavimas 2 (generuotu failu apdorojimas)"<<endl;
     cout<<"6. Programos testavimas 3 (strategiju lyginimas)"<<endl;
     cout<<"7. Greiciausios strategijos spartos analize su skirtingais optimizavimo flag'ais"<<endl;
-    cout<<"8. Baigti darba"<<endl;
+    cout<<"8. Testuoti konstruktoriu, kopijavimo, perkelimo metodus"<<endl;
+    cout<<"9. Baigti darba"<<endl;
     while(true)
     {
         try
         {
             cin>>choice;
-            if(cin.fail() || choice<1 || choice>8)
-                throw std::runtime_error("Iveskite skaiciu 1-8: ");
+            if(cin.fail() || choice<1 || choice>9)
+                throw std::runtime_error("Iveskite skaiciu 1-9: ");
 
             cin.ignore(1000, '\n');
             break;
@@ -160,6 +161,8 @@ int main()
             dar_vienas_testas(studentai, 1000000);
         }
         case 8:
+            konstruktoriu_testas();
+        case 9:
             exit(0);
     }
 

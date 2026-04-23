@@ -73,18 +73,27 @@ class Studentas
         {
             return vardas;
         }
+        string getVardas() { return vardas; }
         string getPavarde() const
         {
             return pavarde;
         }
+        string getPavarde() { return pavarde; }
+        int getEgzaminas() const
+        {
+            return egzaminas;
+        }
+        int getEgzaminas() { return egzaminas; }
         double getGalutinis() const
         {
             return galutinis;
         }
+        double getGalutinis() { return galutinis; }
         double getGalutinis_mediana() const
         {
             return galutinis_mediana;
         }
+        double getGalutinis_mediana() { return galutinis_mediana; }
         Studentas(const Studentas & s) : vardas{s.vardas}, pavarde{s.pavarde}, pazymiai{s.pazymiai}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana} {}
         Studentas(Studentas && s) : vardas{s.vardas}, pavarde{s.pavarde}, pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
         {
@@ -164,9 +173,7 @@ class Studentas
             if(pazymiai.empty())
                 return egzaminas*0.6;
             else return (pazymiai.size()%2==1) ? pazymiai[pazymiai.size()/2]*0.4+egzaminas*0.6 : (pazymiai[pazymiai.size()/2]+pazymiai[pazymiai.size()/2-1])/2.0*0.4+egzaminas*0.6;
-        }
-        
-        
+        }        
         ~Studentas()
         {
             vardas.clear();
@@ -175,6 +182,16 @@ class Studentas
             egzaminas=0;
             galutinis=0;
             galutinis_mediana=0;
+        }
+        bool operator ==(const Studentas A) const
+        {
+            if(getVardas()==A.getVardas() && getPavarde()== A.getPavarde() && getEgzaminas()==A.getEgzaminas() && getGalutinis()==A. getGalutinis() && getGalutinis_mediana()==A.getGalutinis_mediana())
+                return true;
+            else return false;
+        }
+        bool Clear()
+        {
+            return (vardas.empty()) && (pavarde.empty()) && (pazymiai.empty()) && (egzaminas==0) && (galutinis==0) && (galutinis_mediana==0);
         }
 };
 #endif
