@@ -112,6 +112,26 @@ class Studentas
             galutinis_mediana=s.galutinis_mediana;
             return *this;
         }
+        Studentas & operator=(Studentas&& s)
+        {
+            if(&s == this)
+                return *this;
+            pazymiai.clear();
+            pazymiai=s.pazymiai;
+            vardas=s.vardas;
+            pavarde=s.pavarde;
+            egzaminas=s.egzaminas;
+            galutinis=s.galutinis;
+            galutinis_mediana=s.galutinis_mediana;
+
+            s.vardas.clear();
+            s.pavarde.clear();
+            s.pazymiai.clear();
+            s.egzaminas=0;
+            s.galutinis=0;
+            s.galutinis_mediana=0;
+            return *this;
+        }
         friend std::istream& operator>>(std::istream& in, Studentas& A)
         {
             in>>A.vardas>>A.pavarde;
