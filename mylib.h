@@ -109,10 +109,6 @@ class Studentas
             if(&s == this)
                 return *this;
             pazymiai.clear();
-            // for(int i=0; i<s.pazymiai.size(); i++)
-            // {
-            //     pazymiai.push_back(s.pazymiai[i]);
-            // }
             pazymiai=s.pazymiai;
             vardas=s.vardas;
             pavarde=s.pavarde;

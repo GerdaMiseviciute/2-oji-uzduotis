@@ -54,3 +54,25 @@ Matome, jog be optimizavimo vėliavėlių programos su klasėmis veikdavo truput
 
 ![alt text](<Screenshot 2026-04-03 002301.png>) 
 ![alt text](<Screenshot 2026-04-03 002413.png>)
+
+
+## V1.2 versija
+
+| Metodas | Paskirtis |
+| -------- | -------- |
+| Default konstruktorius | Automatiškai priskiria reikšmes |
+| Konstruktorius su parametrais | Priskiria specifines reikšmes |
+| Getteriai | Grąžina tam tikro vieno parametro reikšmę |
+| Kopijavimo konstruktorius | Nukopijuoja visas tam tikro objekto reikšmes |
+| Kopijavimo priskyrimas | Nukopijuoja visas tam tikro objekto reikšmes (skirtumas toks, kad jau yra sukurtas default objektas, kuriam priskiriamos kito objekto reikšmės pasitelkiant = ženklą) |
+| Move konstruktorius | Perkelia visas vieno objekto reikšmes į kitą objektą ir ištrina pirmojo reikšmes |
+| Move priskyrimas | Perkelia visas vieno objekto reikšmes į kitą objektą ir ištrina pirmojo reikšmes (skirtumas toks, jog jau yra sukurtas default objektas, kuriam priskiriamos kito objekto reikšmės pasitelkiant = ženklą) |
+| Destruktorius | Ištrina objektui priskirtas reikšmes |
+| Įvesties operatorius | Leidžia iš pasirinkto srauto nuskaityti vieno objekto duomenis |
+| Išvesties operatorius | Leidžia į pasirinktą srautą įrašyti vieno objekto duomenis |
+
+Perdengtas įvedimo operatorius operator>> turi nuskaityti duomenis iš srauto ir užpildyti objektą.
+
+Perdengtas išvesties operatorius operator<< turi gražiai suformatuoti studento informaciją į tekstinį srautą.
+
+![alt text](<Screenshot 2026-04-24 015915.png>)
