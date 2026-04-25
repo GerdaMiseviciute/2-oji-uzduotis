@@ -64,16 +64,37 @@ class Zmogus
             return vardas;
         }
         string getVardas() { return vardas; }
+        void setVardas(const string& v) { vardas = v; }
         string getPavarde() const
         {
             return pavarde;
         }
         string getPavarde() { return pavarde; }
+        void setPavarde(const string& p) { pavarde = p;}
         Zmogus(const Zmogus & s) : vardas{s.vardas}, pavarde{s.pavarde} {}
         Zmogus(Zmogus && s) : vardas{s.vardas}, pavarde{s.pavarde} 
         {
             s.vardas.clear();
             s.pavarde.clear();
+        }
+        Zmogus & operator=(const Zmogus& s)
+        {
+            if(&s == this)
+                return *this;
+            vardas=s.vardas;
+            pavarde=s.pavarde;
+            return *this;
+        }
+        Zmogus & operator=(Zmogus&& s)
+        {
+            if(&s == this)
+                return *this;
+            vardas=s.vardas;
+            pavarde=s.pavarde;
+
+            s.vardas.clear();
+            s.pavarde.clear();
+            return *this;
         }
         virtual ~Zmogus()
         {
@@ -118,7 +139,7 @@ class Studentas : public Zmogus
         }
         double getGalutinis_mediana() { return galutinis_mediana; }
         Studentas(const Studentas & s) : Zmogus(s), pazymiai{s.pazymiai}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana} {}
-        Studentas(Studentas && s) : Zmogus(std::move(s)), pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
+        Studentas(Studentas && s) : Zmogus(std::move(static_cast<Zmogus&>(s))), pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
         {
             s.pazymiai.clear();
             s.egzaminas=0;
@@ -129,10 +150,9 @@ class Studentas : public Zmogus
         {
             if(&s == this)
                 return *this;
+            Zmogus::operator=(s);
             pazymiai.clear();
             pazymiai=s.pazymiai;
-            vardas=s.vardas;
-            pavarde=s.pavarde;
             egzaminas=s.egzaminas;
             galutinis=s.galutinis;
             galutinis_mediana=s.galutinis_mediana;
@@ -142,16 +162,13 @@ class Studentas : public Zmogus
         {
             if(&s == this)
                 return *this;
+            Zmogus::operator=(std::move(static_cast<Zmogus&>(s)));
             pazymiai.clear();
             pazymiai=s.pazymiai;
-            vardas=s.vardas;
-            pavarde=s.pavarde;
             egzaminas=s.egzaminas;
             galutinis=s.galutinis;
             galutinis_mediana=s.galutinis_mediana;
 
-            s.vardas.clear();
-            s.pavarde.clear();
             s.pazymiai.clear();
             s.egzaminas=0;
             s.galutinis=0;
@@ -160,7 +177,10 @@ class Studentas : public Zmogus
         }
         friend std::istream& operator>>(std::istream& in, Studentas& A)
         {
-            in>>A.vardas>>A.pavarde;
+            string temp_vardas, temp_pavarde;
+            in>>temp_vardas>>temp_pavarde;
+            A.setVardas(temp_vardas);
+            A.setPavarde(temp_pavarde);
             int x;
             while(in>>x)
             {
@@ -177,7 +197,7 @@ class Studentas : public Zmogus
         }
         friend std::ostream& operator<<(std::ostream& out, const Studentas& A)
         {
-            out<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.galutinis<<setw(20)<<fixed<< setprecision(2)<<A.galutinis_mediana<<endl;
+            out<<left<<setw(20)<<A.getVardas()<<setw(20)<<A.getPavarde()<<setw(20)<<fixed<<setprecision(2)<<A.galutinis<<setw(20)<<fixed<< setprecision(2)<<A.galutinis_mediana<<endl;
             return out;
         }
         double Galutinis() 
@@ -206,7 +226,7 @@ class Studentas : public Zmogus
         }
         bool Clear()
         {
-            return (vardas.empty()) && (pavarde.empty()) && (pazymiai.empty()) && (egzaminas==0) && (galutinis==0) && (galutinis_mediana==0);
+            return (getVardas().empty()) && (getPavarde().empty()) && (pazymiai.empty()) && (egzaminas==0) && (galutinis==0) && (galutinis_mediana==0);
         }
 };
 #endif

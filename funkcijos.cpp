@@ -184,9 +184,25 @@ void konstruktoriu_testas()
         cout<<"Konstruktorius su parametrais veikia"<<endl;
     else cout<<"Konstruktorius su parametrais neveikia"<<endl;
     
-    if((Stud.getVardas()=="Vardenis") && (Stud.getPavarde()=="Pavardenis") && (Stud.getEgzaminas()==9)&& (Stud.getGalutinis()==Stud.Galutinis()) && (Stud.getGalutinis_mediana()==Stud.Galutinis_mediana()))
-        cout<<"Visi 'getteriai' veikia"<<endl;
-    else cout<<"'Getteriai' neveikia"<<endl;
+    if(Stud.getVardas()=="Vardenis")
+        cout<<"Vardo 'getteris' veikia"<<endl;
+    else cout<<"Vardo 'getteris' neveikia"<<endl;
+
+    if(Stud.getPavarde()=="Pavardenis")
+        cout<<"Pavardes 'getteris' veikia"<<endl;
+    else cout<<"Pavardes 'getteris' neveikia"<<endl;
+
+    if(Stud.getEgzaminas()==9)
+        cout<<"Egzamino 'getteris' veikia"<<endl;
+    else cout<<"Egzamino 'getteris' neveikia"<<endl;
+
+    if(Stud.getGalutinis()==Stud.Galutinis())
+        cout<<"Galutinio rezultato 'getteris' veikia"<<endl;
+    else cout<<"Galutinio rezultato 'getteris' neveikia"<<endl;
+
+    if(Stud.getGalutinis_mediana()==Stud.Galutinis_mediana())
+        cout<<"Galutinio rezultato pagal mediana 'getteris' veikia"<<endl;
+    else cout<<"Galutinio rezultato pagal mediana 'getteris' neveikia"<<endl;
 
     Studentas stud2(Stud);
     if(stud2==Stud)
