@@ -69,6 +69,17 @@ class Zmogus
             return pavarde;
         }
         string getPavarde() { return pavarde; }
+        Zmogus(const Zmogus & s) : vardas{s.vardas}, pavarde{s.pavarde} {}
+        Zmogus(Zmogus && s) : vardas{s.vardas}, pavarde{s.pavarde} 
+        {
+            s.vardas.clear();
+            s.pavarde.clear();
+        }
+        virtual ~Zmogus()
+        {
+            vardas.clear();
+            pavarde.clear();
+        }
 
 };
 class Studentas : public Zmogus 
@@ -106,11 +117,9 @@ class Studentas : public Zmogus
             return galutinis_mediana;
         }
         double getGalutinis_mediana() { return galutinis_mediana; }
-        Studentas(const Studentas & s) : vardas{s.vardas}, pavarde{s.pavarde}, pazymiai{s.pazymiai}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana} {}
-        Studentas(Studentas && s) : vardas{s.vardas}, pavarde{s.pavarde}, pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
+        Studentas(const Studentas & s) : Zmogus(s), pazymiai{s.pazymiai}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana} {}
+        Studentas(Studentas && s) : Zmogus(std::move(s)), pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
         {
-            s.vardas.clear();
-            s.pavarde.clear();
             s.pazymiai.clear();
             s.egzaminas=0;
             s.galutinis=0;
@@ -184,8 +193,6 @@ class Studentas : public Zmogus
         }        
         ~Studentas()
         {
-            vardas.clear();
-            pavarde.clear();
             pazymiai.clear();
             egzaminas=0;
             galutinis=0;
