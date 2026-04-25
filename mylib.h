@@ -52,7 +52,23 @@ class Zmogus
     private:
         string vardas;
         string pavarde;
-
+    public:
+        Zmogus()
+        {
+            vardas="Vardas";
+            pavarde="Pavarde";
+        }
+        Zmogus(string A, string B) : vardas{A}, pavarde{B} {}
+        string getVardas() const
+        {
+            return vardas;
+        }
+        string getVardas() { return vardas; }
+        string getPavarde() const
+        {
+            return pavarde;
+        }
+        string getPavarde() { return pavarde; }
 
 };
 class Studentas : public Zmogus 
@@ -65,27 +81,16 @@ class Studentas : public Zmogus
     public:
         Studentas()
         {
-            vardas="Vardas";
-            pavarde="Pavarde";
+            
             egzaminas=0;
             galutinis=0;
             galutinis_mediana=0;
         }
-        Studentas(string A, string B, vector<int>C, int D) : vardas{A}, pavarde{B}, pazymiai{C}, egzaminas{D} 
+        Studentas(string A, string B, vector<int>C, int D) : Zmogus(A, B), pazymiai{C}, egzaminas{D} 
         {
             galutinis = Galutinis();
             galutinis_mediana = Galutinis_mediana();
         }
-        string getVardas() const
-        {
-            return vardas;
-        }
-        string getVardas() { return vardas; }
-        string getPavarde() const
-        {
-            return pavarde;
-        }
-        string getPavarde() { return pavarde; }
         int getEgzaminas() const
         {
             return egzaminas;
