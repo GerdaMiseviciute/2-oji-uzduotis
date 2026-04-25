@@ -46,11 +46,18 @@ using std::terminate;
 //     double galutinis;
 //     double galutinis_mediana;
 // };
-class Studentas
+
+class Zmogus
 {
     private:
         string vardas;
         string pavarde;
+
+
+};
+class Studentas : public Zmogus 
+{
+    private:
         int egzaminas;
         double galutinis;
         double galutinis_mediana;
