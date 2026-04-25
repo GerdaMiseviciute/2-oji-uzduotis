@@ -96,6 +96,7 @@ class Zmogus
             s.pavarde.clear();
             return *this;
         }
+        virtual void Spausdinti() const = 0;
         virtual ~Zmogus()
         {
             vardas.clear();
@@ -111,9 +112,8 @@ class Studentas : public Zmogus
         double galutinis_mediana;
         vector<int>pazymiai;
     public:
-        Studentas()
+        Studentas() : Zmogus()
         {
-            
             egzaminas=0;
             galutinis=0;
             galutinis_mediana=0;
@@ -174,6 +174,10 @@ class Studentas : public Zmogus
             s.galutinis=0;
             s.galutinis_mediana=0;
             return *this;
+        }
+        void Spausdinti() const override 
+        {
+            cout<<getVardas()<<" "<<getPavarde()<<endl;
         }
         friend std::istream& operator>>(std::istream& in, Studentas& A)
         {

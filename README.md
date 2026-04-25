@@ -76,3 +76,15 @@ Perdengtas įvedimo operatorius operator>> turi nuskaityti duomenis iš srauto i
 Perdengtas išvesties operatorius operator<< turi gražiai suformatuoti studento informaciją į tekstinį srautą.
 
 ![alt text](<Screenshot 2026-04-24 015915.png>)
+
+## V1.5 versija
+
+Sukurta bazinė klasė **Zmogus**, iš kurios išvesta klasė **Studentas**.
+
+Klasė **Zmogus** yra abstrakti - tai reiškia, jog jos objektų kūrimas yra negalimas, galima kurti tik jos derived klasių objektus, šiuo atveju, **Studentas** klasės objektus.
+
+![alt text](<Screenshot 2026-04-25 222104.png>)
+
+Visi v1.2 versijoje realizuoti testai veikia su dabartine derived klase **Studentas**.
+
+![alt text](<Screenshot 2026-04-25 221321.png>)
