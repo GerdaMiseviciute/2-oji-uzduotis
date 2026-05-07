@@ -1,7 +1,7 @@
 #include "funkcijos.h"
 int main()
 {
-    srand(time(NULL));
+    srand(static_cast<unsigned>(time(NULL)));
 
     int choice;
     cout<<"===Meniu==="<<endl;
