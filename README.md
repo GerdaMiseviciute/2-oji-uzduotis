@@ -88,3 +88,19 @@ Klasė **Zmogus** yra abstrakti - tai reiškia, jog jos objektų kūrimas yra ne
 Visi v1.2 versijoje realizuoti testai veikia su dabartine derived klase **Studentas**.
 
 ![alt text](<Screenshot 2026-04-25 221321.png>)
+
+## V2.0 versija
+
+Realizuoti pilnai veikiantys Unit (Catch) testai
+
+![alt text](<Screenshot 2026-05-08 002220.png>)
+
+## Naudojimo instrukcijos ##
+1. Įsitikinkite, jog jūsų įrenginyje yra įdiegta CMake
+- Atsidarykite Command Prompt arba PowerShell
+- Įveskite: **cmake --version**
+- Jei terminalas parodo versiją, viskas gerai. Jei ne, reikia įsidiegti CMake
+2. Raskite **run.bat** failą (jis turi būti pagrindiniame projekto kataloge)
+3. Paleiskite **run.bat** failą
+- *1 variantas:* dukart spustelėkite failą
+- *2 variantas:* atidarykite PowerShell arba Command Prompt, nueikite į projekto katalogą ir įveskite **.\run.bat**

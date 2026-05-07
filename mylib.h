@@ -53,11 +53,13 @@ class Zmogus
         string vardas;
         string pavarde;
     public:
+        //!Default konstruktorius
         Zmogus()
         {
             vardas="Vardas";
             pavarde="Pavarde";
         }
+        //!Konstruktorius su parametrais
         Zmogus(string A, string B) : vardas{A}, pavarde{B} {}
         string getVardas() const
         {
@@ -71,12 +73,15 @@ class Zmogus
         }
         string getPavarde() { return pavarde; }
         void setPavarde(const string& p) { pavarde = p;}
+        //!Kopijavimo konstruktorius
         Zmogus(const Zmogus & s) : vardas{s.vardas}, pavarde{s.pavarde} {}
+        //!Move konstruktorius
         Zmogus(Zmogus && s) : vardas{s.vardas}, pavarde{s.pavarde} 
         {
             s.vardas.clear();
             s.pavarde.clear();
         }
+        //!Kopijavimo priskyrimas
         Zmogus & operator=(const Zmogus& s)
         {
             if(&s == this)
@@ -85,6 +90,7 @@ class Zmogus
             pavarde=s.pavarde;
             return *this;
         }
+        //!Move priskyrimas
         Zmogus & operator=(Zmogus&& s)
         {
             if(&s == this)
@@ -97,6 +103,7 @@ class Zmogus
             return *this;
         }
         virtual void Spausdinti() const = 0;
+        //!Destruktorius 
         virtual ~Zmogus()
         {
             vardas.clear();
@@ -112,12 +119,14 @@ class Studentas : public Zmogus
         double galutinis_mediana;
         vector<int>pazymiai;
     public:
+        //!Default konstruktorius
         Studentas() : Zmogus()
         {
             egzaminas=0;
             galutinis=0;
             galutinis_mediana=0;
         }
+        //!Konstruktorius su parametrais
         Studentas(string A, string B, vector<int>C, int D) : Zmogus(A, B), pazymiai{C}, egzaminas{D} 
         {
             galutinis = Galutinis();
@@ -138,7 +147,9 @@ class Studentas : public Zmogus
             return galutinis_mediana;
         }
         double getGalutinis_mediana() { return galutinis_mediana; }
+        //!Kopijavimo konstruktorius
         Studentas(const Studentas & s) : Zmogus(s), pazymiai{s.pazymiai}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana} {}
+        //!Move konstruktorius
         Studentas(Studentas && s) : Zmogus(std::move(static_cast<Zmogus&>(s))), pazymiai{std::move(s.pazymiai)}, egzaminas{s.egzaminas}, galutinis{s.galutinis}, galutinis_mediana{s.galutinis_mediana}
         {
             s.pazymiai.clear();
@@ -146,6 +157,7 @@ class Studentas : public Zmogus
             s.galutinis=0;
             s.galutinis_mediana=0;
         }
+        //!Kopijavimo priskyrimas
         Studentas & operator=(const Studentas& s)
         {
             if(&s == this)
@@ -158,6 +170,7 @@ class Studentas : public Zmogus
             galutinis_mediana=s.galutinis_mediana;
             return *this;
         }
+        //!Move priskyrimas
         Studentas & operator=(Studentas&& s)
         {
             if(&s == this)
@@ -179,6 +192,7 @@ class Studentas : public Zmogus
         {
             cout<<getVardas()<<" "<<getPavarde()<<endl;
         }
+        //!Įvesties metodas vieno žmogaus duomenims nuskaityti
         friend std::istream& operator>>(std::istream& in, Studentas& A)
         {
             string temp_vardas, temp_pavarde;
@@ -199,22 +213,26 @@ class Studentas : public Zmogus
             A.galutinis_mediana = A.Galutinis_mediana();
             return in;
         }
+        //!Išvesties metodas vieno žmogaus duomenims išspausdinti
         friend std::ostream& operator<<(std::ostream& out, const Studentas& A)
         {
             out<<left<<setw(20)<<A.getVardas()<<setw(20)<<A.getPavarde()<<setw(20)<<fixed<<setprecision(2)<<A.galutinis<<setw(20)<<fixed<< setprecision(2)<<A.galutinis_mediana<<endl;
             return out;
         }
+        //!Funkcija, apskaičiuojanti galutinį studento balą pagal vidurkį
         double Galutinis() 
         {
             return (pazymiai.empty()) ? egzaminas*0.6 : accumulate(pazymiai.begin(), pazymiai.end(), 0.0)/pazymiai.size()*0.4 + egzaminas*0.6;
         }
+        //!Funkcija, apskaičiuojanti galutinį studento balą pagal medianą
         double Galutinis_mediana()
         {
             sort(pazymiai.begin(), pazymiai.end());
             if(pazymiai.empty())
                 return egzaminas*0.6;
             else return (pazymiai.size()%2==1) ? pazymiai[pazymiai.size()/2]*0.4+egzaminas*0.6 : (pazymiai[pazymiai.size()/2]+pazymiai[pazymiai.size()/2-1])/2.0*0.4+egzaminas*0.6;
-        }        
+        }
+        //!Destruktorius        
         ~Studentas()
         {
             pazymiai.clear();
@@ -222,12 +240,14 @@ class Studentas : public Zmogus
             galutinis=0;
             galutinis_mediana=0;
         }
+        //!Metodas, palyginantis du studentus, ir grąžinantis 'true', jei jų duomenys sutampa, ir 'false', jei nesutampa
         bool operator ==(const Studentas A) const
         {
             if(getVardas()==A.getVardas() && getPavarde()== A.getPavarde() && getEgzaminas()==A.getEgzaminas() && getGalutinis()==A. getGalutinis() && getGalutinis_mediana()==A.getGalutinis_mediana())
                 return true;
             else return false;
         }
+        //!Metodas, patikrinantis, ar visi duomenys buvo ištrinti
         bool Clear()
         {
             return (getVardas().empty()) && (getPavarde().empty()) && (pazymiai.empty()) && (egzaminas==0) && (galutinis==0) && (galutinis_mediana==0);
