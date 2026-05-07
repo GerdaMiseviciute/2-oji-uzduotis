@@ -46,5 +46,6 @@ template <typename Konteineris>
 void testas_3(Konteineris&studentai, int n);
 template <typename Konteineris>
 void dar_vienas_testas(Konteineris&studentai, int n);
+void testuoti();
 void konstruktoriu_testas();
 #include "funkcijos.tpp"

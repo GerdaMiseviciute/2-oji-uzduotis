@@ -161,7 +161,7 @@ int main()
             dar_vienas_testas(studentai, 1000000);
         }
         case 8:
-            konstruktoriu_testas();
+            testuoti();
         case 9:
             exit(0);
     }
