@@ -1,0 +1,116 @@
+\chapter{Objektinis-\/programavimas }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Objektinis-\/programavimas@{Objektinis-\/programavimas}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{V1.\+1 versija}{V1.\+1 versija}}\label{md__r_e_a_d_m_e_autotoc_md1}
+Kiekvienai lentelei imami 3 testų duomenys ir pateikiamas jų vidurkis, matuojamas sekundėmis. Testui atlikti buvo naudoti {\bfseries{vector}} tipo konteineriai, atlikti tyrimai su skirtingomis optimizavimo vėliavėlėmis -\/ {\bfseries{o1}}, {\bfseries{o2}} ir {\bfseries{o3}}
+
+{\bfseries{Klasių analizė}} 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Failų dydžiai  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}100000 dydžio failas  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}1000000 dydžio failas  \\
+Failo nuskaitymas  &0,178971333  &1,711526667  \\
+Rikiavimas  &0,247536  &3,258963333  \\
+Skirstymas į 2 kategorijas  &0,0115029  &0,118587333  \\
+Spausdinimas  &0,149683  &1,124083333  \\
+Iš viso  &0,590147  &6,214986667  \\
+\end{DoxyTable}
+
+
+{\bfseries{Struktūrų analizė}}
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Failų dydžiai  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}100000 dydžio failas  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}1000000 dydžio failas  \\
+Failo nuskaitymas  &0,153855667  &3,47111  \\
+Rikiavimas  &0,0717167  &0,896167333  \\
+Skirstymas į 2 kategorijas  &0,013489367  &0,237404333  \\
+Spausdinimas  &0,122633667  &1,14252  \\
+Iš viso  &0,363875333  &5,74894  \\
+\end{DoxyTable}
+
+
+{\itshape {\bfseries{Optimizavimo vėliavėlių analizė}}}
+
+Matuojamas tik bendras programos veikimo laikas
+
+{\bfseries{100 000 dydžio failas}}
+
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Implementacija  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Build flag  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Testo vykdymo laikas  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}.exe failo dydis  \\
+CLASS  &O1  &0,453891  &347 KB  \\
+CLASS  &O2  &0,460904667  &327 KB  \\
+CLASS  &O3  &0,470426  &352 KB  \\
+STRUCT  &O1  &0,402349667  &352 KB  \\
+STRUCT  &O2  &0,378048667  &319 KB  \\
+STRUCT  &O3  &0,387034667  &334 KB  \\
+\end{DoxyTable}
+
+
+{\bfseries{1 000 000 dydžio failas}}
+
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Implementacija  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Build flag  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Testo vykdymo laikas  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}.exe failo dydis  \\
+CLASS  &O1  &4,51037  &347 KB  \\
+CLASS  &O2  &4,501266667  &327 KB  \\
+CLASS  &O3  &4,508686667  &352 KB  \\
+STRUCT  &O1  &5,888936667  &352 KB  \\
+STRUCT  &O2  &5,683196667  &319 KB  \\
+STRUCT  &O3  &5,554806667  &334 KB  \\
+\end{DoxyTable}
+
+
+Matome, jog be optimizavimo vėliavėlių programos su klasėmis veikdavo truputį lėčiau negu su struktūromis, tačiau su optimizavimo vėliavėlėmis didesnės apimties failai apdorojami greičiau pasitelkiant klases.
+
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{V1.\+2 versija}{V1.\+2 versija}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Metodas  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Paskirtis  \\
+Default konstruktorius  &Automatiškai priskiria reikšmes  \\
+Konstruktorius su parametrais  &Priskiria specifines reikšmes  \\
+Getteriai  &Grąžina tam tikro vieno parametro reikšmę  \\
+Kopijavimo konstruktorius  &Nukopijuoja visas tam tikro objekto reikšmes  \\
+Kopijavimo priskyrimas  &Nukopijuoja visas tam tikro objekto reikšmes (skirtumas toks, kad jau yra sukurtas default objektas, kuriam priskiriamos kito objekto reikšmės pasitelkiant = ženklą)  \\
+Move konstruktorius  &Perkelia visas vieno objekto reikšmes į kitą objektą ir ištrina pirmojo reikšmes  \\
+Move priskyrimas  &Perkelia visas vieno objekto reikšmes į kitą objektą ir ištrina pirmojo reikšmes (skirtumas toks, jog jau yra sukurtas default objektas, kuriam priskiriamos kito objekto reikšmės pasitelkiant = ženklą)  \\
+Destruktorius  &Ištrina objektui priskirtas reikšmes  \\
+Įvesties operatorius  &Leidžia iš pasirinkto srauto nuskaityti vieno objekto duomenis  \\
+Išvesties operatorius  &Leidžia į pasirinktą srautą įrašyti vieno objekto duomenis  \\
+\end{DoxyTable}
+
+
+Perdengtas įvedimo operatorius operator\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>} turi nuskaityti duomenis iš srauto ir užpildyti objektą.
+
+Perdengtas išvesties operatorius operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} turi gražiai suformatuoti studento informaciją į tekstinį srautą.
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{V1.\+5 versija}{V1.\+5 versija}}\label{md__r_e_a_d_m_e_autotoc_md3}
+Sukurta bazinė klasė {\bfseries{\doxylink{class_zmogus}{Zmogus}}}, iš kurios išvesta klasė {\bfseries{\doxylink{class_studentas}{Studentas}}}.
+
+Klasė {\bfseries{\doxylink{class_zmogus}{Zmogus}}} yra abstrakti -\/ tai reiškia, jog jos objektų kūrimas yra negalimas, galima kurti tik jos derived klasių objektus, šiuo atveju, {\bfseries{\doxylink{class_studentas}{Studentas}}} klasės objektus.
+
+
+
+Visi v1.\+2 versijoje realizuoti testai veikia su dabartine derived klase {\bfseries{\doxylink{class_studentas}{Studentas}}}.
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{V2.\+0 versija}{V2.\+0 versija}}\label{md__r_e_a_d_m_e_autotoc_md4}
+Realizuoti pilnai veikiantys Unit (Catch) testai
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{\texorpdfstring{Naudojimo instrukcijos}{Naudojimo instrukcijos}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyEnumerate}
+\item Įsitikinkite, jog jūsų įrenginyje yra įdiegta CMake
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Atsidarykite Command Prompt arba Power\+Shell
+\item Įveskite:\+ {\bfseries{cmake --version}}
+\item Jei terminalas parodo versiją, viskas gerai. Jei ne, reikia įsidiegti CMake
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Raskite {\bfseries{run.\+bat}} failą (jis turi būti pagrindiniame projekto kataloge)
+\item Paleiskite {\bfseries{run.\+bat}} failą
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item {\itshape 1 variantas:\+} dukart spustelėkite failą
+\item {\itshape 2 variantas:\+} atidarykite Power\+Shell arba Command Prompt, nueikite į projekto katalogą ir įveskite \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.\textbackslash{}run.bat\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\end{DoxyItemize}

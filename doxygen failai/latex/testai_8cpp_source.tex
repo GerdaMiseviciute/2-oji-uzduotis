@@ -1,0 +1,87 @@
+\doxysection{testai.\+cpp}
+\hypertarget{testai_8cpp_source}{}\label{testai_8cpp_source}\doxymbox{\hyperlink{testai_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00002}\doxymbox{\hyperlink{testai_8cpp_a34b4c3eca7342fbc4cba090d02139902}{00002}}\ \textcolor{preprocessor}{\#define\ CATCH\_CONFIG\_RUNNER}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}catch.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{mylib_8h}{mylib.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00005}\doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{00005}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Default\ konstruktorius"{}},\ \textcolor{stringliteral}{"{}[Default]\ [konstruktorius]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00007}00007\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ stud;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00008}00008\ \ \ \ \ REQUIRE(stud==\doxymbox{\hyperlink{class_studentas}{Studentas}}(\textcolor{stringliteral}{"{}Vardas"{}},\ \textcolor{stringliteral}{"{}Pavarde"{}},\ \{\ \},\ 0));}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00009}00009\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00010}\doxymbox{\hyperlink{testai_8cpp_a925ad31cbdc77b0c736f0f076a2d2067}{00010}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Konstruktorius\ su\ parametrais"{}},\ \textcolor{stringliteral}{"{}[Konstruktorius]\ [su]\ [parametrais]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00012}00012\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00013}00013\ \ \ \ \ REQUIRE(Stud==\doxymbox{\hyperlink{class_studentas}{Studentas}}(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9));}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00015}\doxymbox{\hyperlink{testai_8cpp_a7f3fa5aee30aedd2eeb931e471f5348a}{00015}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Destruktorius"{}},\ \textcolor{stringliteral}{"{}[Destruktorius]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ s(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,8,3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00020}00020\ \ \ \ \ SUCCEED(\textcolor{stringliteral}{"{}Destruktorius:\ [OK]"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00022}\doxymbox{\hyperlink{testai_8cpp_a77257a23bf703f68d79438fbb45ca33e}{00022}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Kopijavimo\ konstruktorius"{}},\ \textcolor{stringliteral}{"{}[Kopijavimo]\ [konstruktorius]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00024}00024\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00025}00025\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ stud(Stud);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00026}00026\ \ \ \ \ REQUIRE(stud==Stud);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00028}\doxymbox{\hyperlink{testai_8cpp_a10199f43880f9745fe9a50d76e17ef3d}{00028}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Kopijavimo\ priskyrimas"{}},\ \textcolor{stringliteral}{"{}[Kopijavimo]\ [priskyrimas]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00030}00030\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00031}00031\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ stud;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00032}00032\ \ \ \ \ stud=Stud;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00033}00033\ \ \ \ \ REQUIRE(stud==Stud);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00035}\doxymbox{\hyperlink{testai_8cpp_a7b00dd601dbeb0624018cd20753a85f1}{00035}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Move\ konstruktorius"{}},\ \textcolor{stringliteral}{"{}[Move]\ [konstruktorius]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00037}00037\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00038}00038\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ stud(std::move(Stud));}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00039}00039\ \ \ \ \ REQUIRE(stud==\doxymbox{\hyperlink{class_studentas}{Studentas}}(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9));}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00040}00040\ \ \ \ \ REQUIRE(Stud.Clear()==\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00042}\doxymbox{\hyperlink{testai_8cpp_ae22287c4f5f82fb5b8a431f141bd593a}{00042}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Move\ priskyrimas"{}},\ \textcolor{stringliteral}{"{}[Move]\ [priskyrimas]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00044}00044\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00045}00045\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ stud;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00046}00046\ \ \ \ \ stud=std::move(Stud);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00047}00047\ \ \ \ \ REQUIRE(stud==\doxymbox{\hyperlink{class_studentas}{Studentas}}(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9));}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00048}00048\ \ \ \ \ REQUIRE(Stud.Clear()==\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00050}\doxymbox{\hyperlink{testai_8cpp_ac143777db9e77779b54254f18de129e7}{00050}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Ivesties\ metodas"{}},\ \textcolor{stringliteral}{"{}[Ivesties]\ [metodas]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00052}00052\ \ \ \ \ std::istringstream\ in(\textcolor{stringliteral}{"{}Jonas\ Jonaitis\ 10\ 9\ 8\ 7"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00053}00053\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ s;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00054}00054\ \ \ \ \ in\ >>\ s;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00055}00055\ \ \ \ \ REQUIRE(s.\doxymbox{\hyperlink{class_zmogus_aaea44664c236e2fadf022f3821862499}{getVardas}}()==\textcolor{stringliteral}{"{}Jonas"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00056}00056\ \ \ \ \ REQUIRE(s.\doxymbox{\hyperlink{class_zmogus_a11ee9ac120fbb7d6a4e1f4da3a602b63}{getPavarde}}()==\textcolor{stringliteral}{"{}Jonaitis"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00057}00057\ \ \ \ \ REQUIRE(s.\doxymbox{\hyperlink{class_studentas_abe38c118e8e899b4de681f1d12adceab}{getEgzaminas}}()==7);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00059}\doxymbox{\hyperlink{testai_8cpp_a9bd8fbf3f140396b7a1a029191bea6bb}{00059}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Isvesties\ metodas"{}},\ \textcolor{stringliteral}{"{}[Isvesties]\ [metodas]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00061}00061\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ s1(\textcolor{stringliteral}{"{}Jonas"{}},\ \textcolor{stringliteral}{"{}Jonaitis"{}},\ \{10,\ 9,\ 8\},\ 7);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00062}00062\ \ \ \ \ std::ostringstream\ out;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00063}00063\ \ \ \ \ out\ <<\ s1;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00064}00064\ \ \ \ \ REQUIRE(out.str().find(\textcolor{stringliteral}{"{}Jonas"{}})\ !=\ string::npos);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00065}00065\ \ \ \ \ REQUIRE(out.str().find(\textcolor{stringliteral}{"{}Jonaitis"{}})\ !=\ string::npos);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00067}\doxymbox{\hyperlink{testai_8cpp_a0e5e7907776f14648b6832d15253a077}{00067}}\ \doxymbox{\hyperlink{testai_8cpp_aab6698facb0ace8534455f612dfff43f}{TEST\_CASE}}(\textcolor{stringliteral}{"{}Getteriai"{}},\ \textcolor{stringliteral}{"{}[Getteriai]"{}})}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00069}00069\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ Stud(\textcolor{stringliteral}{"{}Vardenis"{}},\ \textcolor{stringliteral}{"{}Pavardenis"{}},\ \{5,\ 8,\ 3\},\ 9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00070}00070\ \ \ \ \ REQUIRE(Stud.getVardas()==\textcolor{stringliteral}{"{}Vardenis"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00071}00071\ \ \ \ \ REQUIRE(Stud.getPavarde()==\textcolor{stringliteral}{"{}Pavardenis"{}});}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00072}00072\ \ \ \ \ REQUIRE(Stud.getEgzaminas()==9);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00073}00073\ \ \ \ \ REQUIRE(Stud.getGalutinis()==Stud.Galutinis());}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00074}00074\ \ \ \ \ REQUIRE(Stud.getGalutinis\_mediana()==Stud.Galutinis\_mediana());}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00075}00075\ \}}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00077}\doxymbox{\hyperlink{funkcijos_8h_a7ee800c1ba8857d8bd3d4616315d96d9}{00077}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{testai_8cpp_a7ee800c1ba8857d8bd3d4616315d96d9}{testuoti}}()}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00078}00078\ \{}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{int}\ argc=1;}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordtype}{char}*\ argv[]=\{(\textcolor{keywordtype}{char}*)\textcolor{stringliteral}{"{}testai"{}}\};}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00081}00081\ \ \ \ \ Catch::Session().run(argc,\ argv);}
+\DoxyCodeLine{\Hypertarget{testai_8cpp_source_l00082}00082\ \}}
+
+\end{DoxyCode}
